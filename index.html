@@ -79,9 +79,85 @@
         display: flex; align-items: center; gap: 6px;
     }
 
+    .chapter-tabs {
+        position: fixed;
+        top: 56px; left: 0; right: 0;
+        height: 48px;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: stretch;
+        padding: 0 32px;
+        gap: 8px;
+        z-index: 98;
+        overflow-x: auto;
+    }
+
+    .chapter-tabs::-webkit-scrollbar { display: none; }
+
+    .chapter-tab {
+        display: flex;
+        align-items: center;
+        padding: 0 18px;
+        font-size: 15px;
+        color: var(--text-sub);
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        transition: all 0.2s;
+        user-select: none;
+    }
+
+    .chapter-tab:hover { color: var(--wx-green); }
+
+    .chapter-tab.active {
+        color: var(--wx-green);
+        font-weight: 700;
+        border-bottom-color: var(--wx-green);
+    }
+
+    .chapter-tab.disabled {
+        color: #bbb;
+        cursor: not-allowed;
+    }
+
+    .chapter-tab .tab-status {
+        font-size: 12px;
+        color: #c8c9cc;
+        margin-left: 6px;
+    }
+
+    .chapter-panel { display: none; height: 100%; }
+
+    .chapter-panel.active { display: block; }
+
+    .chapter-empty {
+        height: calc(100vh - 104px);
+        margin-top: 104px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        gap: 16px;
+    }
+
+    .chapter-empty .empty-icon {
+        font-size: 64px;
+        opacity: 0.35;
+    }
+
+    .chapter-empty .empty-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text-sub);
+    }
+
+    .chapter-empty .empty-desc { font-size: 16px; }
+
     .progress-bar {
         position: fixed;
-        top: 56px; left: 0;
+        top: 104px; left: 0;
         height: 3px;
         background: var(--wx-green);
         transition: width 0.3s ease;
@@ -90,7 +166,7 @@
 
     .sidebar {
         position: fixed;
-        top: 59px; left: 0;
+        top: 107px; left: 0;
         bottom: 0;
         width: 220px;
         background: #fff;
@@ -149,8 +225,8 @@
 
     .slides-wrap {
         margin-left: 220px;
-        margin-top: 59px;
-        height: calc(100vh - 59px);
+        margin-top: 107px;
+        height: calc(100vh - 107px);
         position: relative;
         overflow: hidden;
     }
@@ -1155,12 +1231,20 @@
         <div class="logo-icon">微</div>
         <span>微信小程序创新设计与开发实践</span>
     </div>
-    <div class="topbar-title">第一章 · 小程序是什么？</div>
+    <div class="topbar-title">课程课件 · 在线版</div>
     <div class="topbar-info">
         <span>课程编号：36810310</span>
     </div>
 </div>
+
+<div class="chapter-tabs" id="chapterTabs">
+    <div class="chapter-tab active" data-chapter="1" onclick="switchChapter(1)">第一章 · 小程序是什么</div>
+    <div class="chapter-tab disabled" data-chapter="2" onclick="switchChapter(2)">第二章 · 开发工具和项目结构<span class="tab-status">课件更新中</span></div>
+</div>
+
 <div class="progress-bar" id="progressBar" style="width: 5%"></div>
+
+<div class="chapter-panel active" id="chapter-panel-1">
 
 <div class="sidebar" id="sidebar">
     <div class="sidebar-section">
@@ -2144,6 +2228,16 @@
 
 </div>
 
+</div><!-- /chapter-panel-1 -->
+
+<div class="chapter-panel" id="chapter-panel-2">
+    <div class="chapter-empty">
+        <div class="empty-icon">🚧</div>
+        <div class="empty-title">第二章 · 开发工具和项目结构</div>
+        <div class="empty-desc">本章课件正在制作中，敬请期待</div>
+    </div>
+</div>
+
 <!-- 平台级应用弹窗 -->
 <div class="modal-overlay" id="platformModal" onclick="closePlatformModal(event)">
     <div class="modal-content">
@@ -2217,6 +2311,18 @@
     const progressBar = document.getElementById('progressBar');
     let currentSlide = 0;
     const totalSlides = slides.length;
+    let activeChapter = 1;
+
+    function switchChapter(ch) {
+        const panel = document.getElementById('chapter-panel-' + ch);
+        if (!panel || panel.querySelector('.chapter-empty')) return; // 未更新的章节不可进入
+        activeChapter = ch;
+        document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+        panel.classList.add('active');
+        document.querySelectorAll('.chapter-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.chapter === String(ch));
+        });
+    }
 
     function showSlide(index) {
         if (index < 0 || index >= totalSlides) return;
@@ -2232,6 +2338,7 @@
     }
 
     document.addEventListener('keydown', (e) => {
+        if (activeChapter !== 1) return; // 仅在课件章节内响应翻页
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
             e.preventDefault();
             showSlide(currentSlide + 1);
