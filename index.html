@@ -1776,6 +1776,138 @@
         line-height: 1.5;
     }
 
+    /* ===== 课程学习路线模块卡 ===== */
+    .five-modules {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .module-card {
+        background: #fff;
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 8px 14px;
+        text-align: center;
+        position: relative;
+        transition: all 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .module-card:hover {
+        border-color: var(--wx-green);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(7,193,96,0.15);
+    }
+    .module-card.intro-only {
+        border-style: dashed;
+        background: repeating-linear-gradient(
+            45deg,
+            #fff,
+            #fff 8px,
+            #fbfdfb 8px,
+            #fbfdfb 16px
+        );
+    }
+    .module-card.ai-extra {
+        border-color: rgba(139,92,246,0.5);
+        border-style: dashed;
+        background: repeating-linear-gradient(
+            45deg,
+            #fff,
+            #fff 8px,
+            #fbf9ff 8px,
+            #fbf9ff 16px
+        );
+    }
+    .module-card.ai-extra:hover {
+        border-color: #8b5cf6;
+        box-shadow: 0 8px 24px rgba(139,92,246,0.18);
+    }
+    .module-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 26px;
+        height: 26px;
+        background: var(--wx-green);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        box-shadow: 0 2px 6px rgba(7,193,96,0.3);
+    }
+    .module-badge.intro-only {
+        background: #94a3b8;
+        box-shadow: 0 2px 6px rgba(148,163,184,0.3);
+    }
+    .module-badge.ai-extra {
+        background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+        box-shadow: 0 2px 6px rgba(139,92,246,0.35);
+    }
+    .module-icon {
+        font-size: 32px;
+        margin: 10px 0 6px;
+    }
+    .module-card h3 {
+        font-size: 16px;
+        color: var(--text-main);
+        margin-bottom: 4px;
+    }
+    .module-card p {
+        font-size: 11px;
+        color: var(--text-sub);
+        line-height: 1.55;
+    }
+    .module-tag {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 2px 8px;
+        font-size: 11px;
+        border-radius: 10px;
+        background: #f1f5f9;
+        color: #64748b;
+        font-weight: 500;
+    }
+    .module-tag.practice {
+        background: rgba(7,193,96,0.1);
+        color: var(--wx-green-dark);
+    }
+    .module-tag.ai {
+        background: rgba(139,92,246,0.12);
+        color: #6d28d9;
+    }
+    .module-row-ai {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 14px;
+    }
+    .ai-intro-strip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(90deg, rgba(139,92,246,0.08) 0%, rgba(167,139,250,0.04) 100%);
+        border-left: 4px solid #8b5cf6;
+        border-radius: 8px;
+        padding: 8px 14px;
+        margin-bottom: 14px;
+        font-size: 12px;
+        color: var(--text-main);
+        line-height: 1.5;
+    }
+    .ai-intro-strip .ai-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    .ai-intro-strip strong {
+        color: #6d28d9;
+        font-weight: 700;
+    }
+
     .history-layout {
         display: flex;
         gap: 36px;
@@ -1949,6 +2081,120 @@
         font-size: 18px;
         color: var(--text-light);
         margin-top: 12px;
+    }
+
+    /* 小程序生态发展阶段对比图表 */
+    .chart-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 8px;
+    }
+    .chart-card {
+        background: linear-gradient(180deg, #f8fffa 0%, #ffffff 100%);
+        border: 1px solid rgba(7,193,96,0.15);
+        border-radius: 12px;
+        padding: 14px 14px 12px;
+        box-shadow: 0 4px 16px rgba(7,193,96,0.06);
+        display: flex;
+        flex-direction: column;
+    }
+    .chart-card.image-only {
+        background: #fff;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+    .chart-card.image-only img {
+        max-width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+    .chart-card .chart-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--wx-green-dark);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+    .chart-card .chart-title .chart-year {
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+        padding: 3px 8px;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+    .chart-card .chart-legend {
+        font-size: 10px;
+        color: var(--text-sub);
+        margin-bottom: 8px;
+    }
+    .bar-row {
+        display: grid;
+        grid-template-columns: 72px 1fr 52px;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+    .bar-row .bar-label {
+        color: var(--text-main);
+        font-weight: 600;
+    }
+    .bar-row .bar-track {
+        height: 14px;
+        background: #eef4ef;
+        border-radius: 7px;
+        overflow: hidden;
+        position: relative;
+    }
+    .bar-row .bar-fill {
+        height: 100%;
+        border-radius: 7px;
+        background: linear-gradient(90deg, #07c160 0%, #10d67a 100%);
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+        transition: width 0.6s ease;
+    }
+    .bar-row .bar-fill.alt {
+        background: linear-gradient(90deg, #0083ff 0%, #3aa5ff 100%);
+    }
+    .bar-row .bar-fill.alt2 {
+        background: linear-gradient(90deg, #fe5c5c 0%, #ff8c7a 100%);
+    }
+    .bar-row .bar-fill.alt3 {
+        background: linear-gradient(90deg, #ff8000 0%, #ffaa40 100%);
+    }
+    .bar-row .bar-value {
+        text-align: right;
+        font-weight: 700;
+        color: var(--wx-green-dark);
+        font-size: 12px;
+    }
+    .bar-row .bar-value.alt { color: #0073e6; }
+    .bar-row .bar-value.alt2 { color: #d43a3a; }
+    .bar-row .bar-value.alt3 { color: #cc6600; }
+    .chart-source {
+        font-size: 10px;
+        color: var(--text-sub);
+        margin-top: auto;
+        padding-top: 6px;
+        border-top: 1px dashed rgba(0,0,0,0.08);
+        text-align: right;
+    }
+    .stage-badge {
+        display: inline-block;
+        font-size: 10px;
+        color: var(--wx-green-dark);
+        background: rgba(7,193,96,0.1);
+        padding: 2px 8px;
+        border-radius: 8px;
+        margin-right: 6px;
     }
 
     .two-col {
@@ -2531,8 +2777,10 @@
     <div class="chapter-tab" data-chapter="3" onclick="switchChapter(3)">第三章 · 微信小程序配置</div>
     <div class="chapter-tab" data-chapter="4" onclick="switchChapter(4)">第四章 · 页面布局设计</div>
     <div class="chapter-tab" data-chapter="5" onclick="switchChapter(5)">第五章 · 常用组件介绍</div>
-    <div class="chapter-tab disabled" data-chapter="6">第六章 · 页面交互<span class="tab-status">更新中</span></div>
-    <div class="chapter-tab disabled" data-chapter="7">第七章 · 后台管理及云开发简介<span class="tab-status">更新中</span></div>
+    <div class="chapter-tab disabled" data-chapter="6"><span>第六章 · AI大语言模型与应用</span><span class="tab-status">🔒 待定</span></div>
+    <div class="chapter-tab disabled" data-chapter="7"><span>第七章 · AI从LLM到Agent</span><span class="tab-status">🔒 待定</span></div>
+    <div class="chapter-tab disabled" data-chapter="8"><span>第八章 · 页面交互</span><span class="tab-status">🔒 待定</span></div>
+    <div class="chapter-tab disabled" data-chapter="9"><span>第九章 · 后台管理与云开发</span><span class="tab-status">🔒 待定</span></div>
 </div>
 
 <div class="progress-bar" id="progressBar" style="width: 5%"></div>
@@ -2582,9 +2830,10 @@
     <div class="sidebar-section">
         <div class="sidebar-title">学习与考核</div>
         <div class="nav-item" data-slide="21"><span class="nav-num">21</span>课程结构</div>
-        <div class="nav-item" data-slide="22"><span class="nav-num">22</span>课程考核</div>
-        <div class="nav-item" data-slide="23"><span class="nav-num">23</span>学习建议</div>
-        <div class="nav-item" data-slide="24"><span class="nav-num">24</span>课后任务</div>
+        <div class="nav-item" data-slide="22"><span class="nav-num">22</span>课程学习路线</div>
+        <div class="nav-item" data-slide="23"><span class="nav-num">23</span>课程考核</div>
+        <div class="nav-item" data-slide="24"><span class="nav-num">24</span>学习建议</div>
+        <div class="nav-item" data-slide="25"><span class="nav-num">25</span>课后任务</div>
     </div>
 </div>
 
@@ -3007,16 +3256,63 @@
                 <div class="slide-subtitle">3.2 微信小程序优势</div>
             </div>
         </div>
-        <div class="content-grid">
-            <ul class="big-list">
-                <li>微信月活跃用户超过<strong>14.39 亿</strong>，借助庞大用户群体迅速获得流量和曝光</li>
-                <li>微信搜一搜月活超<strong>8 亿</strong>，日均搜索量达数十亿次</li>
-                <li>企业和开发者可通过微信社交网络直接接触海量用户，降低市场推广成本</li>
-                <li>强大的官方开发、运营文档支持</li>
-            </ul>
-            <div class="image-block">
-                <img src="assets/slide14_img12.png" alt="微信小程序优势">
-                <div class="image-caption">微信小程序用户规模与生态优势</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+            <div style="background:var(--bg-light);border-left:5px solid var(--wx-green);border-radius:12px;padding:16px 20px;">
+                <ul class="big-list" style="margin:0;padding-left:20px;">
+                    <li style="margin-bottom:4px;">微信月活跃用户超过<strong>14.39 亿</strong>，借助庞大用户群体迅速获得流量和曝光</li>
+                    <li style="margin-bottom:4px;">微信搜一搜月活超<strong>8 亿</strong>，日均搜索量达数十亿次</li>
+                    <li style="margin-bottom:4px;">企业和开发者可通过微信社交网络直接接触海量用户，降低市场推广成本</li>
+                    <li>强大的官方开发、运营文档支持</li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-size:14px;color:var(--text-main);font-weight:600;margin-bottom:10px;">
+                    <span class="stage-badge">阶段对比</span>小程序生态发展三阶段：从"小程序元年"到"抖音超越百度"
+                </div>
+                <div class="chart-grid">
+                    <!-- 图 1：2018 年小程序兴起初期 -->
+                    <div class="chart-card">
+                        <div class="chart-title">
+                            <span>🚀 兴起初期</span>
+                            <span class="chart-year">2018 年底</span>
+                        </div>
+                        <div class="chart-legend">各平台小程序日活跃用户（亿）</div>
+                        <div class="bar-row"><div class="bar-label">微信小程序</div><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><div class="bar-value">2.3</div></div>
+                        <div class="bar-row"><div class="bar-label">支付宝小程序</div><div class="bar-track"><div class="bar-fill alt" style="width:74%;"></div></div><div class="bar-value alt">1.7</div></div>
+                        <div class="bar-row"><div class="bar-label">百度智能小程序</div><div class="bar-track"><div class="bar-fill alt2" style="width:65%;"></div></div><div class="bar-value alt2">1.5</div></div>
+                        <div class="bar-row"><div class="bar-label">头条小程序</div><div class="bar-track"><div class="bar-fill alt3" style="width:26%;"></div></div><div class="bar-value alt3">0.6</div></div>
+                        <div class="chart-source">数据：阿拉丁 2018 报告</div>
+                    </div>
+                    <!-- 图 2：2024 年现状 -->
+                    <div class="chart-card">
+                        <div class="chart-title">
+                            <span>📊 头部集中</span>
+                            <span class="chart-year">2024 年中</span>
+                        </div>
+                        <div class="chart-legend">各平台小程序日活跃用户（亿）</div>
+                        <div class="bar-row"><div class="bar-label">微信小程序</div><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><div class="bar-value">4.5</div></div>
+                        <div class="bar-row"><div class="bar-label">支付宝小程序</div><div class="bar-track"><div class="bar-fill alt" style="width:84%;"></div></div><div class="bar-value alt">3.8</div></div>
+                        <div class="bar-row"><div class="bar-label">抖音小程序</div><div class="bar-track"><div class="bar-fill alt2" style="width:52%;"></div></div><div class="bar-value alt2">2.35</div></div>
+                        <div class="bar-row"><div class="bar-label">百度智能小程序</div><div class="bar-track"><div class="bar-fill alt3" style="width:20%;"></div></div><div class="bar-value alt3">0.9</div></div>
+                        <div class="chart-source">数据：QuestMobile 2024 报告</div>
+                    </div>
+                    <!-- 图 3：2025 近一年数据 -->
+                    <div class="chart-card">
+                        <div class="chart-title">
+                            <span>📈 近一年规模</span>
+                            <span class="chart-year">2025 年 5 月</span>
+                        </div>
+                        <div class="chart-legend">各平台小程序月活跃用户（亿）</div>
+                        <div class="bar-row"><div class="bar-label">微信小程序</div><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><div class="bar-value">9.46</div></div>
+                        <div class="bar-row"><div class="bar-label">支付宝小程序</div><div class="bar-track"><div class="bar-fill alt" style="width:69%;"></div></div><div class="bar-value alt">6.54</div></div>
+                        <div class="bar-row"><div class="bar-label">抖音小程序</div><div class="bar-track"><div class="bar-fill alt2" style="width:30%;"></div></div><div class="bar-value alt2">2.83</div></div>
+                        <div class="bar-row"><div class="bar-label">百度智能小程序</div><div class="bar-track"><div class="bar-fill alt3" style="width:11%;"></div></div><div class="bar-value alt3">1.07</div></div>
+                        <div class="chart-source">数据：QuestMobile 2025 半年报</div>
+                    </div>
+                </div>
+                <div style="font-size:12px;color:var(--text-sub);margin-top:10px;text-align:center;line-height:1.5;">
+                    <strong>观察：</strong>微信凭借"先发 + 社交"优势始终保持绝对领先；支付宝守住金融/生活场景第二梯队；抖音后来居上，2025 年已超越百度成为第三极。
+                </div>
             </div>
         </div>
     </div>
@@ -3436,13 +3732,98 @@
         </div>
     </div>
 
-    <!-- 22. 课程考核 -->
+    <!-- 22. 课程学习路线（七大模块 + AI 补充） -->
     <div class="slide" data-index="22">
         <div class="slide-header">
             <div class="slide-num">22</div>
             <div>
+                <div class="slide-title">课程学习路线 —— 七大模块</div>
+                <div class="slide-subtitle">7.2 学习模块</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:10px;">
+                <h3 style="font-size:18px;margin-bottom:4px;">本课程按以下七大模块依次推进，覆盖从介绍认知到接口能力的全过程</h3>
+                <div class="ai-intro-strip" style="margin-bottom:0;">
+                    <span class="ai-icon">🤖</span>
+                    <span><strong>补充内容：</strong>在小程序核心内容之外，本课程还将介绍 <strong>AI 大语言模型（LLM）</strong>与 <strong>Agent 智能体</strong>相关概念知识，帮助大家理解当下最新的技术趋势。</span>
+                </div>
+            </div>
+            <div class="five-modules">
+                <div class="module-card">
+                    <div class="module-badge">1</div>
+                    <div class="module-icon">💡</div>
+                    <h3>介绍</h3>
+                    <p>小程序是什么<br>发展沿革 · 应用场景</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-badge">2</div>
+                    <div class="module-icon">📝</div>
+                    <h3>注册</h3>
+                    <p>小程序申请注册<br>账号申请 · 注册流程</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-badge">3</div>
+                    <div class="module-icon">🛠️</div>
+                    <h3>工具</h3>
+                    <p>开发工具与项目结构<br>下载 · 项目创建</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-badge">4</div>
+                    <div class="module-icon">🏗️</div>
+                    <h3>框架</h3>
+                    <p>小程序框架<br>JSON · WXML · WXSS · JS</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-badge">5</div>
+                    <div class="module-icon">🧩</div>
+                    <h3>组件</h3>
+                    <p>常用组件介绍<br>基础组件 · 扩展组件</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-badge">6</div>
+                    <div class="module-icon">📚</div>
+                    <h3>API</h3>
+                    <p>接口与能力<br>网络 · 存储 · 媒体</p>
+                    <span class="module-tag practice">理论 + 实践</span>
+                </div>
+                <div class="module-card intro-only">
+                    <div class="module-badge intro-only">7</div>
+                    <div class="module-icon">☁️</div>
+                    <h3>云开发</h3>
+                    <p>云函数 · 云数据库 · 云存储<br>概念认知</p>
+                    <span class="module-tag">仅介绍 · 不实践</span>
+                </div>
+            </div>
+            <div class="module-row-ai">
+                <div class="module-card ai-extra">
+                    <div class="module-badge ai-extra">AI</div>
+                    <div class="module-icon">🧠</div>
+                    <h3>AI 大语言模型</h3>
+                    <p>LLM 兴起 · 生成机制 · 主流模型<br>Prompt 工程</p>
+                </div>
+                <div class="module-card ai-extra">
+                    <div class="module-badge ai-extra">AI</div>
+                    <div class="module-icon">🤖</div>
+                    <h3>AI Agent 智能体</h3>
+                    <p>从 LLM 到 Agent · 工作流程 · Skill<br>国内外 Agent 平台</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 23. 课程考核 -->
+    <div class="slide" data-index="23">
+        <div class="slide-header">
+            <div class="slide-num">23</div>
+            <div>
                 <div class="slide-title">学习内容与考核形式 —— 课程考核</div>
-                <div class="slide-subtitle">7.2 课程考核</div>
+                <div class="slide-subtitle">7.3 课程考核</div>
             </div>
         </div>
         <div class="score-wrap">
@@ -3474,10 +3855,10 @@
         </div>
     </div>
 
-    <!-- 23. 学习建议 -->
-    <div class="slide" data-index="23">
+    <!-- 24. 学习建议 -->
+    <div class="slide" data-index="24">
         <div class="slide-header">
-            <div class="slide-num">23</div>
+            <div class="slide-num">24</div>
             <div>
                 <div class="slide-title">学习建议</div>
                 <div class="slide-subtitle">课堂总结</div>
@@ -3507,8 +3888,8 @@
         </div>
     </div>
 
-    <!-- 24. 课后任务 + 结束 -->
-    <div class="slide end-slide" data-index="24">
+    <!-- 25. 课后任务 + 结束 -->
+    <div class="slide end-slide" data-index="25">
         <h1>本节课后任务</h1>
         <p>1. 查看微信官方文档，了解微信小程序学习内容</p>
         <p>2. 组队交流</p>
@@ -6081,6 +6462,1802 @@ padding: 5px 10px 15px 20px;
 
 </div>
 </div><!-- /chapter-panel-5 -->
+
+<!-- ============ 第六章 · AI 大语言模型与应用 ============ -->
+<div class="chapter-panel" id="chapter-panel-6">
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>课程目录</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>本节核心问题</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">第一节 · LLM 的兴起</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>技术起源</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>为何爆发</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>三次浪潮</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>Transformer 突破</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">第二节 · 语言生成</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>生成全过程</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>预训练与微调</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>幻觉与局限</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">第三节 · 主流模型</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>模型分类</div>
+        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>模型资源与链接</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">第四节 · Prompt 工程</div>
+        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>概念澄清</div>
+        <div class="nav-item" data-slide="13"><span class="nav-num">13</span>设计原则</div>
+        <div class="nav-item" data-slide="14"><span class="nav-num">14</span>八大进阶技巧</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 6-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">06</div>
+        <div class="chapter-name">AI 大语言模型与应用</div>
+        <div class="chapter-desc">LLM 兴起 · 生成机制 · 主流模型 · Prompt 工程</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">课程补充模块 · 2026 年 5 月</p>
+        </div>
+    </div>
+
+    <!-- 6-1. 课程目录 -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">第六章目录</div>
+                <div class="slide-subtitle">大语言模型与应用实践</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🌅</div>
+                    <h3>1. 大语言模型的兴起</h3>
+                    <p>从规则到生成智能的演变历程</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🧠</div>
+                    <h3>2. 大语言模型如何生成语言？</h3>
+                    <p>核心技术原理与架构解析</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🌐</div>
+                    <h3>3. 主流模型与应用版图</h3>
+                    <p>GPT / Claude / Llama 等模型生态概览</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">💬</div>
+                    <h3>4. Prompt 工程</h3>
+                    <p>掌握人与模型高效交互的艺术</p>
+                </div>
+                <div class="feature-card" style="grid-column:1/-1;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
+                    <div class="feature-icon" style="font-size:32px;">📚</div>
+                    <h3 style="color:var(--wx-green-dark);">后续章节</h3>
+                    <p>第五章 Prompt 实战 · 第七章 从 LLM 到 Agent（智能体）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-2. 本节核心问题 -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">本节核心问题</div>
+                <div class="slide-subtitle">第一节导入 · 三个关键思考</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:20px;">
+                <div class="feature-card" style="padding:26px 20px;">
+                    <div class="feature-icon" style="font-size:40px;">❓</div>
+                    <h3 style="font-size:20px;margin-top:14px;">大语言模型从哪里来？</h3>
+                    <p style="font-size:15px;color:var(--text-sub);">探索技术的起源与根基</p>
+                </div>
+                <div class="feature-card" style="padding:26px 20px;">
+                    <div class="feature-icon" style="font-size:40px;">🚀</div>
+                    <h3 style="font-size:20px;margin-top:14px;">为什么近几年突然爆发？</h3>
+                    <p style="font-size:15px;color:var(--text-sub);">分析技术突破的关键节点</p>
+                </div>
+                <div class="feature-card" style="padding:26px 20px;">
+                    <div class="feature-icon" style="font-size:40px;">⚖️</div>
+                    <h3 style="font-size:20px;margin-top:14px;">技术进步是否带来社会进步？</h3>
+                    <p style="font-size:15px;color:var(--text-sub);">探讨技术与社会的辩证关系</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-3. 大语言模型从哪里来 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">核心问题一：大语言模型从哪里来？</div>
+                <div class="slide-subtitle">技术积累的必然产物</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>核心答案：技术积累的必然产物</h3>
+                    <p>大语言模型并非凭空出现，它是人工智能领域<strong>数十年技术积累</strong>的成果。它经历了从早期的<strong>规则系统</strong>、<strong>统计学习</strong>，逐步演进到<strong>深度学习</strong>和 <strong>Transformer 架构</strong>的完整历程，是技术迭代的必然结果。</p>
+                </div>
+            </div>
+            <div>
+                <div class="note-box" style="margin-bottom:14px;">
+                    <strong>🔍 技术脉络</strong><br>
+                    NLP 领域的突破与融合 —— 起源可追溯至机器翻译、语音识别等自然语言处理任务的长期研究，是这些领域不断突破和交叉融合的结晶。
+                </div>
+                <div class="note-box" style="background:rgba(7,193,96,0.06);border-color:rgba(7,193,96,0.3);">
+                    <strong>🎯 本质</strong><br>
+                    高级模式识别与生成系统 —— 人类对语言规律和智能本质长期探索后，利用海量数据和强大算力训练出的一种高级智能系统。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-4. 为何近几年爆发 -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">核心问题二：为什么近几年突然爆发？</div>
+                <div class="slide-subtitle">四大因素共同作用</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:36px;">⚡</div>
+                    <h3>算力的爆发</h3>
+                    <p>GPU 等高性能计算硬件普及，训练超大规模模型成为可能，突破计算瓶颈</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:36px;">📊</div>
+                    <h3>数据的爆炸</h3>
+                    <p>互联网发展提供海量文本数据，为模型学习提供充足"养料"，奠定训练基础</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:36px;">🧩</div>
+                    <h3>算法的突破</h3>
+                    <p>Transformer 架构解决长文本处理和并行计算难题，大幅提升模型效率</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:36px;">💰</div>
+                    <h3>资本与产业推动</h3>
+                    <p>科技巨头巨额投入和场景探索，加速技术成熟和落地，形成良性循环</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-5. 人工智能三次浪潮 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">人工智能的三次浪潮</div>
+                <div class="slide-subtitle">从规则系统 → 统计学习 → 深度学习</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:18px;">
+                <div class="feature-card" style="border-top:4px solid #94a3b8;">
+                    <div style="font-size:13px;color:#64748b;font-weight:600;margin-bottom:6px;">第一次浪潮</div>
+                    <div class="feature-icon" style="font-size:36px;">📜</div>
+                    <h3 style="font-size:19px;">规则系统</h3>
+                    <p style="color:var(--text-sub);">人工编写规则与逻辑推理<br>代表：专家系统</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid #f59e0b;">
+                    <div style="font-size:13px;color:#b45309;font-weight:600;margin-bottom:6px;">第二次浪潮</div>
+                    <div class="feature-icon" style="font-size:36px;">📈</div>
+                    <h3 style="font-size:19px;">统计学习</h3>
+                    <p style="color:var(--text-sub);">数据驱动，从数据学习模式<br>代表：SVM · 概率模型</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid var(--wx-green);">
+                    <div style="font-size:13px;color:var(--wx-green);font-weight:600;margin-bottom:6px;">第三次浪潮</div>
+                    <div class="feature-icon" style="font-size:36px;">🧠</div>
+                    <h3 style="font-size:19px;">深度学习</h3>
+                    <p style="color:var(--text-sub);">多层神经网络模拟人脑<br>代表：Transformer · LLM</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:20px;">
+                <strong>💡 关键跃迁</strong>：规则数量爆炸 → 数据驱动 → 表示学习（自动学特征）+ 算力提升 + 海量数据训练，最终催生预训练大模型。
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-6. Transformer 突破 -->
+    <div class="slide" data-index="6">
+        <div class="slide-header">
+            <div class="slide-num">6</div>
+            <div>
+                <div class="slide-title">Transformer 的突破</div>
+                <div class="slide-subtitle">自注意力机制 · 预训练革命</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:12px;">核心机制：自注意力 (Self-Attention)</h3>
+                <div class="check-item"><span class="checkbox"></span>打破序列依赖，每个词都能关注全局信息</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>捕捉长距离依赖，理解完整语义</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>摒弃 RNN 串行结构，高效并行计算</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>突破传统模型限制，处理长文本</div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:12px;">预训练革命 (Pre-training)</h3>
+                <div class="note-box">
+                    <strong>海量互联网文本预训练</strong><br>构建通用语言知识基座，掌握语法、逻辑与世界常识
+                </div>
+                <div class="note-box" style="margin-top:12px;">
+                    <strong>从"单一任务"到"预训练+微调"</strong><br>打破任务限制，效率极大提升
+                </div>
+                <div class="note-box" style="margin-top:12px;background:rgba(7,193,96,0.06);border-color:rgba(7,193,96,0.3);">
+                    <strong>GPT 演进</strong>：GPT-1 文本补全 → GPT-4 复杂对话与多模态；参数量从亿级到万亿级；涌现出零样本、推理等能力
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-7. 大模型语言生成全过程 -->
+    <div class="slide" data-index="7">
+        <div class="slide-header">
+            <div class="slide-num">7</div>
+            <div>
+                <div class="slide-title">大语言模型生成语言的全过程</div>
+                <div class="slide-subtitle">第二节 · Token 化 → 编码 → 预测 → 输出</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(4,1fr);gap:16px;">
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">1️⃣</div>
+                    <h3 style="font-size:16px;">输入与 Token 化</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">拆分文本为最小语义单元<br>——Token</p>
+                </div>
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">2️⃣</div>
+                    <h3 style="font-size:16px;">上下文编码</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">自注意力机制<br>分析 Token 关联</p>
+                </div>
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">3️⃣</div>
+                    <h3 style="font-size:16px;">预测下一个 Token</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">计算概率分布<br>选择最优候选</p>
+                </div>
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">4️⃣</div>
+                    <h3 style="font-size:16px;">生成与输出</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">逐字输出，加入上下文<br>循环往复</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:20px;">
+                <h3>Token 与生成机制</h3>
+                <p><strong>Token</strong> 是文本的最小拆分单位（词/子词/符号），是模型理解和生成文本的基础。生成机制本质是<strong>基于上下文的条件概率预测</strong> —— 逐个预测下一个最可能的 Token。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-8. 预训练与微调 -->
+    <div class="slide" data-index="8">
+        <div class="slide-header">
+            <div class="slide-num">8</div>
+            <div>
+                <div class="slide-title">预训练与微调</div>
+                <div class="slide-subtitle">Pre-training → Fine-tuning → RLHF</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>🌍 预训练阶段</h3>
+                    <p>在海量文本数据上进行<strong>无监督学习</strong>，构建基础认知能力。学习通用的语言规律、语法结构和世界知识。</p>
+                </div>
+                <div style="text-align:center;font-size:24px;color:var(--wx-green);margin:14px 0;">▼</div>
+                <div class="info-box">
+                    <h3>🎯 微调阶段</h3>
+                    <p>通过<strong>指令微调 (Instruction Tuning)</strong> 对齐人类意图，利用 <strong>RLHF</strong>（人类反馈强化学习）优化输出，确保安全与有用性。</p>
+                </div>
+            </div>
+            <div>
+                <div class="note-box" style="background:rgba(7,193,96,0.06);border-color:rgba(7,193,96,0.3);">
+                    <strong>关键区别</strong>
+                    <ul style="margin:8px 0 0 18px;padding:0;line-height:1.9;">
+                        <li>预训练 = 学"通用语言"</li>
+                        <li>微调 = 学"怎么回答人"</li>
+                        <li>RLHF = 学"什么是有用的、安全的"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-9. 幻觉与局限 -->
+    <div class="slide" data-index="9">
+        <div class="slide-header">
+            <div class="slide-num">9</div>
+            <div>
+                <div class="slide-title">幻觉问题与模型局限性</div>
+                <div class="slide-subtitle">大模型不完美 · 理性使用</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <h3 style="color:#dc2626;font-size:20px;margin-bottom:12px;">⚠️ 幻觉 (Hallucination)</h3>
+                <div class="note-box" style="border-color:#fca5a5;background:rgba(254,226,226,0.5);">
+                    <strong>什么是幻觉？</strong><br>
+                    编造看似真实的事实或引用，内容往往错误但表现得非常自信。
+                </div>
+                <div class="note-box" style="margin-top:12px;border-color:#fca5a5;background:rgba(254,226,226,0.5);">
+                    <strong>产生原因</strong><br>
+                    优化目标是<strong>预测概率</strong>而非事实准确性；缺乏真实世界的知识和验证能力，无法判断真伪。
+                </div>
+            </div>
+            <div>
+                <h3 style="color:#dc2626;font-size:20px;margin-bottom:12px;">⚠️ 核心局限性</h3>
+                <div class="note-box" style="border-color:#fca5a5;background:rgba(254,226,226,0.5);">
+                    <strong>缺乏真正的理解与意识</strong><br>
+                    本质上是基于统计模式的匹配，而非真正的认知理解。
+                </div>
+                <div class="note-box" style="margin-top:12px;border-color:#fca5a5;background:rgba(254,226,226,0.5);">
+                    <strong>潜在的数据偏见</strong><br>
+                    训练数据中存在的偏见可能被模型放大，导致输出结果存在偏差。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-10. 模型分类 -->
+    <div class="slide" data-index="10">
+        <div class="slide-header">
+            <div class="slide-num">10</div>
+            <div>
+                <div class="slide-title">第三节 · 主流模型分类与特点</div>
+                <div class="slide-subtitle">闭源 · 开源 · 多模态</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card" style="border-top:4px solid var(--wx-green);">
+                    <h3>🔒 闭源模型</h3>
+                    <p style="color:var(--text-sub);">GPT-4 · Claude · 文心一言 · 豆包 · 讯飞星火</p>
+                    <p style="margin-top:8px;"><strong>特点</strong>：性能强大，商业化成熟，数据隐私保护严格，开箱即用</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid #4caf50;">
+                    <h3>🌐 开源模型</h3>
+                    <p style="color:var(--text-sub);">ChatGLM · Qwen · Baichuan · DeepSeek</p>
+                    <p style="margin-top:8px;"><strong>特点</strong>：部署灵活，可定制性高，社区活跃，适合二次开发与学习研究</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid #9333ea;">
+                    <h3>🎨 多模态模型</h3>
+                    <p style="color:var(--text-sub);">GPT-4V · Gemini · 文心一言（多模态）</p>
+                    <p style="margin-top:8px;"><strong>特点</strong>：融合文本、图像、音频等多感官输入，交互更自然</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;">
+                <h3>典型应用场景</h3>
+                <p style="line-height:1.9;font-size:14px;">
+                    <strong>文心一言</strong>：内容创作 · 智能客服 · 教育辅导 &nbsp;|&nbsp;
+                    <strong>豆包</strong>：智能助手 · 生活服务 · 代码辅助 &nbsp;|&nbsp;
+                    <strong>阿福</strong>：金融风控 · 医疗咨询 &nbsp;|&nbsp;
+                    <strong>DeepSeek</strong>：编程辅助 · 代码生成 &nbsp;|&nbsp;
+                    <strong>讯飞星火</strong>：语音助手 · 实时翻译 · 会议记录
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-11. 主流模型资源与链接 -->
+    <div class="slide" data-index="11">
+        <div class="slide-header">
+            <div class="slide-num">11</div>
+            <div>
+                <div class="slide-title">主流模型资源与链接</div>
+                <div class="slide-subtitle">日常可用 · 推荐参考</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:20px;margin-bottom:12px;">🌍 国外主流</h3>
+                <div class="code-block" style="margin:0;">
+<span style="color:#4ade80;">Gemini</span> (Google)    <span style="color:#94a3b8;">日常 + 多模态</span>     gemini.google.com
+<span style="color:#4ade80;">Claude</span> (Anthropic) <span style="color:#94a3b8;">写代码强烈推荐</span>    claude.ai
+<span style="color:#4ade80;">GPT</span> (OpenAI)      <span style="color:#94a3b8;">通用能力强</span>        chatgpt.com
+<span style="color:#4ade80;">Grok</span> (x.ai)       <span style="color:#94a3b8;">幽默 · 实时信息</span>    grok.com
+<span style="color:#4ade80;">Mistral</span>            <span style="color:#94a3b8;">轻量高效</span>          chat.mistral.ai
+<span style="color:#4ade80;">Llama</span> (Meta)      <span style="color:#94a3b8;">开源代表</span>          llama.com
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:20px;margin-bottom:12px;">🇨🇳 国内主流</h3>
+                <div class="code-block" style="margin:0;">
+<span style="color:#4ade80;">Kimi</span>          <span style="color:#94a3b8;">专业问题 · 长文本</span>   kimi.com
+<span style="color:#4ade80;">DeepSeek</span>      <span style="color:#94a3b8;">代码强 · 免费</span>       deepseek.com
+<span style="color:#4ade80;">Qwen</span>          <span style="color:#94a3b8;">通义千问 · 多尺寸</span>   chat.qwen.ai
+<span style="color:#4ade80;">Doubao</span>        <span style="color:#94a3b8;">日常 · 创意</span>       doubao.com
+<span style="color:#4ade80;">Hunyuan</span>       <span style="color:#94a3b8;">腾讯混元</span>            hunyuan.tencent.com
+<span style="color:#4ade80;">ERNIE</span>         <span style="color:#94a3b8;">百度文心一言</span>          yiyan.baidu.com
+                </div>
+            </div>
+        </div>
+        <div class="note-box" style="margin-top:14px;">
+            💡 <strong>使用建议</strong>：日常对话用豆包、Gemini；专业问题用 Kimi、GPT；写代码用 Claude、DeepSeek；学习研究上 Hugging Face 或 ModelScope。
+        </div>
+    </div>
+
+    <!-- 6-12. Prompt 概念澄清 -->
+    <div class="slide" data-index="12">
+        <div class="slide-header">
+            <div class="slide-num">12</div>
+            <div>
+                <div class="slide-title">Prompt 工程 · 概念澄清</div>
+                <div class="slide-subtitle">提示词 vs 提示词工程</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>💬 提示词 (Prompt)</h3>
+                    <p>是<strong>"语言"</strong> —— 你具体输入给 AI 的那段话，比如"请写一首关于春天的诗"。<br>→ <strong>实践 / 内容</strong></p>
+                </div>
+            </div>
+            <div>
+                <div class="info-box">
+                    <h3>📐 提示词工程 (Prompt Engineering)</h3>
+                    <p>是<strong>"修辞学"或"写作技巧"</strong> —— 研究"如何写出更有效的语言"的学问，包含框架、方法和优化策略。<br>→ <strong>理论 / 方法论</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="note-box" style="margin-top:16px;background:rgba(7,193,96,0.06);border-color:rgba(7,193,96,0.3);">
+            <strong>核心结论</strong>：两者不是对立关系，而是"实践与理论"、"内容与方法论"的关系。理解这一点，后续学习会清晰很多。
+        </div>
+    </div>
+
+    <!-- 6-13. Prompt 设计原则 -->
+    <div class="slide" data-index="13">
+        <div class="slide-header">
+            <div class="slide-num">13</div>
+            <div>
+                <div class="slide-title">Prompt 设计三原则</div>
+                <div class="slide-subtitle">明确目标 · 提供背景 · 指定格式</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:18px;">
+                <div class="feature-card" style="text-align:center;padding:26px 18px;">
+                    <div class="feature-icon" style="font-size:44px;">🎯</div>
+                    <h3 style="font-size:20px;">明确目标</h3>
+                    <p style="color:var(--text-sub);">清晰定义任务类型和期望结果，确保模型理解核心需求</p>
+                </div>
+                <div class="feature-card" style="text-align:center;padding:26px 18px;">
+                    <div class="feature-icon" style="font-size:44px;">📋</div>
+                    <h3 style="font-size:20px;">提供背景</h3>
+                    <p style="color:var(--text-sub);">补充上下文信息，帮助模型理解任务场景，避免歧义</p>
+                </div>
+                <div class="feature-card" style="text-align:center;padding:26px 18px;">
+                    <div class="feature-icon" style="font-size:44px;">📐</div>
+                    <h3 style="font-size:20px;">指定格式</h3>
+                    <p style="color:var(--text-sub);">规定输出结构（列表/表格/段落），让结果更规整、易读</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;">
+                <h3>为什么要学 Prompt？</h3>
+                <p style="line-height:1.9;">
+                    <strong>提升效率</strong>（快速获得高质量回答） · <strong>控制输出</strong>（避免无效信息） · <strong>解锁能力</strong>（充分发挥模型潜力） · <strong>适应未来</strong>（与 AI 高效协作的核心技能）
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-14. Prompt 进阶技巧 -->
+    <div class="slide" data-index="14">
+        <div class="slide-header">
+            <div class="slide-num">14</div>
+            <div>
+                <div class="slide-title">Prompt 进阶技巧 · 八大方法</div>
+                <div class="slide-subtitle">每个方法都有"好 vs 不好"的对比示例</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;">
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">🎭</div>
+                    <h3 style="font-size:16px;">角色设定法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">赋予模型特定身份（专家/顾问），提升专业性</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">🪜</div>
+                    <h3 style="font-size:16px;">分步生成法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">复杂任务拆解为多步骤，逐步引导</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">🧠</div>
+                    <h3 style="font-size:16px;">思维链提示</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">"请一步步推理"，提升逻辑准确性</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">📏</div>
+                    <h3 style="font-size:16px;">增加条件法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">字数/格式/语气约束，输出更可控</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">📌</div>
+                    <h3 style="font-size:16px;">增加示例法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">Few-shot，用 1-3 个示例模仿格式</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">➡️</div>
+                    <h3 style="font-size:16px;">引导词法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">用"1."等引导词指定输出结构</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">🔧</div>
+                    <h3 style="font-size:16px;">特殊符号法</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">用【】等符号标记不同语义单元</p>
+                </div>
+                <div class="feature-card" style="padding:16px;">
+                    <div class="feature-icon" style="font-size:28px;">📄</div>
+                    <h3 style="font-size:16px;">格式化输出</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">Markdown/JSON/YAML，便于程序化处理</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                <strong>🎯 高阶技巧</strong>：多角色交互法（模拟多人讨论） · 万能模仿法（模仿风格/人物） · Prompt 生成器法（元提示） · 对抗性提示法（提示注入/越狱/防御）
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-6 -->
+
+<!-- ============ 第七章 · AI 从 LLM 到 Agent ============ -->
+<div class="chapter-panel" id="chapter-panel-7">
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>什么是 Agent</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>LLM vs Agent</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">Agent 工作流</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>典型工作流程</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>Skill 是什么</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">Agent 平台</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>国内外 Agent 平台</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>如何创建 Skill</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">安全与总结</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>使用安全注意事项</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>全课程总结回顾</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 7-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">07</div>
+        <div class="chapter-name">从 LLM 到 Agent</div>
+        <div class="chapter-desc">智能体 · Skill · 平台 · 安全</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">课程补充模块 · 2026 年 5 月</p>
+        </div>
+    </div>
+
+    <!-- 7-1. 什么是 Agent -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">什么是 Agent？</div>
+                <div class="slide-subtitle">智能体的定义与能力</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>Agent = 具备自主能力的智能体</h3>
+                <p>它不仅拥有大模型的<strong>推理能力</strong>，还集成了<strong>记忆、规划和工具调用</strong>功能，能够独立完成复杂任务。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">🧠</div>
+                    <h3>推理</h3>
+                    <p style="color:var(--text-sub);">继承 LLM 的思考与决策能力</p>
+                </div>
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">📚</div>
+                    <h3>记忆</h3>
+                    <p style="color:var(--text-sub);">长程上下文 · 多轮交互</p>
+                </div>
+                <div class="feature-card" style="text-align:center;">
+                    <div class="feature-icon" style="font-size:36px;">🛠️</div>
+                    <h3>工具调用</h3>
+                    <p style="color:var(--text-sub);">调用外部 API 完成实际任务</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-2. LLM vs Agent -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">LLM vs Agent · 核心差异</div>
+                <div class="slide-subtitle">从"聊天"到"做事"</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:1fr 1fr;gap:24px;">
+                <div class="feature-card" style="padding:26px;border-top:4px solid #64748b;">
+                    <div class="feature-icon" style="font-size:40px;">💬</div>
+                    <h3 style="font-size:22px;">LLM</h3>
+                    <p style="color:var(--text-sub);line-height:1.8;margin-top:12px;">
+                        · 通常只能进行<strong>单轮回答</strong><br>
+                        · <strong>缺乏上下文记忆</strong><br>
+                        · 输出文本，不执行实际操作<br>
+                        · 例：ChatGPT 直接对话
+                    </p>
+                </div>
+                <div class="feature-card" style="padding:26px;border-top:4px solid var(--wx-green);">
+                    <div class="feature-icon" style="font-size:40px;">🤖</div>
+                    <h3 style="font-size:22px;color:var(--wx-green-dark);">Agent</h3>
+                    <p style="color:var(--text-sub);line-height:1.8;margin-top:12px;">
+                        · 支持<strong>多轮执行</strong><br>
+                        · 具备<strong>长程记忆</strong><br>
+                        · 可<strong>调用工具</strong>与外部 API<br>
+                        · 例：Trae · WorkBuddy · 悟空
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-3. Agent 典型工作流程 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">Agent 典型工作流程</div>
+                <div class="slide-subtitle">接收任务 → 拆解 → 规划 → 调用工具 → 输出</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(7,1fr);gap:8px;">
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">📥</div>
+                    <h3 style="font-size:14px;">接收任务</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">🎯</div>
+                    <h3 style="font-size:14px;">理解目标</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">✂️</div>
+                    <h3 style="font-size:14px;">拆解步骤</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">🗺️</div>
+                    <h3 style="font-size:14px;">规划路径</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">🔌</div>
+                    <h3 style="font-size:14px;">调用工具</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;">
+                    <div class="feature-icon" style="font-size:24px;">⚙️</div>
+                    <h3 style="font-size:14px;">执行任务</h3>
+                </div>
+                <div class="feature-card" style="padding:14px 8px;text-align:center;border-color:var(--wx-green);">
+                    <div class="feature-icon" style="font-size:24px;">✅</div>
+                    <h3 style="font-size:14px;color:var(--wx-green-dark);">输出结果</h3>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:20px;">
+                <h3>核心区别</h3>
+                <p>LLM 只走到"接收 → 理解 → 输出文本"，Agent 则延伸到<strong>拆解、规划、调用外部工具、执行操作</strong>，最终交付<strong>可落地的实际结果</strong>（文件、代码、报告、邮件等）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-4. 什么是 Skill -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">什么是 Skill？</div>
+                <div class="slide-subtitle">Agent 的可复用能力单元</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>Skill = 给 Agent 装的"应用"或"技能插件"</h3>
+                    <p style="line-height:1.9;">
+                        <strong>类比</strong>：LLM 像一个人的<strong>大脑</strong>（会思考推理），Skill 是<strong>专业证书+实战经验</strong>（会具体操作：查天气 → 发邮件 → 订机票 → 写 Excel 公式）。
+                    </p>
+                </div>
+                <div class="note-box" style="margin-top:14px;background:rgba(7,193,96,0.06);border-color:rgba(7,193,96,0.3);">
+                    💡 <strong>一句话理解</strong>：Agent ≈ 大脑，Skill ≈ 手。大脑负责规划和推理，手负责执行具体操作。两者配合才能完成完整任务。
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:20px;margin-bottom:12px;">Skill 能做什么</h3>
+                <div class="check-item"><span class="checkbox"></span>🖱 操作软件：Excel、浏览器、IDE</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>📊 专业分析：金融、爬取、文档</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>🔄 流程自动化：端到端业务流</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span>🔌 外部 API 集成：DB/Web/三方平台</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-5. 国内外 Agent 平台 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">国内外 Agent 平台</div>
+                <div class="slide-subtitle">开箱即用 vs 需自建</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                    <h3 style="color:#dc2626;font-size:18px;margin-bottom:10px;">🌍 国外</h3>
+                    <div class="feature-card" style="padding:14px;margin-bottom:10px;">
+                        <h3 style="font-size:16px;">🦞 OpenClaw</h3>
+                        <p style="font-size:13px;color:var(--text-sub);">开源"超级 AI 助理"，能接管键盘鼠标自主处理邮件/日历/代码<br><strong>难度</strong>：★★★ 较高 · <strong>费用</strong>：开源免费 + 自付 API<br><code style="font-size:12px;color:var(--wx-green);">openclaw.ai</code></p>
+                    </div>
+                    <div class="feature-card" style="padding:14px;">
+                        <h3 style="font-size:16px;">⚡ Hermes</h3>
+                        <p style="font-size:13px;color:var(--text-sub);">轻量级 Agent 框架，为开发者提供快速构建智能体基础<br><strong>难度</strong>：★★★ 较高 · <strong>费用</strong>：开源免费</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color:var(--wx-green-dark);font-size:18px;margin-bottom:10px;">🇨🇳 国内</h3>
+                    <div class="feature-card" style="padding:14px;margin-bottom:10px;">
+                        <h3 style="font-size:16px;">💼 WorkBuddy <span style="font-size:12px;color:#64748b;">(腾讯云)</span></h3>
+                        <p style="font-size:13px;color:var(--text-sub);">AI 原生桌面智能体，批量处理文档/生成 PPT/分析数据<br><strong>难度</strong>：★☆☆ 最容易 · <strong>费用</strong>：5000 Credits 免费体验<br><code style="font-size:12px;color:var(--wx-green);">workbuddy.qq.com</code></p>
+                    </div>
+                    <div class="feature-card" style="padding:14px;margin-bottom:10px;">
+                        <h3 style="font-size:16px;">🛠️ Trae <span style="font-size:12px;color:#64748b;">(字节跳动)</span></h3>
+                        <p style="font-size:13px;color:var(--text-sub);">AI 原生 IDE，理解需求、调用工具、独立完成开发任务<br><strong>难度</strong>：★★☆ 中等 · <strong>费用</strong>：目前免费</p>
+                    </div>
+                    <div class="feature-card" style="padding:14px;">
+                        <h3 style="font-size:16px;">🐵 悟空 <span style="font-size:12px;color:#64748b;">(阿里钉钉)</span></h3>
+                        <p style="font-size:13px;color:var(--text-sub);">企业办公智能体，直接操作钉钉内应用完成工作流<br><strong>难度</strong>：★☆☆ 最容易 · <strong>费用</strong>：按用量计费</p>
+                    </div>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>OpenClaw 为什么值得关注？</strong> 目前是 GitHub 上最受欢迎的开源 AI Agent 框架，<strong>GitHub Star 已突破 40 万</strong>。理解自然语言指令，自主规划执行文件操作、网页搜索、跨应用自动化。
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-6. 如何创建 Skill -->
+    <div class="slide" data-index="6">
+        <div class="slide-header">
+            <div class="slide-num">6</div>
+            <div>
+                <div class="slide-title">如何创建自己的 Skill</div>
+                <div class="slide-subtitle">三条路径 · 由易到难</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card" style="border-top:4px solid #10b981;">
+                    <div style="font-size:12px;color:#10b981;font-weight:600;margin-bottom:6px;">方式一 · 零门槛</div>
+                    <div class="feature-icon" style="font-size:36px;">🎁</div>
+                    <h3>无脑替换</h3>
+                    <p style="color:var(--text-sub);">使用 <strong>WorkBuddy</strong> 等开箱即用产品，自带大量 Skill，通过自然语言即可调用。<br>例：说"帮我做季度报告 PPT"，自动调用 PPT 技能。</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid #f59e0b;">
+                    <div style="font-size:12px;color:#f59e0b;font-weight:600;margin-bottom:6px;">方式二 · 有点技术基础</div>
+                    <div class="feature-icon" style="font-size:36px;">🧩</div>
+                    <h3>低代码配置</h3>
+                    <p style="color:var(--text-sub);">在支持自定义的平台（如 <strong>Coze 扣子、Dify</strong>），以填表方式配置提示词模板、接入参数、动作步骤，<strong>无需编写代码</strong>。</p>
+                </div>
+                <div class="feature-card" style="border-top:4px solid #dc2626;">
+                    <div style="font-size:12px;color:#dc2626;font-weight:600;margin-bottom:6px;">方式三 · 技术探索</div>
+                    <div class="feature-icon" style="font-size:36px;">💻</div>
+                    <h3>代码开发</h3>
+                    <p style="color:var(--text-sub);">编写 Skill 代码并注册到 Agent 平台。可参考 <strong>OpenClaw</strong> 等开源框架的 Skill 开发文档。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-7. 使用安全注意事项 -->
+    <div class="slide" data-index="7">
+        <div class="slide-header">
+            <div class="slide-num">7</div>
+            <div>
+                <div class="slide-title">使用 Agent 的安全注意事项</div>
+                <div class="slide-subtitle">权限 · 数据 · 凭据 · 审计</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <h3 style="color:#dc2626;font-size:20px;margin-bottom:12px;">⚠️ 六大原则</h3>
+                <div class="check-item"><span class="checkbox"></span><strong>权限最小化</strong>：只授予当前任务所需的最低权限</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span><strong>数据隔离与沙箱</strong>：独立沙箱运行，与开发环境分离</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span><strong>敏感凭据加密</strong>：不要在 Skill 代码中明文硬编码</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span><strong>操作可审计</strong>：记录每一次操作日志</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span><strong>人工确认关键操作</strong>：支付/删除/发布设人工节点</div>
+                <div class="check-item" style="margin-top:10px;"><span class="checkbox"></span><strong>注册安全</strong>：优先从企业官网或应用商店搜索</div>
+            </div>
+            <div>
+                <div class="note-box" style="border-color:#fca5a5;background:rgba(254,226,226,0.5);">
+                    <strong>🚨 日常安全底线</strong>
+                    <ul style="margin:8px 0 0 18px;padding:0;line-height:1.9;">
+                        <li>勿在 Agent 提示词内贴任何私人或敏感密码</li>
+                        <li>勿在非官方平台输入 API Key</li>
+                        <li>对于 <strong>OpenClaw</strong> 这类高权限框架，建议仅在隔离环境（虚拟机）中测试</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-8. 全课程总结 -->
+    <div class="slide" data-index="8">
+        <div class="slide-header">
+            <div class="slide-num">8</div>
+            <div>
+                <div class="slide-title">全课程总结回顾</div>
+                <div class="slide-subtitle">从 LLM 兴起 → Agent 时代</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;">
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">🌅</div>
+                    <h3 style="font-size:16px;">技术演进</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">从规则引擎到生成式智能，见证 AI 跨越式发展</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">🧠</div>
+                    <h3 style="font-size:16px;">生成机制</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">基于 Token 预测与概率游戏，理解大模型核心运作原理</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">🌐</div>
+                    <h3 style="font-size:16px;">应用实践</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">探索广泛的应用场景版图，同时警惕技术风险</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">💬</div>
+                    <h3 style="font-size:16px;">Prompt 控制</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">掌握有效交互的关键技巧，精准引导模型输出</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">🚀</div>
+                    <h3 style="font-size:16px;">行动升级</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">从 LLM 工具调用迈向自主 Agent，探索更智能未来</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:32px;">⚖️</div>
+                    <h3 style="font-size:16px;">责任与伦理</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">坚持技术向善，理性使用 AI，符合人类共同利益</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;text-align:center;">
+                <h3 style="font-size:20px;color:var(--wx-green-dark);">能力越强，责任越大；技术向善，理性使用</h3>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-7 -->
+
+<!-- ============ 第八章 · 页面交互 ============ -->
+<div class="chapter-panel" id="chapter-panel-8">
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">交互概念</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>什么是交互</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>逻辑交互</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">事件绑定</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>输入事件</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>改变事件</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>点击事件</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>事件冒泡</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">常用 API</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>什么是 API</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>常用 API 分类</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>showToast</div>
+        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>showModal</div>
+        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>路由</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 8-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">08</div>
+        <div class="chapter-name">页面交互</div>
+        <div class="chapter-desc">交互概念 · 事件绑定 · 常用 API</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹 · 王山山</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">电话：55271110 · 课程编号：36810310</p>
+        </div>
+    </div>
+
+    <!-- 8-1. 本章概述 -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">本章概述</div>
+                <div class="slide-subtitle">从"能看"到"能交互"</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>教学定位</h3>
+                    <p>本章让静态页面<strong>动起来</strong>：通过<strong>事件绑定</strong>响应用户操作，通过<strong>常用 API</strong>调用微信底层能力（提示、弹窗、路由、存储、支付等），完成数据绑定与事件触发的闭环。</p>
+                </div>
+                <div class="note-box" style="margin-top:16px;">
+                    🎯 <strong>三大主线</strong>：交互概念 → 事件绑定（bind 系列）→ 常用 API（wx. 系列）
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
+                <div class="check-item">
+                    <span class="checkbox"></span>理解交互、逻辑交互概念
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>会写 bindtap / bindinput / bindchange
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>理解事件冒泡与 catchtap 的区别
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>掌握 showToast / showModal / 路由 API
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-2. 交互概念 -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">什么是交互？</div>
+                <div class="slide-subtitle">第一节 · 概念导入</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>交互 = 用户操作 → 程序响应</h3>
+                <p>页面不只是"看"，还要能"用"。用户点击、输入、滑动……程序都要给出反馈。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">👆</div>
+                    <h3>用户输入</h3>
+                    <p>点击、滑动、键盘输入、选择等</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">⚡</div>
+                    <h3>程序响应</h3>
+                    <p>状态更新、界面变化、数据请求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🔄</div>
+                    <h3>闭环反馈</h3>
+                    <p>输入 → 处理 → 展示，形成回路</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-3. 逻辑交互 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">逻辑交互</div>
+                <div class="slide-subtitle">数据绑定 + 事件绑定 = 双闭环</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:20px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">📥</div>
+                    <h3>数据绑定（视图 ← 数据）</h3>
+                    <p>用 <code>{{data}}</code> 把 JS 中的变量渲染到 WXML 里；数据一变，视图自动更新。</p>
+                    <div class="code-block" style="font-size:14px;padding:14px 18px;margin-top:12px;"><span class="cs">&lt;view&gt;</span><span class="ck">{{count}}</span><span class="cs">&lt;/view&gt;</span></div>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">📤</div>
+                    <h3>事件绑定（事件 → 逻辑）</h3>
+                    <p>用 <code>bindxxx</code> 把组件事件绑定到 JS 函数；用户操作时，函数被调用。</p>
+                    <div class="code-block" style="font-size:14px;padding:14px 18px;margin-top:12px;"><span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"onAdd"</span><span class="cs">&gt;</span>＋<span class="cs">&lt;/button&gt;</span></div>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;">
+                <h3 style="color:var(--wx-green-dark);">双向闭环</h3>
+                <p>事件修改 data → 视图更新（数据绑定）；视图展示 data → 用户看到变化（数据绑定）。两者配合构成完整的交互闭环。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-4. 输入事件 -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">输入事件</div>
+                <div class="slide-subtitle">bindinput · bindlinechange</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>输入事件</h3>
+                <p>在用户<strong>输入过程中</strong>（每键入一个字符）持续触发，适合实时校验、字数统计、联想搜索。</p>
+            </div>
+            <div class="code-block">
+<span class="cs">&lt;input</span>
+  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
+  <span class="ck">placeholder</span>=<span class="cs">"请输入姓名"</span>
+  <span class="ck">value</span>=<span class="cs">="{{name}}"</span>
+<span class="cs">/&gt;</span>
+<span class="cs">&lt;textarea</span>
+  <span class="ck">bindlinechange</span>=<span class="cs">"onLineChange"</span>
+  <span class="ck">placeholder</span>=<span class="cs">"留言（回车换行）"</span>
+<span class="cs">/&gt;</span>
+
+<span class="cp">// JS</span>
+<span class="ck">onInput</span>(e) {
+  <span class="ck">this</span>.setData({ name: e.detail.value })
+}
+<span class="ck">onLineChange</span>(e) {
+  <span class="cp">// 每换行一次触发一次</span>
+  <span class="ck">console</span>.log(e.detail.value)
+}</div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>注意</strong>：bindinput 触发频率高，避免在其中做重计算或网络请求。
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-5. 改变事件 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">改变事件</div>
+                <div class="slide-subtitle">bindchange · bindblur</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>改变事件</h3>
+                <p>在选择类组件值<strong>确定改变后</strong>触发；比输入事件更"稳"，常用于提交前的最终校验。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">bindchange</h3>
+                    <p>值改变完成时触发</p>
+                    <div class="code-block" style="font-size:13px;padding:12px 16px;margin-top:8px;"><span class="cs">&lt;switch</span> <span class="ck">bindchange</span>=<span class="cs">"onSwitch"</span><span class="cs">/&gt;</span>
+<span class="cs">&lt;picker</span> <span class="ck">bindchange</span>=<span class="cs">"onPick"</span><span class="cs">/&gt;</span></div>
+                </div>
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">bindblur</h3>
+                    <p>输入框失去焦点时触发</p>
+                    <div class="code-block" style="font-size:13px;padding:12px 16px;margin-top:8px;"><span class="cs">&lt;input</span>
+  <span class="ck">bindblur</span>=<span class="cs">"onBlur"</span>
+  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
+<span class="cs">/&gt;</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-6. 点击事件 -->
+    <div class="slide" data-index="6">
+        <div class="slide-num">6</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">点击事件</div>
+                <div class="slide-subtitle">bindtap —— 最基础也最常用</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>用法</h3>
+                <p>在组件属性上添加 <code>bindtap</code>，赋一个函数名。当点击该组件时，触发对应的函数执行。</p>
+            </div>
+            <div class="code-block">
+<span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"addCart"</span><span class="cs">&gt;</span>加入购物车<span class="cs">&lt;/button&gt;</span>
+<span class="cs">&lt;text</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapText"</span><span class="cs">&gt;</span>点击我<span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;view</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapView"</span><span class="cs">&gt;</span>点我<span class="cs">&lt;/view&gt;</span>
+
+<span class="cp">// JS</span>
+<span class="ck">addCart</span>(e) {
+  <span class="cp">// e.currentTarget.dataset 拿到 data-xxx</span>
+  <span class="ck">console</span>.log(<span class="cs">'点击了按钮'</span>)
+}</div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>支持的组件</strong>：button / text / view / image / navigator 等大多数组件。
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-7. 事件冒泡 -->
+    <div class="slide" data-index="7">
+        <div class="slide-num">7</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">事件冒泡与 catchtap</div>
+                <div class="slide-subtitle">嵌套标签的事件传递</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>什么是事件冒泡？</h3>
+                <p>多层标签嵌套时使用 bindtap 绑定事件，<strong>里层事件发生后，外层会相应触发</strong>（点击事件向外层传递）。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">🌊 bindtap → 冒泡</h3>
+                    <p style="margin-bottom:8px;">点击内层，内层+外层函数都执行</p>
+                    <div class="code-block" style="font-size:13px;padding:12px 16px;">
+<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
+  <span class="cs">&lt;text</span> <span class="ck">bindtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
+    内层
+  <span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;/view&gt;</span>
+<span class="cp">// 结果：inner → outer</span></div>
+                </div>
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">🛑 catchtap → 阻止冒泡</h3>
+                    <p style="margin-bottom:8px;">点击内层，仅内层函数执行</p>
+                    <div class="code-block" style="font-size:13px;padding:12px 16px;">
+<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
+  <span class="cs">&lt;text</span> <span class="ck">catchtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
+    内层
+  <span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;/view&gt;</span>
+<span class="cp">// 结果：仅 inner</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-8. 什么是 API -->
+    <div class="slide" data-index="8">
+        <div class="slide-num">8</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">什么是 API</div>
+                <div class="slide-subtitle">第二节 · 常用 API</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>API = Application Programming Interface</h3>
+                <p>应用程序编程接口。把函数封装起来给开发者调用，<strong>好多的功能不需要你去实现，只要会调用即可</strong>。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📦</div>
+                    <h3 style="font-size:16px;">封装</h3>
+                    <p>把底层能力打包，开发者只关心"怎么调"，不关心"怎么实现"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🔌</div>
+                    <h3 style="font-size:16px;">调用</h3>
+                    <p>通过 <code>wx.xxx()</code> 直接调用微信提供的能力</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📚</div>
+                    <h3 style="font-size:16px;">普适</h3>
+                    <p>API 不专属于小程序，任何编程语言/形态都有对应概念</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 微信团队把常用或底层方法封装为 <strong>wx.xxx</strong> 提供给开发者调用。
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-9. 常用 API 分类 -->
+    <div class="slide" data-index="9">
+        <div class="slide-num">9</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">常用 API 分类</div>
+                <div class="slide-subtitle">wx 命名空间下的接口全景</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;">
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🌐</div>
+                    <h3 style="font-size:15px;">发起网络请求</h3>
+                    <p style="font-size:13px;"><code>wx.request</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🖼️</div>
+                    <h3 style="font-size:15px;">保存相册</h3>
+                    <p style="font-size:13px;"><code>wx.saveImageToPhotosAlbum</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💾</div>
+                    <h3 style="font-size:15px;">数据缓存</h3>
+                    <p style="font-size:13px;"><code>wx.setStorageSync</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">📱</div>
+                    <h3 style="font-size:15px;">获取系统信息</h3>
+                    <p style="font-size:13px;"><code>wx.getSystemInfo</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💬</div>
+                    <h3 style="font-size:15px;">交互反馈</h3>
+                    <p style="font-size:13px;">showToast / showModal</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🧭</div>
+                    <h3 style="font-size:15px;">导航路由</h3>
+                    <p style="font-size:13px;">navigateTo / redirectTo …</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💰</div>
+                    <h3 style="font-size:15px;">微信支付</h3>
+                    <p style="font-size:13px;"><code>wx.requestPayment</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🎤</div>
+                    <h3 style="font-size:15px;">录音播放</h3>
+                    <p style="font-size:13px;"><code>wx.getRecorderManager</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">📍</div>
+                    <h3 style="font-size:15px;">定位</h3>
+                    <p style="font-size:13px;"><code>wx.getLocation</code></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-10. showToast -->
+    <div class="slide" data-index="10">
+        <div class="slide-num">10</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">界面交互 · wx.showToast</div>
+                <div class="slide-subtitle">显示消息提示框</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>使用场景</h3>
+                <p>短暂的信息提示（成功/失败/警告），1.5s 后自动消失，不打断用户操作。</p>
+            </div>
+            <div class="code-block">
+<span class="ck">wx</span>.showToast({
+  <span class="ck">title</span>: <span class="cs">'提交成功'</span>,
+  <span class="ck">icon</span>: <span class="cs">'success'</span>,   <span class="cp">// success | error | loading | none</span>
+  <span class="ck">duration</span>: <span class="cs">1500</span>        <span class="cp">// 显示时长，默认 1500ms</span>
+})</div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;">
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">✅ success</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">成功（绿色）</p>
+                </div>
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">❌ error</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">失败（红色）</p>
+                </div>
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">⏳ loading</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">加载中（不自动消失，需主动关闭）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-11. showModal -->
+    <div class="slide" data-index="11">
+        <div class="slide-num">11</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">界面交互 · wx.showModal</div>
+                <div class="slide-subtitle">显示模态对话框</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>使用场景</h3>
+                <p>需要用户<strong>明确确认/取消</strong>的操作（如删除、退出、支付确认），不会自动消失。</p>
+            </div>
+            <div class="code-block">
+<span class="ck">wx</span>.showModal({
+  <span class="ck">title</span>: <span class="cs">'确认删除？'</span>,
+  <span class="ck">content</span>: <span class="cs">'删除后无法恢复'</span>,
+  <span class="ck">confirmText</span>: <span class="cs">'删除'</span>,
+  <span class="ck">cancelText</span>: <span class="cs">'取消'</span>,
+  <span class="ck">success</span>(res) {
+    <span class="ck">if</span> (res.confirm) {
+      <span class="cp">// 用户点击"确定"</span>
+      <span class="ck">this</span>.deleteItem()
+    } <span class="ck">else</span> {
+      <span class="cp">// 用户点击"取消"</span>
+    }
+  }
+})</div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>规范</strong>：涉及删除/支付/发布等<strong>不可逆操作</strong>，必须使用 showModal 而非 showToast。
+            </div>
+        </div>
+    </div>
+
+    <!-- 8-12. 路由 -->
+    <div class="slide" data-index="12">
+        <div class="slide-num">12</div>
+        <div class="slide-header">
+            <div>
+                <div class="slide-title">路由 · 页面跳转</div>
+                <div class="slide-subtitle">五种方式 · 参数传递</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="code-block">
+<span class="ck">wx</span>.navigateTo({ url: <span class="cs">'test?id=1'</span> })         <span class="cp">// 保留当前页，可返回</span>
+<span class="ck">wx</span>.redirectTo({ url: <span class="cs">'test?id=1'</span> })        <span class="cp">// 关闭当前页，跳转新页</span>
+<span class="ck">wx</span>.switchTab({ url: <span class="cs">'/index'</span> })             <span class="cp">// 仅切 tab 页，不可传参</span>
+<span class="ck">wx</span>.reLaunch({ url: <span class="cs">'test?id=1'</span> })          <span class="cp">// 关闭所有页，重新打开</span>
+<span class="ck">wx</span>.navigateBack({ delta: 2 })              <span class="cp">// 返回 delta 页</span>
+</div>
+            <div class="info-box" style="margin-top:14px;">
+                <h3 style="color:var(--wx-green-dark);">📌 参数传递</h3>
+                <p>通过 URL 的 <code>?</code> 传递参数，多个参数用 <code>&</code> 分隔；在目标页 <code>onLoad(options)</code> 中读取。</p>
+            </div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>switchTab</strong> 只用于 tab 页面间切换，不可传参；<strong>navigateBack</strong> 的 delta 若大于现有页面数，则返回到首页。
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-8 -->
+
+<!-- ============ 第九章 · 后台管理与云开发 ============ -->
+<div class="chapter-panel" id="chapter-panel-9">
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">生命周期</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>五个生命周期钩子</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">后台管理</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>AppID 与登录</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>项目配置</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>成员管理</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">前后台交互</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>前台闭环</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>前后端增删改查</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">云开发</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>云开发概念</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>云开发优势</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>本章总结</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 9-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">09</div>
+        <div class="chapter-name">后台管理与云开发</div>
+        <div class="chapter-desc">生命周期 · 成员管理 · 前后台交互 · 云开发</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">课程编号：36810310</p>
+        </div>
+    </div>
+
+    <!-- 9-1. 本章概述 -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">本章概述</div>
+                <div class="slide-subtitle">从"本地代码"到"上线运营"</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>教学定位</h3>
+                    <p>本章让小程序<strong>能上线、能维护</strong>：掌握生命周期、公众平台与成员管理、前后台数据交互，最后简介<strong>云开发</strong>这一免服务器方案。</p>
+                </div>
+                <div class="note-box" style="margin-top:16px;">
+                    🧭 <strong>四大模块</strong>：生命周期 · 后台管理 · 前后台交互 · 云开发简介
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
+                <div class="check-item">
+                    <span class="checkbox"></span>能正确说明五个生命周期函数的作用
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>能找到 AppID，完成项目配置与成员管理
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>理解前后台数据增删改查思路
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>了解云开发的概念与优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-2. 生命周期 -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">小程序生命周期</div>
+                <div class="slide-subtitle">页面 JS 中的 5 个钩子</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>JS 文件中的五个页面生命周期函数</h3>
+                <p>页面在加载、显示、隐藏、卸载等关键节点，会依次触发对应函数。</p>
+            </div>
+            <div class="code-block">
+<span class="ck">Page</span>({
+  <span class="ck">onLoad</span>(options) { <span class="cp">// 首次加载，可读取 URL 参数</span> },
+  <span class="ck">onShow</span>()      { <span class="cp">// 显示 / 从后台切前台 / 重新进入</span> },
+  <span class="ck">onReady</span>()     { <span class="cp">// 首次渲染完成</span> },
+  <span class="ck">onHide</span>()      { <span class="cp">// 切后台 / 进入其他页面</span> },
+  <span class="ck">onUnload</span>()    { <span class="cp">// 页面卸载</span> }
+})</div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>典型用法</strong>：<code>onLoad</code> 里取参数与初始化；<code>onShow</code> 里刷新数据；<code>onUnload</code> 里做资源清理。
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-3. 后台管理 · AppID 与登录 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">后台管理 · 第一步</div>
+                <div class="slide-subtitle">查找 AppID</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>公众平台管理地址</h3>
+                <p><code>https://mp.weixin.qq.com/</code> —— 账号 + 扫码登录</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">①</div>
+                    <h3>注册小程序账号</h3>
+                    <p>若未注册，先在公众平台按引导完成注册与主体认证</p>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">②</div>
+                    <h3>登录后台</h3>
+                    <p>输入账号密码 + 微信扫码验证身份</p>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">③</div>
+                    <h3>查找 AppID</h3>
+                    <p>在<strong>开发管理 → 开发设置</strong> 中查看 AppID（小程序的唯一标识）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-4. 项目配置 AppID -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">后台管理 · 第二步</div>
+                <div class="slide-subtitle">项目配置 AppID</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>在微信开发者工具中配置</h3>
+                <p>打开项目时把 AppID 填入<strong>项目配置 → AppID</strong>；也可在项目的 <code>project.config.json</code> 中修改。</p>
+            </div>
+            <div class="code-block">
+<span class="cs">{</span>
+  <span class="ck">"appid"</span>: <span class="cs">"wxXXXXXXXXXXXXXXXX"</span>,
+  <span class="ck">"projectname"</span>: <span class="cs">"my-miniprogram"</span>,
+  <span class="ck">"miniprogramRoot"</span>: <span class="cs">"./"</span>
+<span class="cs">}</span></div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>注意</strong>：填写错误会导致无法调试真机、无法体验版/发布。
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-5. 成员管理 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">后台管理 · 第三步</div>
+                <div class="slide-subtitle">配置项目成员</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>成员管理中配置项目成员</h3>
+                <p>在公众平台 <strong>成员管理</strong> 里为开发者添加权限，共同协作。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">👤</div>
+                    <h3>项目成员</h3>
+                    <p>添加协作者微信号，分配角色</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🛠️</div>
+                    <h3>开发者</h3>
+                    <p>可上传代码，不能发布</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📤</div>
+                    <h3>运营者</h3>
+                    <p>可管理素材、内容与回复</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 <strong>项目管理员</strong>拥有全部权限；一般仅项目负责人保留。
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-6. 前台闭环 -->
+    <div class="slide" data-index="6">
+        <div class="slide-header">
+            <div class="slide-num">6</div>
+            <div>
+                <div class="slide-title">前后台交互 · 前台</div>
+                <div class="slide-subtitle">数据绑定 + 事件绑定</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">🖼️</div>
+                    <h3>前台（页面）</h3>
+                    <p>修改的数据<strong>重新编译后没有保存</strong>（内存态）</p>
+                    <div style="margin-top:12px;padding:10px 14px;background:#f5f7f9;border-radius:8px;font-size:13px;">
+                        <strong>{{数据绑定}}</strong> + <strong>{{事件绑定}}</strong>
+                    </div>
+                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">只处理用户在本机的输入与展示</p>
+                </div>
+                <div class="feature-card" style="padding:22px;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
+                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
+                    <h3 style="color:var(--wx-green-dark);">前台 + 后台</h3>
+                    <p>数据持久化到服务端</p>
+                    <div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border-radius:8px;font-size:13px;border:1px solid #86efac;">
+                        <strong>{{数据绑定}}</strong> + <strong>bind 事件绑定</strong><br>
+                        + <strong>参数传递</strong><br>
+                        + <strong>增删改查数据</strong>
+                    </div>
+                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">通过接口或服务端存储，实现数据持久化与共享</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-7. 前后台增删改查 -->
+    <div class="slide" data-index="7">
+        <div class="slide-header">
+            <div class="slide-num">7</div>
+            <div>
+                <div class="slide-title">前后台交互 · 增删改查</div>
+                <div class="slide-subtitle">CRUD 与 wx.request</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;">
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🆕</div>
+                    <h3 style="font-size:15px;">Create</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">POST 提交</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🔍</div>
+                    <h3 style="font-size:15px;">Read</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">GET 查询</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">✏️</div>
+                    <h3 style="font-size:15px;">Update</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">PUT 修改</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🗑️</div>
+                    <h3 style="font-size:15px;">Delete</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">DELETE 删除</p>
+                </div>
+            </div>
+            <div class="code-block">
+<span class="ck">wx</span>.request({
+  <span class="ck">url</span>: <span class="cs">'https://api.example.com/tasks'</span>,
+  <span class="ck">method</span>: <span class="cs">'POST'</span>,
+  <span class="ck">data</span>: { name: <span class="cs">'新建任务'</span> },
+  <span class="ck">success</span>(res) {
+    <span class="ck">this</span>.setData({ tasks: res.data })
+  }
+})</div>
+        </div>
+    </div>
+
+    <!-- 9-8. 云开发概念 -->
+    <div class="slide" data-index="8">
+        <div class="slide-header">
+            <div class="slide-num">8</div>
+            <div>
+                <div class="slide-title">云开发 · 概念</div>
+                <div class="slide-subtitle">免服务器的开发模式</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>什么是云开发</h3>
+                <p>微信官方提供的<strong>云端一体化</strong>能力，开发者<strong>无需自建服务器</strong>即可完成数据存储、后端逻辑与文件管理。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
+                    <h3>云数据库</h3>
+                    <p>NoSQL 数据库，直接在小程序内读写，无需 API</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">⚙️</div>
+                    <h3>云函数</h3>
+                    <p>云端运行 Node.js 函数，替代自建后端接口</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">📁</div>
+                    <h3>云存储</h3>
+                    <p>托管图片/文件，返回可访问的 CDN 链接</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-9. 云开发优势 -->
+    <div class="slide" data-index="9">
+        <div class="slide-header">
+            <div class="slide-num">9</div>
+            <div>
+                <div class="slide-title">云开发 · 优势</div>
+                <div class="slide-subtitle">为什么值得了解</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🚀</div>
+                    <h3>开发效率高</h3>
+                    <p>无需编写后端接口与运维，直接调用云数据库</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">💰</div>
+                    <h3>成本更低</h3>
+                    <p>官方弹性扩容，按量计费；免费额度足够个人学习</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🔒</div>
+                    <h3>数据安全</h3>
+                    <p>天然集成微信生态，权限可控，避免密钥泄漏</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🧩</div>
+                    <h3>开箱即用</h3>
+                    <p>提供登录、鉴权、支付、客服消息等常用能力</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 本项目<strong>仅做知识介绍</strong>，课后有兴趣的同学可自行在云开发控制台体验。
+            </div>
+        </div>
+    </div>
+
+    <!-- 9-10. 本章总结 -->
+    <div class="slide" data-index="10">
+        <div class="slide-header">
+            <div class="slide-num">10</div>
+            <div>
+                <div class="slide-title">本章总结</div>
+                <div class="slide-subtitle">从"能写"到"能上线"</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <h3>📌 生命周期</h3>
+                    <p>onLoad / onShow / onReady / onHide / onUnload 五个钩子</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔑 AppID 与成员</h3>
+                    <p>公众平台 → 项目配置 → 成员管理，三步完成协作配置</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔗 前后台交互</h3>
+                    <p>数据绑定 + 事件绑定 + 参数传递 + CRUD</p>
+                </div>
+                <div class="feature-card">
+                    <h3>☁️ 云开发</h3>
+                    <p>云数据库 / 云函数 / 云存储 —— 免服务器的一体化方案</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;text-align:center;">
+                <h3 style="font-size:20px;color:var(--wx-green-dark);">课程到此告一段落 · 期末大作业等你挑战！</h3>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-9 -->
 
 <!-- 场景弹窗组：首页/详情页类 -->
 <div class="modal-overlay" id="sc1Modal" onclick="closeScenarioModal(event,'sc1Modal')">
