@@ -8,13 +8,13 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-        --wx-green: #07c160;
-        --wx-green-dark: #06ad56;
-        --wx-green-light: #e8f7ee;
-        --ai-purple: #667eea;
-        --ai-purple-dark: #764ba2;
+        --wx-green: #1e7a4b;
+        --wx-green-dark: #145a35;
+        --wx-green-light: #edf5ef;
+        --ai-purple: #5a6fd0;
+        --ai-purple-dark: #5a4594;
         --text-main: #1a1a1a;
-        --text-sub: #555
+        --text-sub: #555;
         --text-light: #888;
         --bg-light: #f6f8fa;
         --border: #e8e8e8;
@@ -2263,6 +2263,32 @@
 
     .tech-box.cloud .tech-item { background: var(--wx-green-light); color: var(--wx-green-dark); }
 
+    /* Windows 路径示例（投屏醒目） */
+    .win-path-example {
+        background: #0f172a;
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin: 6px 0;
+    }
+    .win-path-label {
+        font-size: 16px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+    .win-path-code {
+        font-family: 'Courier New', 'Consolas', monospace;
+        font-size: 22px;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.6;
+        word-break: break-all;
+    }
+    .win-path-code + .win-path-code {
+        margin-top: 8px;
+    }
+
     .app-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -3988,23 +4014,24 @@
         <div class="sidebar-title">课前准备</div>
         <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
         <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
-        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>小程序申请注册</div>
-        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>小程序管理后台</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>开发全流程</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>小程序申请注册</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>小程序管理后台</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">开发工具</div>
-        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>开发工具下载</div>
-        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>开发工具界面</div>
-        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>项目创建</div>
-        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>课堂操作</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>开发工具下载</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>开发工具界面</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>项目创建</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>课堂操作</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">目录与代码</div>
-        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>项目目录结构</div>
-        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>项目代码构成</div>
-        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>页面组成</div>
-        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>创建页面</div>
-        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>课堂操作与小结</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>项目目录结构</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>项目代码构成</div>
+        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>页面组成</div>
+        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>创建页面</div>
+        <div class="nav-item" data-slide="13"><span class="nav-num">13</span>课堂操作与小结</div>
     </div>
 </div>
 
@@ -4047,10 +4074,82 @@
         </div>
     </div>
 
-    <!-- 2-2. 小程序申请注册 -->
+    <!-- 2-2. 开发全流程 -->
     <div class="slide" data-index="2">
         <div class="slide-header">
             <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">小程序开发全流程</div>
+                <div class="slide-subtitle">从设计到上线的 6 个关键步骤</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:22px;">
+                <h3>一个微信小程序从构思到上线，通常要经过下面 6 个阶段</h3>
+                <p style="font-size:13px;color:var(--text-sub);margin-top:6px;">每个阶段有明确的目标与产出，按顺序推进</p>
+            </div>
+            <div style="position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:0;align-items:start;padding-top:14px;">
+                <!-- 顶部横向连接箭头线 -->
+                <div style="position:absolute;top:48px;left:8.33%;right:8.33%;height:5px;background:linear-gradient(90deg,#145a35 0%,#1e40af 20%,#0e7490 40%,#145a35 60%,#a16207 80%,#991b1b 100%);border-radius:3px;z-index:1;"></div>
+                <!-- STEP 01 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#145a35;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(20,90,53,0.35);border:5px solid #fff;">🎯</div>
+                    <div style="margin-top:14px;font-size:13px;color:#145a35;font-weight:700;letter-spacing:1px;background:#edf5ef;padding:3px 12px;border-radius:5px;">STEP 01</div>
+                    <div style="font-size:22px;font-weight:800;color:#145a35;margin:8px 0 6px;">设计</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">明确需求 · 画原型<br>定 UI 风格</p>
+                </div>
+                <!-- STEP 02 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#1e40af;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(30,64,175,0.35);border:5px solid #fff;">📝</div>
+                    <div style="margin-top:14px;font-size:13px;color:#1e40af;font-weight:700;letter-spacing:1px;background:#eff6ff;padding:3px 12px;border-radius:5px;">STEP 02</div>
+                    <div style="font-size:22px;font-weight:800;color:#1e40af;margin:8px 0 6px;">注册</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">注册账号<br>获取 AppID</p>
+                </div>
+                <!-- STEP 03 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#0e7490;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(14,116,144,0.35);border:5px solid #fff;">🛠️</div>
+                    <div style="margin-top:14px;font-size:13px;color:#0e7490;font-weight:700;letter-spacing:1px;background:#f0fdfa;padding:3px 12px;border-radius:5px;">STEP 03</div>
+                    <div style="font-size:22px;font-weight:800;color:#0e7490;margin:8px 0 6px;">环境</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">装工具<br>建项目</p>
+                </div>
+                <!-- STEP 04 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#145a35;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(20,90,53,0.35);border:5px solid #fff;">💻</div>
+                    <div style="margin-top:14px;font-size:13px;color:#145a35;font-weight:700;letter-spacing:1px;background:#edf5ef;padding:3px 12px;border-radius:5px;">STEP 04</div>
+                    <div style="font-size:22px;font-weight:800;color:#145a35;margin:8px 0 6px;">开发</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">写代码<br>布局组件交互</p>
+                </div>
+                <!-- STEP 05 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#a16207;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(161,98,7,0.35);border:5px solid #fff;">🧪</div>
+                    <div style="margin-top:14px;font-size:13px;color:#a16207;font-weight:700;letter-spacing:1px;background:#fef3c7;padding:3px 12px;border-radius:5px;">STEP 05</div>
+                    <div style="font-size:22px;font-weight:800;color:#78350f;margin:8px 0 6px;">测试</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">预览调试<br>真机验证</p>
+                </div>
+                <!-- STEP 06 -->
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;z-index:2;">
+                    <div style="width:84px;height:84px;border-radius:50%;background:#991b1b;color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(153,27,27,0.35);border:5px solid #fff;">🚀</div>
+                    <div style="margin-top:14px;font-size:13px;color:#991b1b;font-weight:700;letter-spacing:1px;background:#fef2f2;padding:3px 12px;border-radius:5px;">STEP 06</div>
+                    <div style="font-size:22px;font-weight:800;color:#7f1d1d;margin:8px 0 6px;">上线</div>
+                    <p style="font-size:15px;color:var(--text-main);line-height:1.55;">提交审核<br>发布服务</p>
+                </div>
+            </div>
+            <!-- 底部阶段产出说明 -->
+            <div style="margin-top:26px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding:0 6px;">
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">📄 需求文档 · 原型图</div>
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">🔑 账号 · AppID</div>
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">📁 本地项目工程</div>
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">💽 可运行代码</div>
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">📋 测试报告</div>
+                <div style="text-align:center;font-size:14px;color:var(--text-main);font-weight:600;padding:0 6px;">🌐 上线版本</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2-3. 小程序申请注册 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
             <div>
                 <div class="slide-title">小程序申请注册</div>
                 <div class="slide-subtitle">公众平台注册</div>
@@ -4078,10 +4177,10 @@
         </div>
     </div>
 
-    <!-- 2-3. 小程序管理后台 -->
-    <div class="slide" data-index="3">
+    <!-- 2-4. 小程序管理后台 -->
+    <div class="slide" data-index="4">
         <div class="slide-header">
-            <div class="slide-num">3</div>
+            <div class="slide-num">4</div>
             <div>
                 <div class="slide-title">小程序管理后台</div>
                 <div class="slide-subtitle">管理你的小程序</div>
@@ -4120,10 +4219,10 @@
         </div>
     </div>
 
-    <!-- 2-4. 开发工具下载 -->
-    <div class="slide" data-index="4">
+    <!-- 2-5. 小程序开发工具 -->
+    <div class="slide" data-index="5">
         <div class="slide-header">
-            <div class="slide-num">4</div>
+            <div class="slide-num">5</div>
             <div>
                 <div class="slide-title">小程序开发工具</div>
                 <div class="slide-subtitle">微信开发者工具 · 下载安装</div>
@@ -4155,10 +4254,10 @@
         </div>
     </div>
 
-    <!-- 2-5. 开发工具界面 -->
-    <div class="slide" data-index="5">
+    <!-- 2-6. 开发工具界面 -->
+    <div class="slide" data-index="6">
         <div class="slide-header">
-            <div class="slide-num">5</div>
+            <div class="slide-num">6</div>
             <div>
                 <div class="slide-title">开发工具界面</div>
                 <div class="slide-subtitle">三个核心界面</div>
@@ -4183,10 +4282,10 @@
         </div>
     </div>
 
-    <!-- 2-6. 项目创建注意事项 -->
-    <div class="slide" data-index="6">
+    <!-- 2-7. 项目创建注意事项 -->
+    <div class="slide" data-index="7">
         <div class="slide-header">
-            <div class="slide-num">6</div>
+            <div class="slide-num">7</div>
             <div>
                 <div class="slide-title">小程序项目创建</div>
                 <div class="slide-subtitle">新建项目的注意事项</div>
@@ -4210,10 +4309,10 @@
         </div>
     </div>
 
-    <!-- 2-7. 课堂操作：新建项目 -->
-    <div class="slide" data-index="7">
+    <!-- 2-8. 课堂操作：新建项目 -->
+    <div class="slide" data-index="8">
         <div class="slide-header">
-            <div class="slide-num">7</div>
+            <div class="slide-num">8</div>
             <div>
                 <div class="slide-title">课堂操作</div>
                 <div class="slide-subtitle">新建一个小程序项目</div>
@@ -4238,10 +4337,10 @@
         </div>
     </div>
 
-    <!-- 2-8. 项目目录结构 -->
-    <div class="slide" data-index="8">
+    <!-- 2-9. 项目目录结构 -->
+    <div class="slide" data-index="9">
         <div class="slide-header">
-            <div class="slide-num">8</div>
+            <div class="slide-num">9</div>
             <div>
                 <div class="slide-title">小程序目录结构及代码构成</div>
                 <div class="slide-subtitle">项目目录结构</div>
@@ -4276,10 +4375,10 @@
         </div>
     </div>
 
-    <!-- 2-9. 项目代码构成 -->
-    <div class="slide" data-index="9">
+    <!-- 2-10. 项目代码构成 -->
+    <div class="slide" data-index="10">
         <div class="slide-header">
-            <div class="slide-num">9</div>
+            <div class="slide-num">10</div>
             <div>
                 <div class="slide-title">小程序目录结构及代码构成</div>
                 <div class="slide-subtitle">项目代码构成 · app 三文件</div>
@@ -4313,10 +4412,10 @@
         </div>
     </div>
 
-    <!-- 2-10. 页面组成 -->
-    <div class="slide" data-index="10">
+    <!-- 2-11. 页面组成 -->
+    <div class="slide" data-index="11">
         <div class="slide-header">
-            <div class="slide-num">10</div>
+            <div class="slide-num">11</div>
             <div>
                 <div class="slide-title">小程序目录结构及代码构成</div>
                 <div class="slide-subtitle">页面组成 · 四种类型的文件</div>
@@ -4430,7 +4529,7 @@
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">实践</div>
-        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>课堂操作与作业</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>课堂操作</div>
     </div>
 </div>
 
@@ -4536,12 +4635,12 @@
 }</div>
             <div class="interact-box">
                 <div class="interact-title">💭 课堂互动 · 点击揭晓答案</div>
-                <p>怎么取寄件人的信息？<button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">显示答案</button></p>
-                <div class="reveal-answer">包裹信息.人员信息.寄件人 → "张三"</div>
-                <p>怎么取物品信息？<button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">显示答案</button></p>
-                <div class="reveal-answer">包裹信息.物品 → ["杯子", "易碎物品"]，取其中第一个：包裹信息.物品[0] → "杯子"</div>
-                <p>上面的包裹信息无换行缩进，代码可读性比较差，如何优化？<button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">显示答案</button></p>
-                <div class="reveal-answer">换行缩进（格式化），下一页展示效果</div>
+                <p>怎么取寄件人的信息？<button class="reveal-btn" onclick="toggleAnswer('answer-3-3-1', this)">显示答案</button></p>
+                <div class="reveal-answer" id="answer-3-3-1">包裹信息.人员信息.寄件人 → "张三"</div>
+                <p>怎么取物品信息？<button class="reveal-btn" onclick="toggleAnswer('answer-3-3-2', this)">显示答案</button></p>
+                <div class="reveal-answer" id="answer-3-3-2">包裹信息.物品 → ["杯子", "易碎物品"]，取其中第一个：包裹信息.物品[0] → "杯子"</div>
+                <p>上面的包裹信息无换行缩进，代码可读性比较差，如何优化？<button class="reveal-btn" onclick="toggleAnswer('answer-3-3-3', this)">显示答案</button></p>
+                <div class="reveal-answer" id="answer-3-3-3">换行缩进（格式化），下一页展示效果</div>
             </div>
         </div>
     </div>
@@ -4691,6 +4790,11 @@
                     <h3>绝对路径</h3>
                     <div class="tech-items">
                         <div class="tech-item">💾 文件或目录在硬盘上真正的路径</div>
+                        <div class="win-path-example">
+                            <div class="win-path-label">🪟 Windows 路径示例</div>
+                            <div class="win-path-code">C:\Users\Student\course\image\logo.png</div>
+                            <div class="win-path-code">D:\project\miniprogram\utils\helper.js</div>
+                        </div>
                         <div class="tech-item">⚠️ 在网页制作中尽量避免使用</div>
                     </div>
                 </div>
@@ -4726,12 +4830,12 @@
         </div>
     </div>
 
-    <!-- 3-9. 课堂操作与作业 -->
+    <!-- 3-9. 课堂操作 -->
     <div class="slide" data-index="9">
         <div class="slide-header">
             <div class="slide-num">9</div>
             <div>
-                <div class="slide-title">课堂操作与作业</div>
+                <div class="slide-title">课堂操作</div>
                 <div class="slide-subtitle">动手修改配置，观察变化</div>
             </div>
         </div>
@@ -4740,9 +4844,6 @@
                 <div class="interact-title">💻 课堂操作</div>
                 <p>修改新建项目的全局、页面配置，观察小程序页面变化</p>
                 <p>新增新建项目的全局、页面配置，观察小程序页面变化</p>
-            </div>
-            <div class="note-box">
-                <strong>📝 课堂作业：</strong>查看<strong>一网畅学</strong>第一次作业要求细则，按时完成并提交。
             </div>
             <div class="note-box">
                 <strong>下节预告：</strong>第四章 · 页面布局设计
@@ -9153,6 +9254,14 @@ padding: 5px 10px 15px 20px;
         if (e.target.id === 'platformModal') {
             closeModal();
         }
+    }
+
+    // 课堂互动 · 显示/隐藏答案
+    function toggleAnswer(answerId, btn) {
+        var el = document.getElementById(answerId);
+        if (!el) return;
+        var isOpen = el.classList.toggle('show');
+        if (btn) btn.textContent = isOpen ? '隐藏答案' : '显示答案';
     }
 
     function openScenarioModal(id) {
