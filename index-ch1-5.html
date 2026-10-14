@@ -80,10 +80,36 @@
         gap: 24px;
         font-size: 14px;
         color: var(--text-light);
+        align-items: center;
     }
 
     .topbar-info span {
         display: flex; align-items: center; gap: 6px;
+    }
+
+    .topbar-ysx-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        background: var(--wx-green);
+        color: #fff;
+        border-radius: 16px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1;
+        transition: background .18s ease, transform .18s ease;
+        white-space: nowrap;
+    }
+    .topbar-ysx-btn:hover {
+        background: var(--wx-green-dark);
+        transform: translateY(-1px);
+    }
+    .topbar-ysx-btn::after {
+        content: "↗";
+        font-size: 12px;
+        opacity: .85;
     }
 
     .chapter-tabs {
@@ -2763,6 +2789,1215 @@
             grid-template-columns: repeat(2, 1fr) !important;
         }
     }
+
+    /* ========== 第四章 页面布局设计 - 新增样式 ========== */
+
+    .slide-num.wide { width: auto; min-width: 48px; height: 48px; padding: 0 12px; font-size: 18px; letter-spacing: 0.5px; }
+
+    /* Flex 概念 - 双轴图示 */
+    .flex-concept-wrap {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 24px;
+        align-items: center;
+        flex: 1;
+    }
+    .axis-diagram {
+        position: relative;
+        background: #fff8ec;
+        border: 3px solid #ffb74d;
+        border-radius: 12px;
+        padding: 44px 32px 40px;
+        height: 260px;
+        overflow: hidden;
+    }
+    .axis-diagram .container-label {
+        position: absolute; top: 12px; left: 16px;
+        background: #ff9800; color: #fff;
+        padding: 3px 12px; border-radius: 6px;
+        font-size: 13px; font-weight: 600;
+    }
+    .axis-diagram .main-axis-line {
+        position: absolute; left: 20px; right: 20px; top: 60px;
+        height: 2px; background: #e53935;
+        background-image: linear-gradient(to right, #e53935 50%, transparent 50%);
+        background-size: 8px 2px;
+    }
+    .axis-diagram .cross-axis-line {
+        position: absolute; top: 40px; bottom: 20px; left: 50%;
+        width: 2px; background: #1e88e5;
+        background-image: linear-gradient(to bottom, #1e88e5 50%, transparent 50%);
+        background-size: 2px 8px;
+    }
+    .axis-diagram .axis-label {
+        position: absolute; font-size: 13px; font-weight: 600;
+        padding: 2px 8px; border-radius: 4px;
+    }
+    .axis-diagram .axis-label.main {
+        color: #e53935; background: rgba(229,57,53,.1);
+        top: 40px; left: 50%; transform: translateX(-50%);
+    }
+    .axis-diagram .axis-label.cross {
+        color: #1e88e5; background: rgba(30,136,229,.1);
+        top: 80px; left: 50%; transform: translateX(-50%);
+    }
+    .axis-diagram .axis-items {
+        position: absolute; left: 24px; right: 24px; top: 88px; bottom: 24px;
+        display: flex; gap: 12px; align-items: center; justify-content: center;
+    }
+    .axis-diagram .axis-item {
+        flex: 1; height: 120px; background: linear-gradient(135deg,#e3f2fd,#bbdefb);
+        border: 2px solid #64b5f6; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        color: #1565c0; font-weight: 600; font-size: 14px;
+    }
+    .flex-axes-list {
+        background: var(--bg-light); border-radius: 12px; padding: 20px 22px;
+        display: flex; flex-direction: column; gap: 12px;
+    }
+    .flex-axes-list .axis-item-h {
+        display: flex; align-items: flex-start; gap: 10px;
+        font-size: 16px; line-height: 1.55;
+    }
+    .flex-axes-list .axis-dot {
+        display: inline-block; width: 12px; height: 12px; border-radius: 50%;
+        margin-top: 6px; flex-shrink: 0;
+    }
+    .flex-axes-list .axis-dot.main { background: #e53935; }
+    .flex-axes-list .axis-dot.cross { background: #1e88e5; }
+
+    /* 4-10 交互示例（scoped，避免污染 4-9 静态双轴图） */
+    .flex-interactive-panel { padding: 16px 20px; }
+    .flex-interactive-panel h3 {
+        font-size: 20px; margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed var(--border);
+    }
+    .flex-dir-ctrls {
+        display: flex; gap: 8px;
+        margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .flex-dir-btn {
+        padding: 8px 14px;
+        background: #fff; border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 14px; font-weight: 600;
+        color: var(--text-sub);
+        cursor: pointer;
+        transition: all .18s ease;
+    }
+    .flex-dir-btn:hover { border-color: var(--wx-green); color: var(--wx-green-dark); }
+    .flex-dir-btn.active {
+        background: var(--wx-green); color: #fff;
+        border-color: var(--wx-green);
+        box-shadow: 0 2px 8px rgba(7,193,96,.3);
+    }
+    .flex-dir-btn .dir-arrow {
+        font-size: 16px; margin-right: 4px;
+        display: inline-block;
+    }
+    .flex-dir-btn[data-dir="row-reverse"] .dir-arrow { transform: scaleX(-1); }
+    .flex-dir-btn[data-dir="column"] .dir-arrow { transform: rotate(90deg); }
+    .flex-dir-btn[data-dir="column-reverse"] .dir-arrow { transform: rotate(-90deg); }
+
+    /* 4-10 专用双轴图（覆盖 4-9 静态样式） */
+    .flex-interactive-panel .axis-diagram {
+        background: #fff8ec;
+        border: 3px solid #ffb74d;
+        border-radius: 12px;
+        padding: 42px 30px 32px;
+        position: relative;
+        min-height: 220px;
+    }
+    .flex-interactive-panel .axis-diagram .container-label {
+        position: absolute; top: 12px; left: 16px;
+        background: #ff9800; color: #fff;
+        padding: 3px 12px; border-radius: 6px;
+        font-size: 13px; font-weight: 600;
+        z-index: 3;
+    }
+    .flex-interactive-panel .axis-diagram .main-axis-label,
+    .flex-interactive-panel .axis-diagram .cross-axis-label {
+        position: absolute;
+        padding: 2px 8px; border-radius: 4px;
+        font-size: 12px; font-weight: 600;
+        white-space: nowrap;
+        z-index: 3;
+        display: flex; align-items: center;
+    }
+    .flex-interactive-panel .axis-diagram .main-axis-label {
+        top: 6px; right: 16px;
+        color: #e53935; background: rgba(229,57,53,.1);
+    }
+    .flex-interactive-panel .axis-diagram .cross-axis-label {
+        top: 6px; left: 16px;
+        color: #1e88e5; background: rgba(30,136,229,.1);
+    }
+    .flex-interactive-panel .axis-diagram .main-axis-label::after { content: "→"; margin-left: 4px; }
+    .flex-interactive-panel .axis-diagram .cross-axis-label::after { content: "↓"; margin-left: 4px; }
+    .flex-interactive-panel .axis-diagram .main-axis-line {
+        position: absolute;
+        height: 2px;
+        background: repeating-linear-gradient(to right, #e53935 0 8px, transparent 8px 14px);
+        opacity: .85;
+        z-index: 1;
+    }
+    .flex-interactive-panel .axis-diagram .cross-axis-line {
+        position: absolute;
+        width: 2px;
+        background: repeating-linear-gradient(to bottom, #1e88e5 0 8px, transparent 8px 14px);
+        opacity: .85;
+        z-index: 1;
+    }
+    .axis-container {
+        position: relative;
+        display: flex;
+        gap: 10px;
+        padding: 12px;
+        background: rgba(255,255,255,.4);
+        border: 1px dashed #ffb74d;
+        border-radius: 8px;
+        height: 138px;
+        box-sizing: border-box;
+        z-index: 2;
+        transition: flex-direction .25s ease;
+    }
+    .axis-container.dir-row { flex-direction: row; align-items: center; justify-content: flex-start; }
+    .axis-container.dir-row-reverse { flex-direction: row-reverse; align-items: center; justify-content: flex-start; }
+    .axis-container.dir-column { flex-direction: column; align-items: center; justify-content: flex-start; }
+    .axis-container.dir-column-reverse { flex-direction: column-reverse; align-items: center; justify-content: flex-start; }
+    .axis-container.dir-row .axis-item,
+    .axis-container.dir-row-reverse .axis-item {
+        width: 92px; height: 68px;
+    }
+    .axis-container.dir-column .axis-item,
+    .axis-container.dir-column-reverse .axis-item {
+        width: 108px; height: 32px;
+    }
+    .flex-interactive-panel .axis-item {
+        background: linear-gradient(135deg,#42a5f5,#1976d2);
+        color: #fff;
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 15px;
+        transition: all .3s ease;
+        box-shadow: 0 2px 6px rgba(25,118,210,.3);
+    }
+    .flex-live-code {
+        margin-top: 10px;
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .flex-live-code .ck { color: #569cd6; }
+    .flex-live-code .cp { color: #ce9178; }
+    .flex-live-code .cs { color: #808080; }
+
+    /* 4-12 justify-content 交互示例（scoped，投屏友好尺寸） */
+    .jc-interactive-panel { padding: 18px 20px; }
+    .jc-interactive-panel h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+    .jc-ctrls {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    .jc-btn {
+        padding: 10px 6px;
+        border: 2px solid var(--border);
+        background: #fff;
+        color: var(--text-main);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: inherit;
+        line-height: 1.3;
+    }
+    .jc-btn:hover {
+        border-color: var(--wx-green);
+        background: rgba(7, 193, 96, .05);
+    }
+    .jc-btn.active {
+        background: var(--wx-green);
+        color: #fff;
+        border-color: var(--wx-green);
+    }
+    .jc-demo {
+        position: relative;
+        border: 2px dashed #1e88e5;
+        background: rgba(30, 136, 229, .04);
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 14px;
+    }
+    .jc-demo-label {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .8;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+    .jc-track {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 96px;
+        gap: 8px;
+    }
+    .jc-box {
+        width: 72px;
+        height: 72px;
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        color: #fff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 700;
+        box-shadow: 0 3px 6px rgba(46, 125, 50, .3);
+        flex-shrink: 0;
+        transition: all .3s ease;
+    }
+    .jc-live-code {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .jc-live-code .ck { color: #569cd6; }
+    .jc-live-code .cp { color: #ce9178; }
+    .jc-live-code .cs { color: #808080; }
+
+    /* 4-13 align-items 交互示例（scoped，投屏友好尺寸） */
+    .ai-interactive-panel { padding: 18px 20px; }
+    .ai-interactive-panel h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+    .ai-ctrls {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    .ai-btn {
+        padding: 10px 6px;
+        border: 2px solid var(--border);
+        background: #fff;
+        color: var(--text-main);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: inherit;
+        line-height: 1.3;
+    }
+    .ai-btn:hover {
+        border-color: var(--wx-green);
+        background: rgba(7, 193, 96, .05);
+    }
+    .ai-btn.active {
+        background: var(--wx-green);
+        color: #fff;
+        border-color: var(--wx-green);
+    }
+    .ai-demo {
+        position: relative;
+        border: 2px dashed #1e88e5;
+        background: rgba(30, 136, 229, .04);
+        padding: 10px 10px;
+        border-radius: 8px;
+        margin-bottom: 14px;
+    }
+    .ai-demo-label {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .8;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+    .ai-cross-hint {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+        font-size: 13px;
+        color: #1e88e5;
+        font-weight: 700;
+        letter-spacing: .3px;
+        pointer-events: none;
+        line-height: 1.1;
+    }
+    .ai-track {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        height: 128px;
+        gap: 12px;
+        padding-left: 4px;
+    }
+    .ai-box {
+        width: 84px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 3px 6px rgba(46, 125, 50, .3);
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        transition: height .3s ease, flex-grow .3s ease;
+    }
+    .ai-box.b1 { height: 52px; font-size: 20px; }
+    .ai-box.b2 { height: 96px; font-size: 34px; background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); }
+    .ai-box.b3 { height: 36px; font-size: 16px; background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); }
+    .ai-live-code {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .ai-live-code .ck { color: #569cd6; }
+    .ai-live-code .cp { color: #ce9178; }
+    .ai-live-code .cs { color: #808080; }
+
+    /* 4-13 交互：stretch 模式下去掉固定高度 */
+    .ai-track.ai-stretch .ai-box { height: auto; min-height: 30px; }
+
+    /* 4-14 align-content 交互示例（scoped，投屏友好尺寸） */
+    .ac-interactive-panel { padding: 18px 20px; }
+    .ac-interactive-panel h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+    .ac-ctrls {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    .ac-btn {
+        padding: 10px 6px;
+        border: 2px solid var(--border);
+        background: #fff;
+        color: var(--text-main);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: inherit;
+        line-height: 1.3;
+    }
+    .ac-btn:hover {
+        border-color: var(--wx-green);
+        background: rgba(7, 193, 96, .05);
+    }
+    .ac-btn.active {
+        background: var(--wx-green);
+        color: #fff;
+        border-color: var(--wx-green);
+    }
+    .ac-demo {
+        position: relative;
+        border: 2px dashed #1e88e5;
+        background: rgba(30, 136, 229, .04);
+        padding: 10px 10px;
+        border-radius: 8px;
+        margin-bottom: 14px;
+    }
+    .ac-demo-label {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .8;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+    .ac-row-hint {
+        position: absolute;
+        bottom: 6px;
+        left: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .7;
+        letter-spacing: .3px;
+    }
+    .ac-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        height: 172px;
+        gap: 10px;
+        padding: 6px;
+    }
+    .ac-box {
+        width: 158px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        color: #fff;
+        box-shadow: 0 3px 6px rgba(46, 125, 50, .3);
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        flex-shrink: 0;
+        transition: height .3s ease;
+    }
+    .ac-track.ac-stretch .ac-box { height: auto; }
+    .ac-live-code {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .ac-live-code .ck { color: #569cd6; }
+    .ac-live-code .cp { color: #ce9178; }
+    .ac-live-code .cs { color: #808080; }
+
+    /* 4-12 / 4-13 / 4-14 左栏属性卡（覆盖全局尺寸，仅对应页生效） */
+    .slide[data-index="12"] .flex-prop-name,
+    .slide[data-index="13"] .flex-prop-name,
+    .slide[data-index="14"] .flex-prop-name { font-size: 28px; margin-bottom: 10px; }
+    .slide[data-index="12"] .flex-prop-desc,
+    .slide[data-index="13"] .flex-prop-desc,
+    .slide[data-index="14"] .flex-prop-desc { font-size: 18px; line-height: 1.7; }
+    .slide[data-index="12"] .flex-prop-values span,
+    .slide[data-index="13"] .flex-prop-values span,
+    .slide[data-index="14"] .flex-prop-values span { font-size: 16px; padding: 5px 14px; }
+    .slide[data-index="12"] .code-block,
+    .slide[data-index="13"] .code-block,
+    .slide[data-index="14"] .code-block { font-size: 16px; line-height: 1.7; }
+    .slide[data-index="12"] .note-box,
+    .slide[data-index="13"] .note-box,
+    .slide[data-index="14"] .note-box { font-size: 15px; }
+
+    /* 4-15 order + flex-grow 交互示例（scoped，投屏友好尺寸） */
+    .of-interactive-panel { padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .of-section { }
+    .of-section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .of-section-title .of-tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        background: rgba(7, 193, 96, .12);
+        color: #2e7d32;
+        border: 1px solid rgba(7, 193, 96, .35);
+    }
+    .of-ctrls {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+    .of-btn {
+        padding: 8px 14px;
+        border: 2px solid var(--border);
+        background: #fff;
+        color: var(--text-main);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: "SF Mono", Menlo, monospace;
+        line-height: 1.3;
+    }
+    .of-btn:hover {
+        border-color: var(--wx-green);
+        background: rgba(7, 193, 96, .05);
+    }
+    .of-btn.active {
+        background: var(--wx-green);
+        color: #fff;
+        border-color: var(--wx-green);
+    }
+    .of-demo {
+        position: relative;
+        border: 2px dashed #1e88e5;
+        background: rgba(30, 136, 229, .04);
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .of-demo-label {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .75;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+    .of-track {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 80px;
+        gap: 6px;
+        padding: 4px 0;
+    }
+    .of-box {
+        height: 64px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 3px 6px rgba(46, 125, 50, .3);
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        min-width: 48px;
+        flex-shrink: 0;
+        padding: 0 6px;
+    }
+    .of-box .of-box-num {
+        font-size: 24px;
+        line-height: 1;
+    }
+    .of-box .of-box-meta {
+        font-size: 12px;
+        opacity: .95;
+        line-height: 1.1;
+        margin-top: 3px;
+        font-family: "SF Mono", Menlo, monospace;
+    }
+    .of-box .of-box-meta .of-box-key { opacity: .8; }
+    .of-box.b1 { background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); }
+    .of-box.b2 { background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%); }
+    .of-box.b3 { background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); }
+    .of-live-code {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .of-live-code .ck { color: #569cd6; }
+    .of-live-code .cp { color: #ce9178; }
+    .of-live-code .cs { color: #808080; }
+    /* 4-15 左栏属性卡（覆盖全局尺寸，仅本页生效） */
+    .slide[data-index="15"] .flex-prop-name { font-size: 28px; margin-bottom: 10px; }
+    .slide[data-index="15"] .flex-prop-desc { font-size: 18px; line-height: 1.7; }
+    .slide[data-index="15"] .flex-prop-values span { font-size: 16px; padding: 5px 14px; }
+
+    /* 4-16 flex-shrink + flex-basis 交互示例（scoped，投屏友好尺寸） */
+    .sb-interactive-panel { padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .sb-section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .sb-section-title .sb-tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        background: rgba(7, 193, 96, .12);
+        color: #2e7d32;
+        border: 1px solid rgba(7, 193, 96, .35);
+    }
+    .sb-ctrls {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+    .sb-btn {
+        padding: 8px 14px;
+        border: 2px solid var(--border);
+        background: #fff;
+        color: var(--text-main);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: "SF Mono", Menlo, monospace;
+        line-height: 1.3;
+    }
+    .sb-btn:hover {
+        border-color: var(--wx-green);
+        background: rgba(7, 193, 96, .05);
+    }
+    .sb-btn.active {
+        background: var(--wx-green);
+        color: #fff;
+        border-color: var(--wx-green);
+    }
+    .sb-demo {
+        position: relative;
+        border: 2px dashed #1e88e5;
+        background: rgba(30, 136, 229, .04);
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+    .sb-demo-label {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 12px;
+        color: #1e88e5;
+        opacity: .75;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+    .sb-track {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 72px;
+        gap: 6px;
+        padding: 4px 0;
+    }
+    .sb-box {
+        height: 56px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 3px 6px rgba(46, 125, 50, .3);
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        flex-shrink: 1;
+        flex-grow: 0;
+        min-width: 40px;
+        padding: 0 6px;
+        transition: flex-basis .3s ease, flex-shrink .3s ease;
+    }
+    .sb-box .sb-box-num { font-size: 22px; line-height: 1; }
+    .sb-box .sb-box-meta {
+        font-size: 11px;
+        opacity: .95;
+        line-height: 1.1;
+        margin-top: 3px;
+        font-family: "SF Mono", Menlo, monospace;
+        white-space: nowrap;
+    }
+    .sb-box.b1 { background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); }
+    .sb-box.b2 { background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%); }
+    .sb-box.b3 { background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); }
+    .sb-box.sb-fixed {
+        background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%) !important;
+        box-shadow: 0 3px 6px rgba(255, 152, 0, .35);
+    }
+    .sb-live-code {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .sb-live-code .ck { color: #569cd6; }
+    .sb-live-code .cp { color: #ce9178; }
+    .sb-live-code .cs { color: #808080; }
+    /* 4-16 左栏属性卡（覆盖全局尺寸，仅本页生效） */
+    .slide[data-index="16"] .flex-prop-name { font-size: 26px; margin-bottom: 8px; }
+    .slide[data-index="16"] .flex-prop-desc { font-size: 16px; line-height: 1.7; }
+    .slide[data-index="16"] .flex-prop-values span { font-size: 15px; padding: 5px 14px; }
+
+    /* Flex 章节类型标签（容器属性 vs 项目属性） */
+    .slide-subtitle .cat-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        margin-right: 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.5;
+        vertical-align: 2px;
+        letter-spacing: .3px;
+    }
+    .slide-subtitle .cat-badge.cat-container {
+        background: rgba(30, 136, 229, .12);
+        color: #1e88e5;
+        border: 1px solid rgba(30, 136, 229, .35);
+    }
+    .slide-subtitle .cat-badge.cat-item {
+        background: rgba(76, 175, 80, .14);
+        color: #2e7d32;
+        border: 1px solid rgba(76, 175, 80, .4);
+    }
+
+    /* Flex 示例图片 */
+    .flex-img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        border-radius: 10px;
+        background: #f9f9f9;
+        padding: 8px;
+    }
+    .flex-img-row {
+        display: grid;
+        gap: 8px;
+    }
+    .flex-img-row img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+        padding: 4px;
+    }
+
+    /* Flex 示例框（用于 justify-content 五张图等） */
+    .demo-box {
+        background: #f5f7fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+    .demo-label {
+        font-size: 13px;
+        color: var(--text-sub);
+        font-family: "SF Mono", Menlo, monospace;
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+    .demo-row {
+        display: flex; gap: 6px; padding: 8px;
+        background: #e8f5e9; border-radius: 6px;
+        min-height: 44px; align-items: center;
+    }
+    .demo-item {
+        background: var(--wx-green); color: #fff;
+        padding: 6px 12px; border-radius: 6px;
+        font-size: 13px; font-weight: 600;
+    }
+
+    /* Flex 属性卡片 */
+    .flex-prop-card {
+        background: var(--bg-light);
+        border-radius: 12px;
+        padding: 18px 20px;
+        border-left: 5px solid var(--wx-green);
+    }
+    .flex-prop-name {
+        font-family: "SF Mono", Menlo, monospace;
+        font-weight: 700;
+        color: var(--wx-green-dark);
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+    .flex-prop-desc {
+        font-size: 15px; color: var(--text-sub);
+        line-height: 1.65;
+    }
+    .flex-prop-values {
+        display: flex; flex-wrap: wrap; gap: 6px;
+        margin-top: 10px;
+    }
+    .flex-prop-values span {
+        background: #fff; padding: 3px 10px; border-radius: 12px;
+        font-size: 13px; font-family: "SF Mono", Menlo, monospace;
+        border: 1px solid var(--border); color: var(--text-main);
+    }
+
+    /* 盒模型交互滑块 */
+    .box-interactive {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 20px;
+    }
+    .box-ctrls {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .box-ctrl {
+        display: grid;
+        grid-template-columns: 72px 1fr 48px;
+        gap: 10px; align-items: center;
+    }
+    .box-ctrl label {
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 13px; font-weight: 700;
+    }
+    .box-ctrl input[type=range] { width: 100%; }
+    .box-ctrl .val {
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 12px; text-align: right; color: var(--text-sub);
+    }
+    .box-preview {
+        display: flex; justify-content: center; align-items: center;
+        min-height: 260px; padding: 10px;
+        background: #fafbfc;
+        border: 1px dashed var(--border);
+        border-radius: 10px;
+    }
+    #bx-outer { width: 360px; }
+    .box-preview-outer {
+        background: repeating-linear-gradient(45deg, rgba(102,126,234,.14) 0 6px, rgba(102,126,234,.28) 6px 12px);
+        border-radius: 10px;
+        transition: padding .2s;
+    }
+    .box-preview-border {
+        background: #fff; border-radius: 6px;
+        transition: padding, border-width .2s;
+    }
+    .box-preview-padding {
+        background: linear-gradient(135deg, #e3f8e8, #f0fbe6);
+        border-radius: 4px;
+        transition: padding .2s;
+    }
+    .box-preview-content {
+        background: #fff;
+        border: 2px solid #07c160;
+        border-radius: 4px;
+        padding: 8px 14px;
+        text-align: center; font-size: 12px; font-weight: 600;
+        color: var(--text-main);
+        white-space: nowrap;
+    }
+
+    /* 组件格式 */
+    .tag-format {
+        display: inline-block;
+        background: #eef6f1;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 16px;
+        margin: 6px 0;
+    }
+
+    /* 4-18 主流 UI 框架卡片 */
+    .framework-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 8px 4px;
+    }
+    .fw-card {
+        position: relative;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 26px 26px 24px;
+        cursor: pointer;
+        transition: transform .18s, box-shadow .18s, border-color .18s;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .fw-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(0,0,0,.10);
+        border-color: var(--wx-green);
+    }
+    .fw-icon-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 2px;
+    }
+    .fw-logo-img {
+        width: 68px; height: 68px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid var(--border);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 6px rgba(0,0,0,.04);
+    }
+    .fw-logo-img img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+    .fw-title-wrap { flex: 1; min-width: 0; }
+    .fw-name {
+        font-size: 24px; font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.2;
+    }
+    .fw-org {
+        font-size: 15px; color: var(--text-sub);
+        margin-top: 4px;
+    }
+    .fw-org::before {
+        content: "· ";
+        color: var(--text-sub);
+    }
+    .fw-tagline {
+        font-size: 16px;
+        color: var(--text-main);
+        font-weight: 600;
+        margin-top: 4px;
+        padding: 8px 12px;
+        background: linear-gradient(90deg, rgba(7,193,96,.08), transparent);
+        border-left: 3px solid var(--wx-green);
+        border-radius: 4px;
+    }
+    .fw-features {
+        list-style: none;
+        padding: 0; margin: 2px 0 0;
+        display: flex; flex-direction: column; gap: 8px;
+    }
+    .fw-features li {
+        font-size: 16px;
+        color: var(--text-sub);
+        line-height: 1.5;
+        padding-left: 22px;
+        position: relative;
+    }
+    .fw-features li::before {
+        content: "✓";
+        position: absolute; left: 0; top: 0;
+        color: var(--wx-green);
+        font-weight: 700;
+        font-size: 18px;
+    }
+    .fw-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 14px 0;
+        margin-top: 4px;
+        border-top: 1px dashed var(--border);
+        border-bottom: 1px dashed var(--border);
+    }
+    .fw-stat {
+        text-align: center;
+    }
+    .fw-stat-val {
+        display: block;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.2;
+    }
+    .fw-stat-label {
+        display: block;
+        font-size: 14px;
+        color: var(--text-sub);
+        margin-top: 4px;
+    }
+    .fw-tags {
+        display: flex; gap: 8px; flex-wrap: wrap;
+        margin-top: 4px;
+    }
+    .fw-tag {
+        display: inline-block;
+        padding: 5px 12px;
+        background: #eef6f1;
+        color: var(--wx-green-dark);
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .fw-scan-hint {
+        position: absolute;
+        top: 14px; right: 16px;
+        font-size: 14px;
+        color: var(--wx-green);
+        font-weight: 600;
+        opacity: .85;
+    }
+    .fw-scan-hint::before {
+        content: "📱 ";
+    }
+
+    /* 小程序码弹窗 */
+    .qr-modal-mask {
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.55);
+        display: none;
+        align-items: center; justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(4px);
+    }
+    .qr-modal-mask.show {
+        display: flex;
+        animation: qr-fade .2s ease;
+    }
+    @keyframes qr-fade {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+    .qr-modal {
+        background: #fff;
+        border-radius: 18px;
+        padding: 26px 30px;
+        width: 420px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        animation: qr-pop .22s ease;
+    }
+    @keyframes qr-pop {
+        from { transform: scale(.92); opacity: 0; }
+        to   { transform: scale(1); opacity: 1; }
+    }
+    .qr-modal-logo {
+        width: 60px; height: 60px;
+        border-radius: 14px;
+        margin: 0 auto 12px;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: 700; font-size: 22px;
+        font-family: "SF Mono", Menlo, monospace;
+    }
+    .qr-modal-name {
+        font-size: 22px; font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 2px;
+    }
+    .qr-modal-org {
+        font-size: 13px; color: var(--text-sub);
+        margin-bottom: 16px;
+    }
+    .qr-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+    .qr-code-box {
+        width: 200px; height: 200px;
+        background: #f7f8fa;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .qr-code-box img {
+        width: 100%; height: 100%; object-fit: contain;
+    }
+    .qr-placeholder {
+        color: #b0b5bd;
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 10px;
+        display: block;
+    }
+    .qr-placeholder-icon {
+        font-size: 40px;
+        margin-bottom: 4px;
+    }
+    .qr-info-side {
+        display: flex; flex-direction: column; gap: 8px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--text-sub);
+    }
+    .qr-info-side h4 {
+        font-size: 13px; color: var(--text-main);
+        margin: 0 0 4px;
+    }
+    .qr-link {
+        display: block;
+        padding: 8px 10px;
+        background: #eef6f1;
+        color: var(--wx-green-dark);
+        border-radius: 8px;
+        font-size: 12px;
+        text-decoration: none;
+        word-break: break-all;
+        line-height: 1.4;
+        transition: background .15s;
+    }
+    .qr-link:hover { background: #d8ecdd; }
+    .qr-link-title {
+        display: block;
+        color: var(--text-main);
+        font-weight: 600;
+        margin-bottom: 2px;
+        font-size: 12px;
+    }
+    .qr-modal-tip {
+        font-size: 13px;
+        color: var(--wx-green-dark);
+        background: #f3f8f5;
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin-bottom: 14px;
+        line-height: 1.5;
+        text-align: left;
+    }
+    .qr-modal-close {
+        background: var(--wx-green);
+        color: #fff;
+        border: none;
+        padding: 10px 32px;
+        border-radius: 22px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background .15s;
+    }
+    .qr-modal-close:hover { background: var(--wx-green-dark); }
+
 </style>
 </head>
 <body>
@@ -2794,6 +4029,7 @@
     <div class="topbar-title">课程课件 · 在线版</div>
     <div class="topbar-info">
         <span>课程编号：36810310</span>
+        <a class="topbar-ysx-btn" href="https://1906.usst.edu.cn/user/index#/" target="_blank" rel="noopener noreferrer">一网畅学</a>
     </div>
 </div>
 
@@ -4862,30 +6098,35 @@
         <div class="sidebar-title">课程导引</div>
         <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
         <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>UI 设计规范</div>
     </div>
     <div class="sidebar-section">
-        <div class="sidebar-title">设计规范与基础</div>
-        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>UI 设计规范</div>
+        <div class="sidebar-title">基础组件与样式</div>
         <div class="nav-item" data-slide="3"><span class="nav-num">3</span>view 与标签格式</div>
-        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>WXSS 与路径</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>样式引用方式</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>WXSS 常用样式</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">盒子模型</div>
-        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>生活案例</div>
         <div class="nav-item" data-slide="6"><span class="nav-num">6</span>四要素总览</div>
         <div class="nav-item" data-slide="7"><span class="nav-num">7</span>margin 外边距</div>
         <div class="nav-item" data-slide="8"><span class="nav-num">8</span>border + padding</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">Flex 布局</div>
-        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>Flex 概念</div>
-        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>容器属性</div>
-        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>项目属性</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>Flex 概念与双轴</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num wide">10</span>flex-direction</div>
+        <div class="nav-item" data-slide="11"><span class="nav-num wide">11</span>flex-wrap / flow</div>
+        <div class="nav-item" data-slide="12"><span class="nav-num wide">12</span>justify-content</div>
+        <div class="nav-item" data-slide="13"><span class="nav-num wide">13</span>align-items</div>
+        <div class="nav-item" data-slide="14"><span class="nav-num wide">14</span>align-content</div>
+        <div class="nav-item" data-slide="15"><span class="nav-num wide">15</span>order + flex-grow</div>
+        <div class="nav-item" data-slide="16"><span class="nav-num wide">16</span>flex-shrink + basis</div>
+        <div class="nav-item" data-slide="17"><span class="nav-num wide">17</span>flex 简写 + align-self</div>
     </div>
     <div class="sidebar-section">
-        <div class="sidebar-title">AI 辅助</div>
-        <div class="nav-item ai" data-slide="12"><span class="nav-num">AI</span>工具箱与提示词</div>
-        <div class="nav-item ai" data-slide="13"><span class="nav-num">AI</span>辅助布局实践</div>
+        <div class="sidebar-title">主流 UI 框架</div>
+        <div class="nav-item" data-slide="18"><span class="nav-num wide">18</span>主流 UI 框架</div>
     </div>
 </div>
 
@@ -4895,7 +6136,7 @@
     <div class="slide chapter-slide active" data-index="0">
         <div class="chapter-big">04</div>
         <div class="chapter-name">页面布局设计</div>
-        <div class="chapter-desc">盒子模型 · Flex 布局 · AI 辅助</div>
+        <div class="chapter-desc">盒子模型 · Flex 布局 · UI 规范</div>
         <div class="cover-teacher" style="margin-top: 40px;">
             <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
             <p class="course-id" style="color:rgba(255,255,255,0.7);">电话：55271110 · 课程编号：36810310</p>
@@ -4921,10 +6162,9 @@
                     <div class="check-item" style="cursor:default;"><span style="font-size:24px;">📐</span>UI 设计规范 —— 掌握小程序设计四大原则</div>
                     <div class="check-item" style="cursor:default;"><span style="font-size:24px;">📦</span>盒子模型 —— 理解 margin / border / padding / content</div>
                     <div class="check-item" style="cursor:default;"><span style="font-size:24px;">🧩</span>Flex 布局 —— 容器属性与项目属性</div>
-                    <div class="check-item" style="cursor:default;"><span style="font-size:24px;">🤖</span>AI 辅助 —— 用提示词让 AI 帮你写布局</div>
                 </div>
             </div>
-            <img class="hero-img" src="https://console.enterprise.trae.cn/api/ide/v1/text_to_image?prompt=%E6%89%81%E5%B9%B3%E9%A3%81%E6%80%81%E6%8F%92%E7%94%BB%EF%BC%8C%E4%B8%80%E5%BA%A7%E6%94%BE%E5%A4%A7%E7%9A%84%E7%8E%84%E8%89%B2%E6%B5%B7%E6%B7%9A%E7%AE%B1%EF%BC%88%E7%93%B6%E5%AD%90%E5%BD%A2%E7%8A%B6%E5%8C%85%E8%A3%85%E7%A9%BF%E7%BB%BF%E8%8C%B6%EF%BC%89%EF%BC%8C%E5%B1%82%E5%BC%A0%E7%A0%B4%E5%BC%80%E5%B1%95%E7%A4%BA%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%A4%9A%E5%B1%82%E5%AD%97%E5%85%B8%E6%8C%89%E8%BE%B9%E8%B7%9D%EF%BC%8C%E7%99%BD%E8%89%B2%E8%83%8C%E6%99%AF%EF%BC%8C%E7%99%BD%E8%89%B2%E5%9C%9F%E6%82%85%EF%BC%8C%E7%8E%B0%E4%BB%A3%E6%95%99%E7%A7%91%E6%8F%92%E7%94%BB%E9%A3%8E%E6%A0%BC%EF%BC%8C%E6%B8%85%E6%96%B0%E7%BB%BF%E8%89%B2%E4%B8%BB%E8%89%B2%E8%B0%83%EF%BC%8C%E6%97%A0%E6%96%87%E5%AD%97%EF%BC%8C%E7%AE%80%E6%B4%81%E6%95%B0%E5%AD%97%E5%8C%96%E8%AE%BE%E8%AE%A1&image_size=portrait_4_3" alt="盒子模型类比插画">
+            <img class="hero-img" src="assets/flex/slide31_sh3.png" alt="Flex 双轴示意">
         </div>
     </div>
 
@@ -4975,143 +6215,159 @@
                 <div class="slide-subtitle">1.2 视图容器 · 盒模型起点</div>
             </div>
         </div>
-        <div class="two-col">
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:28px; align-items:stretch;">
             <div class="col-card">
                 <h3>view —— 视图容器</h3>
-                <p style="font-size:19px;color:var(--text-sub);margin-bottom:14px;line-height:1.6;">
+                <p style="font-size:18px;color:var(--text-sub);margin-bottom:14px;line-height:1.6;">
                     <strong style="color:var(--text-main);">view</strong> 是小程序最基础的布局组件，作用类似 HTML 的 <code style="background:#e8e8e8;padding:2px 6px;border-radius:4px;font-size:16px;">div</code>，用于内容分组与样式控制。
                 </p>
-                <div class="code-block" style="margin:10px 0;">
-<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"container"</span><span class="cs">&gt;</span>
-  <span>我是 view</span>
-<span class="cs">&lt;/view&gt;</span>
-                </div>
-                <div class="info-box" style="margin-top:14px;">
-                    <h3 style="font-size:20px;">组件标签格式</h3>
-                    <p style="font-size:17px;line-height:1.7;">
-                        <strong>1.</strong> 有内容：<code style="background:#e8e8e8;padding:2px 6px;border-radius:4px;">&lt;标签 属性&gt; 内容 &lt;/标签&gt;</code><br>
-                        <strong>2.</strong> 无内容：<code style="background:#e8e8e8;padding:2px 6px;border-radius:4px;">&lt;标签 属性 /&gt;</code>
-                    </p>
-                </div>
-            </div>
-            <div class="col-card">
-                <h3>样式引用方式</h3>
-                <p style="font-size:19px;color:var(--text-sub);margin-bottom:14px;line-height:1.6;">
-                    组件通过 <strong class="ck" style="color:var(--wx-green-dark);">class</strong> 与 <strong class="ck" style="color:var(--wx-green-dark);">style</strong> 引用 CSS 样式。
-                </p>
-                <div class="code-block" style="margin:10px 0;">
-<span class="cs">&lt;view</span> <span class="ck">style</span>=<span class="cp">"background:#000"</span><span class="cs">&gt;</span>
-  <span>行内定义样式</span>
-<span class="cs">&lt;/view&gt;</span>
-
-<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"container"</span><span class="cs">&gt;</span>
-  <span>行内引用样式</span>
+                <div class="code-block" style="margin:10px 0;font-size:16px;">
+<span class="cs">&lt;view&gt;</span>
+  <span>我是 view 组件</span>
 <span class="cs">&lt;/view&gt;</span>
                 </div>
                 <div class="note-box" style="margin-top:14px;">
-                    📌 推荐使用 <strong>class</strong> 引用样式，便于复用与维护。
+                    📌 <strong>view</strong> 本身没有显示样式，需通过 <code>style</code> 或 <code>class</code> 控制外观。
+                </div>
+            </div>
+            <div class="col-card">
+                <h3>组件标签格式</h3>
+                <p style="font-size:18px;color:var(--text-sub);margin-bottom:14px;line-height:1.6;">
+                    组件通过<strong>标签 + 属性</strong>组合，用两个示例理解常见写法。
+                </p>
+                <div class="code-block" style="margin:10px 0;font-size:16px;">
+<span class="cs">&lt;text</span> <span class="ck">style</span>=<span class="cp">"color:red;"</span><span class="cs">&gt;</span>
+  <span>红色文字</span>
+<span class="cs">&lt;/text&gt;</span>
+
+<span class="cs">&lt;button</span> <span class="ck">class</span>=<span class="cp">"btn-primary"</span> <span class="ck">type</span>=<span class="cp">"primary"</span><span class="cs">&gt;</span>
+  <span>提交订单</span>
+<span class="cs">&lt;/button&gt;</span>
+                </div>
+                <div class="note-box" style="margin-top:14px;">
+                    📌 <strong>有内容标签</strong>：需成对使用开闭标签；<br>📌 <strong>属性值</strong>用双引号包裹。
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 4-4. WXSS 与路径 -->
+    <!-- 4-4. 样式引用方式（独立页 · 三块各占一行） -->
     <div class="slide" data-index="4">
         <div class="slide-header">
             <div class="slide-num">4</div>
             <div>
-                <div class="slide-title">WXSS 常用样式与路径</div>
-                <div class="slide-subtitle">1.2 样式与路径查找</div>
+                <div class="slide-title">样式引用方式</div>
+                <div class="slide-subtitle">1.3 行内 style · 行内 class · 外部 @import</div>
             </div>
         </div>
-        <div class="two-col">
-            <div class="col-card">
-                <h3>WXSS 常用 CSS 属性</h3>
-                <p style="font-size:17px;color:var(--text-sub);margin-bottom:12px;line-height:1.6;">WXSS 具有 CSS 大部分特性，对微信小程序进行了扩充与修改。</p>
-                <table class="doc-table">
-                    <tr><th>属性</th><th>作用</th></tr>
-                    <tr><td class="prop">width</td><td class="desc">宽度</td></tr>
-                    <tr><td class="prop">height</td><td class="desc">高度</td></tr>
-                    <tr><td class="prop">border</td><td class="desc">边框</td></tr>
-                    <tr><td class="prop">font-size</td><td class="desc">字号</td></tr>
-                    <tr><td class="prop">background-color</td><td class="desc">背景色</td></tr>
-                    <tr><td class="prop">color</td><td class="desc">文字颜色</td></tr>
-                </table>
-                <div class="code-block" style="margin-top:14px;font-size:16px;">
-<span class="cs">@import</span> <span class="cp">"./common.wxss"</span>;
+        <div style="display:flex; flex-direction:column; gap:14px; flex:1;">
+
+            <!-- ① 行内 style -->
+            <div class="col-card" style="padding:14px 20px;">
+                <h3 style="font-size:20px;margin-bottom:6px;padding-bottom:6px;">① 行内定义 · style</h3>
+                <div class="code-block" style="margin:6px 0;font-size:15px;">
+<span class="cs">&lt;view</span> <span class="ck">style</span>=<span class="cp">"background:#000; color:#fff;"</span><span class="cs">&gt;</span>
+  <span>行内定义样式</span>
+<span class="cs">&lt;/view&gt;</span>
                 </div>
             </div>
-            <div class="col-card">
-                <h3>路径查找方式</h3>
-                <p style="font-size:17px;color:var(--text-sub);margin-bottom:12px;line-height:1.6;">推荐使用<strong>相对路径</strong>，避免绝对路径。</p>
-                <table class="doc-table">
-                    <tr><th>路径</th><th>含义</th></tr>
-                    <tr><td class="prop">./</td><td class="desc">当前所在目录</td></tr>
-                    <tr><td class="prop">../</td><td class="desc">上一层目录</td></tr>
-                    <tr><td class="prop">/</td><td class="desc">根目录（以 / 开头）</td></tr>
-                </table>
-                <div class="note-box" style="margin-top:14px;">
-                    📌 路径查找也在<strong>第三章</strong>讲过，此处再次强调——<strong>相对路径优先</strong>，便于项目迁移。
+
+            <!-- ② 行内 class -->
+            <div class="col-card" style="padding:14px 20px;">
+                <h3 style="font-size:20px;margin-bottom:6px;padding-bottom:6px;">② 行内引用 · class</h3>
+                <div class="code-block" style="margin:6px 0;font-size:15px;">
+<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"container"</span><span class="cs">&gt;</span>
+  <span>行内引用样式</span>
+<span class="cs">&lt;/view&gt;</span>
+
+<span class="cs">/* container 在 wxss 文件中定义 */</span>
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">background</span><span class="cs">:</span> <span class="cp">#000</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
+
+            <!-- ③ 外部 @import -->
+            <div class="col-card" style="padding:14px 20px;">
+                <h3 style="font-size:20px;margin-bottom:6px;padding-bottom:6px;">③ 外部引入 · @import</h3>
+                <div class="code-block" style="margin:6px 0;font-size:15px;">
+<span class="cs">@import</span> <span class="cp">"./common.wxss"</span><span class="cs">;</span>    <span class="cp">// 当前目录</span>
+<span class="cs">@import</span> <span class="cp">"../libs/ui.wxss"</span><span class="cs">;</span>  <span class="cp">// 上级目录</span>
+                </div>
+                <div class="note-box" style="margin-top:6px;padding:8px 14px;font-size:15px;">
+                    📌 <strong>推荐使用 class</strong> 引用样式便于复用；@import 需写在 wxss 文件<strong>顶部</strong>。
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- 4-5. 盒子模型生活案例 -->
+    <!-- 4-5. WXSS 常用样式（不含路径查找） -->
     <div class="slide" data-index="5">
         <div class="slide-header">
             <div class="slide-num">5</div>
             <div>
-                <div class="slide-title">盒子模型 —— 生活案例</div>
-                <div class="slide-subtitle">2.1 从茶叶盒到点单小程序</div>
+                <div class="slide-title">WXSS 常用样式属性</div>
+                <div class="slide-subtitle">1.3 从 CSS 属性到实际样式定义</div>
             </div>
         </div>
-        <div class="hero-layout">
+        <div class="content-grid" style="display:grid; grid-template-columns: 1.1fr 1.4fr; gap:28px; align-items:stretch;">
             <div>
                 <div class="info-box">
-                    <h3>类比思考</h3>
-                    <p>打开一个<strong>茶叶包装盒</strong>，你会看到：</p>
-                    <ul class="big-list" style="margin-top:10px;">
-                        <li><strong>外层纸壳</strong> —— 包裹茶叶的容器</li>
-                        <li><strong>茶叶本身</strong> —— 核心内容</li>
-                        <li><strong>泡沫填充</strong> —— 保护茶叶的缓冲</li>
-                        <li><strong>盒与盒的距离</strong> —— 避免挤压</li>
-                    </ul>
+                    <h3>WXSS 是什么</h3>
+                    <p>WXSS（WeiXin Style Sheets）是微信对 CSS 的扩充与修改，具有 CSS 大部分特性，另加了 <strong>rpx</strong>、动画、变量等能力。</p>
                 </div>
-                <div class="note-box" style="margin-top:16px;">
-                    📌 抽象为属性：边框 · 内容 · 内边距 · 外边距。
+                <table class="doc-table" style="margin-top:16px;">
+                    <tr><th>常用 CSS 属性</th><th>作用</th></tr>
+                    <tr><td class="prop">width / height</td><td class="desc">宽度 / 高度</td></tr>
+                    <tr><td class="prop">background(-color)</td><td class="desc">背景色 / 背景</td></tr>
+                    <tr><td class="prop">color</td><td class="desc">文字颜色</td></tr>
+                    <tr><td class="prop">font-size</td><td class="desc">字号</td></tr>
+                    <tr><td class="prop">text-align</td><td class="desc">文本对齐</td></tr>
+                    <tr><td class="prop">border(-radius)</td><td class="desc">边框 / 圆角</td></tr>
+                    <tr><td class="prop">margin / padding</td><td class="desc">外边距 / 内边距</td></tr>
+                    <tr><td class="prop">display</td><td class="desc">布局方式（含 flex）</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="font-size:22px; color:var(--text-main); margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--wx-green);">实际样式定义示例</h3>
+                <div class="code-block" style="font-size:14px; line-height:1.6;">
+<span class="cs">/* 卡片基础样式 */</span>
+<span class="cs">.card</span> <span class="cs">{</span>
+  <span class="ck">width</span><span class="cs">:</span> <span class="cp">320rpx</span><span class="cs">;</span>
+  <span class="ck">padding</span><span class="cs">:</span> <span class="cp">24rpx</span><span class="cs">;</span>
+  <span class="ck">background</span><span class="cs">:</span> <span class="cp">#ffffff</span><span class="cs">;</span>
+  <span class="ck">border-radius</span><span class="cs">:</span> <span class="cp">12rpx</span><span class="cs">;</span>
+  <span class="ck">box-shadow</span><span class="cs">:</span> <span class="cp">0 4rpx 12rpx rgba(0,0,0,0.08)</span><span class="cs">;</span>
+<span class="cs">}</span>
+
+<span class="cs">/* 标题文字样式 */</span>
+<span class="cs">.title</span> <span class="cs">{</span>
+  <span class="ck">color</span><span class="cs">:</span> <span class="cp">#333333</span><span class="cs">;</span>
+  <span class="ck">font-size</span><span class="cs">:</span> <span class="cp">32rpx</span><span class="cs">;</span>
+  <span class="ck">text-align</span><span class="cs">:</span> <span class="cp">center</span><span class="cs">;</span>
+<span class="cs">}</span>
+
+<span class="cs">/* 按钮边框 */</span>
+<span class="cs">.btn</span> <span class="cs">{</span>
+  <span class="ck">border</span><span class="cs">:</span> <span class="cp">2rpx solid #07c160</span><span class="cs">;</span>
+  <span class="ck">margin</span><span class="cs">:</span> <span class="cp">20rpx 0</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
-            <img class="hero-img" src="https://console.enterprise.trae.cn/api/ide/v1/text_to_image?prompt=%E6%89%81%E5%B9%B3%E9%A3%81%E6%80%81%E6%8F%94%E7%94%BB%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%B2%BE%E7%BE%8E%E7%9A%84%E4%B8%AD%E5%9B%BD%E8%8C%B6%E5%8F%91%E7%8B%B9%E7%A2%B7%EF%BC%88%E6%98%9F%E7%BF%A0%E7%94%9F%E5%91%B3%EF%BC%89%EF%BC%8C%E5%A4%96%E5%B1%82%E7%BA%AF%E7%99%BD%E7%9A%84%E7%BA%B8%E7%AE%B1%EF%BC%8C%E4%B8%AD%E5%BF%83%E6%9C%89%E4%B8%80%E5%B1%82%E5%B8%A6%E7%BA%BF%E7%9A%84%E5%86%85%E7%AE%B1%EF%BC%8C%E5%86%85%E7%AE%B1%E9%87%8C%E6%9C%89%E4%B8%80%E5%8F%A0%E6%B5%B7%E6%B7%9A%E7%BB%BF%E5%BD%A9%E8%8A%B1%E7%BA%B9%E5%A1%AB%E5%85%85%E7%89%A9%EF%BC%8C%E6%9C%80%E4%B8%AD%E9%97%B4%E6%98%AF%E4%B8%80%E6%9D%A1%E7%B2%97%E7%B2%97%E7%9A%84%E8%8C%B6%E5%8F%B6%E7%AE%B1%EF%BC%8C%E7%99%BD%E8%89%B2%E8%83%8C%E6%99%AF%EF%BC%8C%E5%8D%A1%E9%80%9A%E6%95%99%E7%A7%91%E9%A3%81%E6%80%81%E9%A3%8E%E6%A0%BC%EF%BC%8C%E7%BB%8F%E5%85%B8%E5%A1%9E%E5%9B%BE%E6%84%9F%EF%BC%8C%E6%97%A0%E6%96%87%E5%AD%97%EF%BC%8C%E6%B8%85%E6%96%B0%E7%BB%BF%E8%89%B2%E4%B8%BB%E8%89%B2%E8%B0%83&image_size=portrait_4_3" alt="茶叶盒类比">
         </div>
     </div>
 
-    <!-- 4-6. 盒子模型四要素 -->
+    <!-- 4-6. 盒子模型四要素总览（含可点击交互 UI） -->
     <div class="slide" data-index="6">
         <div class="slide-header">
             <div class="slide-num">6</div>
             <div>
                 <div class="slide-title">盒子模型 —— 四要素总览</div>
-                <div class="slide-subtitle">2.2 margin · border · padding · content</div>
+                <div class="slide-subtitle">2.1 margin · border · padding · content</div>
             </div>
         </div>
-        <div class="content-grid" style="display:grid; grid-template-columns: 2fr 3fr; gap:32px; align-items:center;">
-            <div class="box-model">
-                <div class="box-outer">
-                    <span class="box-outer-label">margin 外边距</span>
-                    <div class="box-border">
-                        <span class="box-border-label">border 边框</span>
-                        <div class="box-padding">
-                            <span class="box-padding-label">padding 内边距</span>
-                            <div class="box-content">
-                                <span class="box-content-label">content 内容</span>
-                                <div class="box-content-title">点单小程序</div>
-                                <div class="box-content-sub">页面主要内容</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.05fr; gap:24px; align-items:center;">
             <div>
                 <table class="doc-table">
                     <tr><th>要素</th><th>作用</th></tr>
@@ -5132,50 +6388,118 @@
                         <td class="desc">内容 —— 盒子的主要信息</td>
                     </tr>
                 </table>
-                <div class="note-box" style="margin-top:16px;">
-                    📌 盒子模型是 Flex 布局的基础，掌握四要素才能理解后续所有布局。
+                <div class="note-box" style="margin-top:14px;">
+                    📌 右侧可拖动滑块，实时观察各要素对盒子的影响。
+                </div>
+            </div>
+            <div class="col-card" style="padding:16px 20px;">
+                <h3 style="font-size:20px;margin-bottom:12px;padding-bottom:8px;">🎮 交互示例 · 拖动滑块调整</h3>
+                <div class="box-interactive">
+                    <div class="box-ctrls">
+                        <div class="box-ctrl">
+                            <label style="color:#667eea;">margin</label>
+                            <input type="range" min="0" max="30" value="12" id="bx-margin">
+                            <span class="val" id="bx-margin-v">12px</span>
+                        </div>
+                        <div class="box-ctrl">
+                            <label style="color:#ff9800;">border</label>
+                            <input type="range" min="0" max="12" value="6" id="bx-border">
+                            <span class="val" id="bx-border-v">6px</span>
+                        </div>
+                        <div class="box-ctrl">
+                            <label style="color:#07c160;">padding</label>
+                            <input type="range" min="0" max="30" value="14" id="bx-padding">
+                            <span class="val" id="bx-padding-v">14px</span>
+                        </div>
+                    </div>
+                    <div class="box-preview">
+                        <div id="bx-outer">
+                            <div id="bx-border-el">
+                                <div id="bx-padding-el">
+                                    <div class="box-preview-content">Content 内容</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <script>
+        (function(){
+            var mg = document.getElementById('bx-margin');
+            var bd = document.getElementById('bx-border');
+            var pd = document.getElementById('bx-padding');
+            var outer = document.getElementById('bx-outer');
+            var border = document.getElementById('bx-border-el');
+            var padding = document.getElementById('bx-padding-el');
+            function update(){
+                outer.style.padding = mg.value + 'px';
+                outer.style.background = 'repeating-linear-gradient(45deg, rgba(102,126,234,.14) 0 6px, rgba(102,126,234,.28) 6px 12px)';
+                outer.style.borderRadius = '10px';
+                outer.style.boxSizing = 'content-box';
+                border.style.borderWidth = bd.value + 'px';
+                border.style.borderStyle = 'solid';
+                border.style.borderColor = '#ffb74d';
+                border.style.background = '#fff';
+                border.style.borderRadius = '6px';
+                border.style.boxSizing = 'border-box';
+                border.style.padding = '0';
+                padding.style.padding = pd.value + 'px';
+                padding.style.background = 'linear-gradient(135deg,#e3f8e8,#f0fbe6)';
+                padding.style.borderRadius = '4px';
+                padding.style.boxSizing = 'content-box';
+                document.getElementById('bx-margin-v').textContent = mg.value + 'px';
+                document.getElementById('bx-border-v').textContent = bd.value + 'px';
+                document.getElementById('bx-padding-v').textContent = pd.value + 'px';
+            }
+            [mg, bd, pd].forEach(function(el){ el.addEventListener('input', update); });
+            update();
+        })();
+        </script>
     </div>
 
-    <!-- 4-7. margin 外边距 -->
+    <!-- 4-7. margin 外边距（四方向展开） -->
     <div class="slide" data-index="7">
         <div class="slide-header">
             <div class="slide-num">7</div>
             <div>
                 <div class="slide-title">margin —— 外边距</div>
-                <div class="slide-subtitle">2.3 属性使用</div>
+                <div class="slide-subtitle">2.2 属性使用与四方向写法</div>
             </div>
         </div>
-        <div class="content-grid">
-            <div class="info-box">
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.1fr; gap:28px; align-items:stretch;">
+            <div class="col-card">
                 <h3>四方位写法</h3>
-                <p>分别控制盒子到页面上、下、左、右边缘的距离。</p>
-            </div>
-            <div class="two-col">
-                <div>
-                    <table class="doc-table">
-                        <tr><th>属性</th><th>说明</th></tr>
-                        <tr><td class="prop">margin-top</td><td class="desc">上方外边距</td></tr>
-                        <tr><td class="prop">margin-bottom</td><td class="desc">下方外边距</td></tr>
-                        <tr><td class="prop">margin-left</td><td class="desc">左方外边距</td></tr>
-                        <tr><td class="prop">margin-right</td><td class="desc">右方外边距</td></tr>
-                    </table>
+                <p style="font-size:17px;color:var(--text-sub);margin-bottom:12px;line-height:1.6;">分别控制盒子到页面<strong>上、下、左、右</strong>边缘的距离。</p>
+                <table class="doc-table">
+                    <tr><th>属性</th><th>说明</th></tr>
+                    <tr><td class="prop">margin-top</td><td class="desc">上方外边距</td></tr>
+                    <tr><td class="prop">margin-right</td><td class="desc">右方外边距</td></tr>
+                    <tr><td class="prop">margin-bottom</td><td class="desc">下方外边距</td></tr>
+                    <tr><td class="prop">margin-left</td><td class="desc">左方外边距</td></tr>
+                </table>
+                <div class="note-box" style="margin-top:14px;">
+                    🤔 <strong>思考：</strong>若页面中不止一个盒子，margin 除了决定与页面边缘的距离，还能起什么作用？
                 </div>
-                <div>
-                    <div class="info-box">
-                        <h3>简写方式（顺时针）</h3>
-                        <div class="code-block" style="margin:8px 0;font-size:16px;">
-margin: <span class="cs">5px</span> <span class="cs">15px</span> <span class="cs">5px</span> <span class="cs">15px</span>;
-                        </div>
-                        <p style="font-size:16px;line-height:1.7;">
-                            <strong style="color:var(--wx-green-dark);">上 → 右 → 下 → 左</strong>，顺时针依次填写。
-                        </p>
+            </div>
+            <div class="col-card">
+                <h3>示例代码 · 四方向展开</h3>
+                <div class="code-block" style="margin:6px 0;font-size:15px; line-height:1.75;">
+<span class="cs">.card</span> <span class="cs">{</span>
+  <span class="ck">margin-top</span><span class="cs">:</span> <span class="cp">5px</span><span class="cs">;</span>
+  <span class="ck">margin-right</span><span class="cs">:</span> <span class="cp">15px</span><span class="cs">;</span>
+  <span class="ck">margin-bottom</span><span class="cs">:</span> <span class="cp">5px</span><span class="cs">;</span>
+  <span class="ck">margin-left</span><span class="cs">:</span> <span class="cp">15px</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
+                <div class="info-box" style="margin-top:14px;padding:16px 20px;">
+                    <h3 style="font-size:20px;">简写方式（顺时针）</h3>
+                    <div class="code-block" style="margin:6px 0;font-size:15px;">
+margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span class="cs">;</span>
                     </div>
-                    <div class="note-box" style="margin-top:14px;border-left-color:#ff9800;">
-                        🤔 <strong>思考：</strong>若页面中不止一个盒子，margin 除了决定与页面边缘的距离，还能起什么作用？
-                    </div>
+                    <p style="font-size:15px;line-height:1.7;color:var(--text-sub);margin-top:4px;">
+                        顺序：<strong style="color:var(--wx-green-dark);">上 → 右 → 下 → 左</strong>
+                    </p>
                 </div>
             </div>
         </div>
@@ -5190,45 +6514,56 @@ margin: <span class="cs">5px</span> <span class="cs">15px</span> <span class="cs
                 <div class="slide-subtitle">2.3 边框与内边距</div>
             </div>
         </div>
-        <div class="content-grid">
-            <div class="two-col">
-                <div class="col-card">
-                    <h3>border —— 边框</h3>
-                    <table class="doc-table">
-                        <tr><th>属性</th><th>说明</th></tr>
-                        <tr><td class="prop">border-color</td><td class="desc">边框颜色</td></tr>
-                        <tr><td class="prop">border-width</td><td class="desc">边框宽度</td></tr>
-                        <tr><td class="prop">border-style</td><td class="desc">边框类型</td></tr>
-                    </table>
-                    <div class="code-block" style="margin-top:14px;font-size:15px;">
-border: 1px solid #07c160;
-border-radius: 8px;
-                    </div>
-                </div>
-                <div class="col-card">
-                    <h3>padding —— 内边距</h3>
-                    <p style="font-size:16px;color:var(--text-sub);margin-bottom:10px;">
-                        透明留白，无修饰属性（无颜色、宽度等）。
-                    </p>
-                    <table class="doc-table">
-                        <tr><th>属性</th><th>说明</th></tr>
-                        <tr><td class="prop">padding-top</td><td class="desc">上方内边距</td></tr>
-                        <tr><td class="prop">padding-bottom</td><td class="desc">下方内边距</td></tr>
-                        <tr><td class="prop">padding-left</td><td class="desc">左方内边距</td></tr>
-                        <tr><td class="prop">padding-right</td><td class="desc">右方内边距</td></tr>
-                    </table>
-                    <div class="code-block" style="margin-top:14px;font-size:15px;">
-padding: 5px 10px 15px 20px;
-                    </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:28px; align-items:stretch;">
+            <div class="col-card">
+                <h3>border —— 边框</h3>
+                <p style="font-size:16px;color:var(--text-sub);margin-bottom:10px;line-height:1.6;">
+                    边框由三部分组成：颜色、宽度、类型。
+                </p>
+                <table class="doc-table">
+                    <tr><th>属性</th><th>说明</th></tr>
+                    <tr><td class="prop">border-color</td><td class="desc">边框颜色</td></tr>
+                    <tr><td class="prop">border-width</td><td class="desc">边框宽度</td></tr>
+                    <tr><td class="prop">border-style</td><td class="desc">solid / dashed / dotted</td></tr>
+                    <tr><td class="prop">border-radius</td><td class="desc">圆角</td></tr>
+                </table>
+                <div class="code-block" style="margin-top:12px;font-size:15px; line-height:1.7;">
+<span class="cs">.box</span> <span class="cs">{</span>
+  <span class="ck">border-top</span><span class="cs">:</span> <span class="cp">1px solid #07c160</span><span class="cs">;</span>
+  <span class="ck">border-right</span><span class="cs">:</span> <span class="cp">1px solid #07c160</span><span class="cs">;</span>
+  <span class="ck">border-bottom</span><span class="cs">:</span> <span class="cp">1px solid #07c160</span><span class="cs">;</span>
+  <span class="ck">border-left</span><span class="cs">:</span> <span class="cp">1px solid #07c160</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
-            <div class="note-box" style="border-left-color:#ff9800;">
-                📝 <strong>课后作业：</strong>尝试为 <strong>margin</strong> 与 <strong>border</strong> 编写简写方式，比较 padding 与 margin 的差别。
+            <div class="col-card">
+                <h3>padding —— 内边距</h3>
+                <p style="font-size:16px;color:var(--text-sub);margin-bottom:10px;line-height:1.6;">
+                    透明留白，无修饰属性（无颜色、宽度等），控制内容与边框之间的距离。
+                </p>
+                <table class="doc-table">
+                    <tr><th>属性</th><th>说明</th></tr>
+                    <tr><td class="prop">padding-top</td><td class="desc">上方内边距</td></tr>
+                    <tr><td class="prop">padding-right</td><td class="desc">右方内边距</td></tr>
+                    <tr><td class="prop">padding-bottom</td><td class="desc">下方内边距</td></tr>
+                    <tr><td class="prop">padding-left</td><td class="desc">左方内边距</td></tr>
+                </table>
+                <div class="code-block" style="margin-top:12px;font-size:15px; line-height:1.7;">
+<span class="cs">.box</span> <span class="cs">{</span>
+  <span class="ck">padding-top</span><span class="cs">:</span> <span class="cp">5px</span><span class="cs">;</span>
+  <span class="ck">padding-right</span><span class="cs">:</span> <span class="cp">10px</span><span class="cs">;</span>
+  <span class="ck">padding-bottom</span><span class="cs">:</span> <span class="cp">15px</span><span class="cs">;</span>
+  <span class="ck">padding-left</span><span class="cs">:</span> <span class="cp">20px</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
             </div>
+        </div>
+        <div class="note-box" style="margin-top:16px;">
+            📝 <strong>课后作业：</strong>为 <strong>margin</strong> 与 <strong>border</strong> 编写简写方式，比较 padding 与 margin 的差别。
         </div>
     </div>
 
-    <!-- 4-9. Flex 概念 -->
+    <!-- 4-9. Flex 概念与双轴 -->
     <div class="slide" data-index="9">
         <div class="slide-header">
             <div class="slide-num">9</div>
@@ -5238,330 +6573,875 @@ padding: 5px 10px 15px 20px;
             </div>
         </div>
         <div class="content-grid">
-            <div class="info-box">
+            <div class="info-box" style="margin-bottom:14px;">
                 <h3>什么是 Flex</h3>
-                <p><strong>Flex</strong> 是 <em>Flexible Box</em> 的缩写，意为"弹性布局"，为盒状模型提供最大的灵活性。</p>
-                <div class="code-block" style="margin-top:12px;">
-                display: <span class="cs">flex</span>;  <span class="cp">// 开启弹性布局</span>
-                </div>
+                <p><strong>Flex</strong> 是 <em>Flexible Box</em> 的缩写，意为"弹性布局"，为盒状模型提供最大的灵活性。用于布局时，容器开启 <code>display: flex</code>，其子元素自动成为 Flex 项目。</p>
             </div>
-            <div class="two-col">
+            <div class="two-col" style="gap:28px;">
                 <div class="col-card">
-                    <h3>两大角色</h3>
-                    <p style="font-size:18px;line-height:1.8;color:var(--text-sub);">
+                    <h3>容器 vs 项目</h3>
+                    <p style="font-size:17px;line-height:1.7;color:var(--text-sub);">
                         <strong style="color:var(--wx-green-dark);">容器 (container)</strong>：启用 Flex 布局的元素<br>
-                        <strong style="color:var(--wx-green-dark);">项目 (item)</strong>：容器的子元素
+                        <strong style="color:var(--wx-green-dark);">项目 (item)</strong>：容器的直接子元素
                     </p>
-                    <div class="flex-demo-row" style="margin-top:14px;">
-                        <div class="flex-demo-item" style="flex:2;">容器</div>
-                        <div class="flex-demo-item">项目</div>
-                        <div class="flex-demo-item">项目</div>
+                    <div class="code-block" style="margin:12px 0;font-size:14px;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+<span class="cs">}</span>
                     </div>
                 </div>
                 <div class="col-card">
                     <h3>两根轴</h3>
-                    <div class="flex-demo-row">
-                        <div class="flex-demo-item">1</div>
-                        <div class="flex-demo-item">2</div>
-                        <div class="flex-demo-item">3</div>
+                    <div class="axis-diagram" style="height:200px;">
+                        <span class="container-label">flex container</span>
+                        <div class="main-axis-line"></div>
+                        <div class="cross-axis-line"></div>
+                        <div class="axis-items">
+                            <div class="axis-item">item</div>
+                            <div class="axis-item">item</div>
+                            <div class="axis-item">item</div>
+                        </div>
                     </div>
-                    <p style="font-size:15px;color:var(--text-sub);line-height:1.6;margin-top:8px;">
-                        <strong>主轴 (main)</strong>：项目排列的方向<br>
-                        <strong>交叉轴 (cross)</strong>：垂直于主轴的方向
+                    <div style="margin-top:10px;display:flex;gap:14px;font-size:14px;">
+                        <span style="color:#e53935;font-weight:600;">━ 主轴 main</span>
+                        <span style="color:#1e88e5;font-weight:600;">━ 交叉轴 cross</span>
+                    </div>
+                    <p style="font-size:14px;color:var(--text-sub);line-height:1.6;margin-top:6px;">
+                        项目默认沿<strong>主轴</strong>排列；<br>main size / cross size = 项目沿两轴占据的空间。
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 4-10. Flex 容器属性 -->
+    <!-- 4-10. flex-direction -->
     <div class="slide" data-index="10">
         <div class="slide-header">
-            <div class="slide-num">10</div>
+            <div class="slide-num wide">10</div>
             <div>
-                <div class="slide-title">Flex 容器属性</div>
-                <div class="slide-subtitle">3.2 控制项目排列与对齐</div>
+                <div class="slide-title">flex-direction —— 主轴方向</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-container">容器属性</span>3.2 决定项目排列方向 · 默认 row</div>
             </div>
         </div>
-        <div class="content-grid">
-            <table class="doc-table">
-                <tr>
-                    <th style="width:22%;">属性</th>
-                    <th style="width:28%;">常用值</th>
-                    <th>说明</th>
-                </tr>
-                <tr>
-                    <td class="prop">flex-direction</td>
-                    <td class="type">row · row-reverse<br>column · column-reverse</td>
-                    <td class="desc">决定主轴方向，默认 <strong>row</strong>（横向）</td>
-                </tr>
-                <tr>
-                    <td class="prop">flex-wrap</td>
-                    <td class="type">nowrap · wrap · wrap-reverse</td>
-                    <td class="desc">决定换行行为，默认 <strong>nowrap</strong>（不换行）</td>
-                </tr>
-                <tr>
-                    <td class="prop">flex-flow</td>
-                    <td class="type">row nowrap</td>
-                    <td class="desc">上述两个属性的<strong>简写</strong></td>
-                </tr>
-                <tr>
-                    <td class="prop">justify-content</td>
-                    <td class="type">flex-start · flex-end<br>center · space-between · space-around</td>
-                    <td class="desc">决定<strong>主轴</strong>对齐方式</td>
-                </tr>
-                <tr>
-                    <td class="prop">align-items</td>
-                    <td class="type">flex-start · flex-end<br>center · baseline · stretch</td>
-                    <td class="desc">决定<strong>交叉轴</strong>对齐方式</td>
-                </tr>
-                <tr>
-                    <td class="prop">align-content</td>
-                    <td class="type">flex-start · center<br>space-between · stretch</td>
-                    <td class="desc">多根轴线时的对齐（需配合 wrap）</td>
-                </tr>
-            </table>
-            <div class="info-box">
-                <h3>justify-content 效果演示</h3>
-                <div class="flex-demo-row">
-                    <div class="flex-label">center</div>
-                    <div class="flex-demo-item" style="flex:0 0 60px;">1</div>
-                    <div class="flex-demo-item" style="flex:0 0 60px;">2</div>
-                    <div class="flex-demo-item" style="flex:0 0 60px;">3</div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.4fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">flex-direction</div>
+                    <div class="flex-prop-desc">决定<strong>主轴方向</strong>，即项目沿哪个方向排列。</div>
+                    <div class="flex-prop-values">
+                        <span>row（默认）</span>
+                        <span>row-reverse</span>
+                        <span>column</span>
+                        <span>column-reverse</span>
+                    </div>
                 </div>
-                <div class="flex-demo-row between">
-                    <div class="flex-label" style="margin-right:0;margin-left:auto;">between</div>
+                <div class="code-block" style="margin-top:16px;font-size:15px; line-height:1.7;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">flex-direction</span><span class="cs">:</span> <span class="cp">row</span><span class="cs">;</span>  <span class="cp">// 或 column</span>
+<span class="cs">}</span>
+                </div>
+                <div class="note-box" style="margin-top:14px;">
+                    📌 主轴方向改变 → 交叉轴方向也自动切换（正交关系）。
+                </div>
+            </div>
+            <div class="col-card flex-interactive-panel">
+                <h3>🎮 交互示例 · 点击按钮切换 flex-direction</h3>
+                <div class="flex-dir-ctrls">
+                    <button class="flex-dir-btn active" data-dir="row"><span class="dir-arrow">→</span>row</button>
+                    <button class="flex-dir-btn" data-dir="row-reverse"><span class="dir-arrow">→</span>row-reverse</button>
+                    <button class="flex-dir-btn" data-dir="column"><span class="dir-arrow">→</span>column</button>
+                    <button class="flex-dir-btn" data-dir="column-reverse"><span class="dir-arrow">→</span>column-reverse</button>
+                </div>
+                <div class="axis-diagram" id="axis-diagram">
+                    <span class="container-label">flex container</span>
+                    <span class="cross-axis-label">cross axis 交叉轴</span>
+                    <span class="main-axis-label">main axis 主轴</span>
+                    <div class="main-axis-line" id="axis-main-line"></div>
+                    <div class="cross-axis-line" id="axis-cross-line"></div>
+                    <div class="axis-container dir-row" id="axis-container">
+                        <div class="axis-item">1</div>
+                        <div class="axis-item">2</div>
+                        <div class="axis-item">3</div>
+                    </div>
+                </div>
+                <div class="flex-live-code" id="flex-live-code">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">flex-direction</span><span class="cs">:</span> <span class="cp" id="live-dir-val">row</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
         </div>
+        <script>
+        (function(){
+            var btns = document.querySelectorAll('.flex-dir-btn');
+            var container = document.getElementById('axis-container');
+            var diagram = document.getElementById('axis-diagram');
+            var mainLine = document.getElementById('axis-main-line');
+            var crossLine = document.getElementById('axis-cross-line');
+            var liveDir = document.getElementById('live-dir-val');
+            function isRow(dir){ return dir === 'row' || dir === 'row-reverse'; }
+            function update(){
+                if(!container || !diagram) return;
+                var dir = container.className.replace('axis-container ','').trim();
+                if(!dir) dir = 'row';
+                var dRect = diagram.getBoundingClientRect();
+                var cRect = container.getBoundingClientRect();
+                if(isRow(dir)){
+                    // 主轴水平
+                    var cx = cRect.top - dRect.top + cRect.height/2;
+                    mainLine.style.top = cx + 'px';
+                    mainLine.style.left = (cRect.left - dRect.left) + 'px';
+                    mainLine.style.width = cRect.width + 'px';
+                    mainLine.style.height = '2px';
+                    mainLine.style.background = 'repeating-linear-gradient(to right, #e53935 0 8px, transparent 8px 14px)';
+                    // 交叉轴垂直
+                    var cy = cRect.left - dRect.left + cRect.width/2;
+                    crossLine.style.left = cy + 'px';
+                    crossLine.style.top = cRect.top - dRect.top + 'px';
+                    crossLine.style.height = cRect.height + 'px';
+                    crossLine.style.width = '2px';
+                    crossLine.style.background = 'repeating-linear-gradient(to bottom, #1e88e5 0 8px, transparent 8px 14px)';
+                } else {
+                    // 主轴垂直
+                    var cxc = cRect.left - dRect.left + cRect.width/2;
+                    mainLine.style.left = cxc + 'px';
+                    mainLine.style.top = cRect.top - dRect.top + 'px';
+                    mainLine.style.width = '2px';
+                    mainLine.style.height = cRect.height + 'px';
+                    mainLine.style.background = 'repeating-linear-gradient(to bottom, #e53935 0 8px, transparent 8px 14px)';
+                    // 交叉轴水平
+                    var ccy = cRect.top - dRect.top + cRect.height/2;
+                    crossLine.style.top = ccy + 'px';
+                    crossLine.style.left = cRect.left - dRect.left + 'px';
+                    crossLine.style.width = cRect.width + 'px';
+                    crossLine.style.height = '2px';
+                    crossLine.style.background = 'repeating-linear-gradient(to right, #1e88e5 0 8px, transparent 8px 14px)';
+                }
+                liveDir.textContent = dir;
+            }
+            btns.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    btns.forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var dir = btn.getAttribute('data-dir');
+                    container.className = 'axis-container dir-' + dir;
+                    setTimeout(update, 20);
+                    setTimeout(update, 300);
+                });
+            });
+            window.addEventListener('resize', update);
+            setTimeout(update, 60);
+        })();
+        </script>
     </div>
 
-    <!-- 4-11. Flex 项目属性 -->
+    <!-- 4-11. flex-wrap + flex-flow -->
     <div class="slide" data-index="11">
         <div class="slide-header">
-            <div class="slide-num">11</div>
+            <div class="slide-num wide">11</div>
             <div>
-                <div class="slide-title">Flex 项目属性</div>
-                <div class="slide-subtitle">3.3 控制单个项目的表现</div>
+                <div class="slide-title">flex-wrap 换行 · flex-flow 简写</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-container">容器属性</span>3.3 决定排列换行 · 默认 nowrap</div>
             </div>
         </div>
-        <div class="content-grid">
-            <table class="doc-table">
-                <tr>
-                    <th style="width:22%;">属性</th>
-                    <th style="width:20%;">默认值</th>
-                    <th>说明</th>
-                </tr>
-                <tr>
-                    <td class="prop">order</td>
-                    <td class="def">0</td>
-                    <td class="desc">排列顺序，数值越小越靠前</td>
-                </tr>
-                <tr>
-                    <td class="prop">flex-grow</td>
-                    <td class="def">0</td>
-                    <td class="desc">放大比例，分配<strong>剩余空间</strong></td>
-                </tr>
-                <tr>
-                    <td class="prop">flex-shrink</td>
-                    <td class="def">1</td>
-                    <td class="desc">缩小比例，空间不足时的收缩</td>
-                </tr>
-                <tr>
-                    <td class="prop">flex-basis</td>
-                    <td class="def">auto</td>
-                    <td class="desc">分配空间前项目占据的主轴尺寸</td>
-                </tr>
-                <tr>
-                    <td class="prop">flex</td>
-                    <td class="def">0 1 auto</td>
-                    <td class="desc"><strong>三属性简写</strong>，推荐优先使用</td>
-                </tr>
-                <tr>
-                    <td class="prop">align-self</td>
-                    <td class="def">auto</td>
-                    <td class="desc">单个项目的交叉轴对齐（覆盖父级）</td>
-                </tr>
-            </table>
-            <div class="info-box">
-                <h3>常见用法</h3>
-                <div class="code-block" style="margin:8px 0;font-size:15px;">
-<span class="cs">/* 等分剩余空间 */</span>
-.child { <span class="ck">flex</span>: <span class="cs">1</span> 1 <span class="cs">auto</span>; }
-
-<span class="cs">/* 固定 100px 不参与伸缩 */</span>
-.child { <span class="ck">flex</span>: <span class="cs">none</span>; <span class="ck">width</span>: <span class="cs">100px</span>; }
+        <div class="content-grid" style="display:grid; grid-template-columns: 1.3fr 1fr; gap:28px; align-items:stretch;">
+            <div>
+                <h3 style="font-size:20px;margin-bottom:10px;">三种换行方式</h3>
+                <img class="flex-img" src="assets/flex/slide33_sh0.png" alt="flex-wrap" style="max-height:340px;">
+            </div>
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">flex-wrap</div>
+                    <div class="flex-prop-desc">决定空间不足时项目<strong>是否换行</strong>。</div>
+                    <div class="flex-prop-values">
+                        <span>nowrap（默认）</span>
+                        <span>wrap</span>
+                        <span>wrap-reverse</span>
+                    </div>
+                </div>
+                <div class="flex-prop-card" style="margin-top:14px;">
+                    <div class="flex-prop-name">flex-flow</div>
+                    <div class="flex-prop-desc"><code>flex-direction</code> 与 <code>flex-wrap</code> 的<strong>简写</strong>形式。</div>
+                    <div class="flex-prop-values">
+                        <span>row nowrap（默认）</span>
+                        <span>column wrap</span>
+                    </div>
+                </div>
+                <div class="code-block" style="margin-top:14px;font-size:15px; line-height:1.7;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">flex-flow</span><span class="cs">:</span> <span class="cp">row wrap</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 4-12. AI 工具箱与提示词 -->
-    <div class="slide ai-slide" data-index="12">
+    <!-- 4-12. justify-content -->
+    <div class="slide" data-index="12">
         <div class="slide-header">
-            <div class="slide-num">AI</div>
+            <div class="slide-num wide">12</div>
             <div>
-                <div class="slide-title">AI 工具箱 —— 大模型 · 智能体 · 提示词</div>
-                <div class="slide-subtitle">AI 1.1 概念与基础</div>
+                <div class="slide-title">justify-content —— 主轴对齐</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-container">容器属性</span>3.4 五个常用取值 · 默认 flex-start</div>
             </div>
         </div>
-        <div class="content-grid">
-            <div class="info-box">
-                <h3>三个核心概念</h3>
-                <div style="display:flex;gap:18px;flex-wrap:wrap;">
-                    <div style="flex:1;min-width:180px;">
-                        <p style="font-size:17px;line-height:1.7;color:var(--text-sub);">
-                            <strong style="color:var(--ai-purple);">大模型 (LLM)</strong>：基于海量文本训练的生成式 AI，能理解自然语言、生成代码、回答问题。
-                        </p>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.5fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">justify-content</div>
+                    <div class="flex-prop-desc">决定项目在<strong>主轴</strong>上的对齐方式。</div>
+                    <div class="flex-prop-values">
+                        <span>flex-start</span>
+                        <span>flex-end</span>
+                        <span>center</span>
+                        <span>space-between</span>
+                        <span>space-around</span>
                     </div>
-                    <div style="flex:1;min-width:180px;">
-                        <p style="font-size:17px;line-height:1.7;color:var(--text-sub);">
-                            <strong style="color:var(--ai-purple);">智能体 (Agent)</strong>：会用工具、有记忆、会规划的 AI，编程智能体能读写代码、跑命令、调试。
-                        </p>
-                    </div>
-                    <div style="flex:1;min-width:180px;">
-                        <p style="font-size:17px;line-height:1.7;color:var(--text-sub);">
-                            <strong style="color:var(--ai-purple);">提示词 (Prompt)</strong>：写给 AI 的指令，决定输出质量——好的提示词 = 明确的产出。
-                        </p>
-                    </div>
+                </div>
+                <div class="code-block" style="margin-top:14px;font-size:15px; line-height:1.7;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">justify-content</span><span class="cs">:</span> <span class="cp">center</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
-            <div class="two-col">
-                <div class="col-card">
-                    <h3>主流大模型</h3>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <div class="model-card">
-                            <div class="model-logo" style="background:linear-gradient(135deg,#10a37f,#0d8a6c);">GPT</div>
-                            <div class="model-info">
-                                <div class="model-name">GPT-4o / 4.1</div>
-                                <div class="model-desc">OpenAI · 综合能力最强，需付费</div>
-                            </div>
-                        </div>
-                        <div class="model-card">
-                            <div class="model-logo" style="background:linear-gradient(135deg,#7b68ee,#5d4fd1);">通义</div>
-                            <div class="model-info">
-                                <div class="model-name">通义千问 Qwen</div>
-                                <div class="model-desc">阿里 · 中文能力强，有免费版</div>
-                            </div>
-                        </div>
-                        <div class="model-card">
-                            <div class="model-logo" style="background:linear-gradient(135deg,#f5a623,#e89400);">豆包</div>
-                            <div class="model-info">
-                                <div class="model-name">豆包 Doubao</div>
-                                <div class="model-desc">字节 · 多模态强，免费可用</div>
-                            </div>
-                        </div>
-                        <div class="model-card">
-                            <div class="model-logo" style="background:linear-gradient(135deg,#4a63c8,#3448a8);">Deep</div>
-                            <div class="model-info">
-                                <div class="model-name">DeepSeek</div>
-                                <div class="model-desc">深度求索 · 开源、性价比极高</div>
-                            </div>
-                        </div>
+            <div class="col-card jc-interactive-panel">
+                <h3>🎮 交互示例 · 点击按钮切换 justify-content</h3>
+                <div class="jc-ctrls">
+                    <button class="jc-btn active" data-val="flex-start">flex-start</button>
+                    <button class="jc-btn" data-val="flex-end">flex-end</button>
+                    <button class="jc-btn" data-val="center">center</button>
+                    <button class="jc-btn" data-val="space-between">space-between</button>
+                    <button class="jc-btn" data-val="space-around">space-around</button>
+                </div>
+                <div class="jc-demo">
+                    <span class="jc-demo-label">flex container</span>
+                    <div class="jc-track" id="jc-track" style="justify-content:flex-start;">
+                        <div class="jc-box">1</div>
+                        <div class="jc-box">2</div>
+                        <div class="jc-box">3</div>
                     </div>
                 </div>
-                <div class="col-card">
-                    <h3>提示词公式</h3>
-                    <div class="prompt-formula">
-                        <div class="formula-step">角色<small>你是谁</small></div>
-                        <div class="formula-step">任务<small>做什么</small></div>
-                        <div class="formula-step">上下文<small>给信息</small></div>
-                        <div class="formula-step">要求<small>格式约束</small></div>
-                        <div class="formula-step">示例<small>提供参考</small></div>
-                    </div>
-                    <div class="prompt-box" style="margin-top:14px;">
-                        <span class="prompt-label">示例</span>
-                        <div>
-                            <strong>角色：</strong>你是微信小程序开发专家。<br>
-                            <strong>任务：</strong>帮我写一个商品列表页面的 WXML。<br>
-                            <strong>上下文：</strong>数据来自 data.products 数组，每项有 name、price、img。<br>
-                            <strong>要求：</strong>使用 wx:for 遍历，每项显示图片+名称+价格。<br>
-                            <strong>示例：</strong>参考微信官方组件示例的写法。
-                        </div>
-                    </div>
+                <div class="jc-live-code">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">justify-content</span><span class="cs">:</span> <span class="cp" id="jc-live-val">flex-start</span><span class="cs">;</span>
+<span class="cs">}</span>
                 </div>
             </div>
         </div>
+        <script>
+        (function(){
+            var btns = document.querySelectorAll('.jc-btn');
+            var track = document.getElementById('jc-track');
+            var liveVal = document.getElementById('jc-live-val');
+            btns.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    btns.forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var v = btn.getAttribute('data-val');
+                    track.style.justifyContent = v;
+                    liveVal.textContent = v;
+                });
+            });
+        })();
+        </script>
     </div>
 
-    <!-- 4-13. AI 辅助布局实践 -->
-    <div class="slide ai-slide" data-index="13">
+    <!-- 4-13. align-items -->
+    <div class="slide" data-index="13">
         <div class="slide-header">
-            <div class="slide-num">AI</div>
+            <div class="slide-num wide">13</div>
             <div>
-                <div class="slide-title">AI 辅助布局设计</div>
-                <div class="slide-subtitle">AI 1.2 实践与边界</div>
+                <div class="slide-title">align-items —— 交叉轴对齐</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-container">容器属性</span>3.5 五个取值 · 默认 stretch</div>
             </div>
         </div>
-        <div class="content-grid">
-            <div class="info-box">
-                <h3>主流编程智能体</h3>
-                <div style="display:flex;gap:14px;flex-wrap:wrap;">
-                    <div class="model-card" style="flex:1;min-width:200px;">
-                        <div class="model-logo" style="background:linear-gradient(135deg,#667eea,#764ba2);">T</div>
-                        <div class="model-info">
-                            <div class="model-name">Trae</div>
-                            <div class="model-desc">字节 · IDE 内置 AI 助手</div>
-                        </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.5fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">align-items</div>
+                    <div class="flex-prop-desc">决定项目在<strong>交叉轴</strong>上的对齐方式。</div>
+                    <div class="flex-prop-values">
+                        <span>flex-start</span>
+                        <span>flex-end</span>
+                        <span>center</span>
+                        <span>baseline</span>
+                        <span>stretch（默认）</span>
                     </div>
-                    <div class="model-card" style="flex:1;min-width:200px;">
-                        <div class="model-logo" style="background:linear-gradient(135deg,#07c160,#06ad56);">C</div>
-                        <div class="model-info">
-                            <div class="model-name">Cursor</div>
-                            <div class="model-desc">VS Code 改版 · AI 优先</div>
-                        </div>
+                </div>
+                <div class="code-block" style="margin-top:14px;font-size:15px; line-height:1.7;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">align-items</span><span class="cs">:</span> <span class="cp">center</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
+                <div class="note-box" style="margin-top:14px;">
+                    📌 与 justify-content 区别：<strong>justify-content 管主轴，align-items 管交叉轴</strong>。
+                </div>
+            </div>
+            <div class="col-card ai-interactive-panel">
+                <h3>🎮 交互示例 · 点击按钮切换 align-items</h3>
+                <div class="ai-ctrls">
+                    <button class="ai-btn active" data-val="flex-start">flex-start</button>
+                    <button class="ai-btn" data-val="flex-end">flex-end</button>
+                    <button class="ai-btn" data-val="center">center</button>
+                    <button class="ai-btn" data-val="baseline">baseline</button>
+                    <button class="ai-btn" data-val="stretch">stretch</button>
+                </div>
+                <div class="ai-demo">
+                    <span class="ai-demo-label">flex container</span>
+                    <span class="ai-cross-hint">↑ 交叉轴</span>
+                    <div class="ai-track" id="ai-track" style="align-items:flex-start;">
+                        <div class="ai-box b1">1</div>
+                        <div class="ai-box b2">2</div>
+                        <div class="ai-box b3">3</div>
                     </div>
-                    <div class="model-card" style="flex:1;min-width:200px;">
-                        <div class="model-logo" style="background:linear-gradient(135deg,#7b68ee,#5d4fd1);">灵码</div>
-                        <div class="model-info">
-                            <div class="model-name">通义灵码</div>
-                            <div class="model-desc">阿里 · 代码补全 / Chat</div>
-                        </div>
+                </div>
+                <div class="ai-live-code">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">align-items</span><span class="cs">:</span> <span class="cp" id="ai-live-val">flex-start</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            var btns = document.querySelectorAll('.ai-btn');
+            var track = document.getElementById('ai-track');
+            var liveVal = document.getElementById('ai-live-val');
+            btns.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    btns.forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var v = btn.getAttribute('data-val');
+                    track.style.alignItems = v;
+                    if(v === 'stretch') track.classList.add('ai-stretch');
+                    else track.classList.remove('ai-stretch');
+                    liveVal.textContent = v;
+                });
+            });
+        })();
+        </script>
+    </div>
+
+    <!-- 4-14. align-content -->
+    <div class="slide" data-index="14">
+        <div class="slide-header">
+            <div class="slide-num wide">14</div>
+            <div>
+                <div class="slide-title">align-content —— 多根轴线对齐</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-container">容器属性</span>3.6 需配合 flex-wrap 使用 · 默认 stretch</div>
+            </div>
+        </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.5fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">align-content</div>
+                    <div class="flex-prop-desc">定义<strong>多根轴线</strong>的对齐方式。若项目只有一根轴线，该属性不起作用。</div>
+                    <div class="flex-prop-values">
+                        <span>flex-start</span>
+                        <span>flex-end</span>
+                        <span>center</span>
+                        <span>space-between</span>
+                        <span>space-around</span>
+                        <span>stretch（默认）</span>
+                    </div>
+                </div>
+                <div class="code-block" style="margin-top:14px;font-size:15px; line-height:1.7;">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">flex-wrap</span><span class="cs">:</span> <span class="cp">wrap</span><span class="cs">;</span>
+  <span class="ck">align-content</span><span class="cs">:</span> <span class="cp">space-between</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
+            </div>
+            <div class="col-card ac-interactive-panel">
+                <h3>🎮 交互示例 · 点击切换 align-content（含 flex-wrap:wrap）</h3>
+                <div class="ac-ctrls">
+                    <button class="ac-btn active" data-val="flex-start">flex-start</button>
+                    <button class="ac-btn" data-val="flex-end">flex-end</button>
+                    <button class="ac-btn" data-val="center">center</button>
+                    <button class="ac-btn" data-val="space-between">space-between</button>
+                    <button class="ac-btn" data-val="stretch">stretch</button>
+                </div>
+                <div class="ac-demo">
+                    <span class="ac-demo-label">flex container</span>
+                    <span class="ac-row-hint">↕ 行与行之间的方向</span>
+                    <div class="ac-track" id="ac-track" style="align-content:flex-start;">
+                        <div class="ac-box">1</div>
+                        <div class="ac-box">2</div>
+                        <div class="ac-box">3</div>
+                        <div class="ac-box">4</div>
+                        <div class="ac-box">5</div>
+                        <div class="ac-box">6</div>
+                        <div class="ac-box">7</div>
+                        <div class="ac-box">8</div>
+                    </div>
+                </div>
+                <div class="ac-live-code">
+<span class="cs">.container</span> <span class="cs">{</span>
+  <span class="ck">display</span><span class="cs">:</span> <span class="cp">flex</span><span class="cs">;</span>
+  <span class="ck">flex-wrap</span><span class="cs">:</span> <span class="cp">wrap</span><span class="cs">;</span>
+  <span class="ck">align-content</span><span class="cs">:</span> <span class="cp" id="ac-live-val">flex-start</span><span class="cs">;</span>
+<span class="cs">}</span>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            var btns = document.querySelectorAll('.ac-btn');
+            var track = document.getElementById('ac-track');
+            var liveVal = document.getElementById('ac-live-val');
+            btns.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    btns.forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var v = btn.getAttribute('data-val');
+                    track.style.alignContent = v;
+                    if(v === 'stretch') track.classList.add('ac-stretch');
+                    else track.classList.remove('ac-stretch');
+                    liveVal.textContent = v;
+                });
+            });
+        })();
+        </script>
+    </div>
+
+    <!-- 4-15. order + flex-grow -->
+    <div class="slide" data-index="15">
+        <div class="slide-header">
+            <div class="slide-num wide">15</div>
+            <div>
+                <div class="slide-title">order + flex-grow —— 项目排列与放大</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-item">项目属性</span>3.7 排列顺序与放大比例</div>
+            </div>
+        </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">order</div>
+                    <div class="flex-prop-desc">排列顺序。<strong>数值越小越靠前</strong>，默认为 0。</div>
+                    <div class="flex-prop-values">
+                        <span>-1 · 0 · 1 · 2 · 3 …</span>
+                    </div>
+                </div>
+                <div class="flex-prop-card" style="margin-top:14px;">
+                    <div class="flex-prop-name">flex-grow</div>
+                    <div class="flex-prop-desc">放大比例。默认 <strong>0</strong>——有剩余空间也不放大。<br>
+                        所有项目都为 1 → 等分剩余空间；<br>
+                        某项目为 2，其他为 1 → 前者多占一倍。
+                    </div>
+                    <div class="flex-prop-values">
+                        <span>0 · 1 · 2 · 3 …</span>
                     </div>
                 </div>
             </div>
-            <div class="two-col">
-                <div class="col-card">
-                    <h3>布局场景提示词</h3>
-                    <div class="prompt-box" style="font-size:16px;">
-                        <span class="prompt-label">Flex 居中</span>
-                        <div>
-                            帮我写 WXSS，让一个 <code style="color:#ecc48a;">view</code> 容器内的三个子元素<strong>横向等距居中</strong>显示，给出完整的 class 名称和样式。
-                        </div>
+            <div class="col-card of-interactive-panel">
+                <div class="of-section">
+                    <div class="of-section-title">
+                        <span>order —— 排列顺序</span>
+                        <span class="of-tag">DOM 顺序不变</span>
                     </div>
-                    <div class="prompt-box" style="font-size:16px;margin-top:10px;">
-                        <span class="prompt-label">三栏布局</span>
-                        <div>
-                            我要一个三栏布局，左右两栏固定 120px，中间栏自适应，栏间距 12px，请给出 WXML 和 WXSS。
-                        </div>
+                    <div class="of-ctrls" id="of-order-ctrls">
+                        <button class="of-btn active" data-set="default">默认</button>
+                        <button class="of-btn" data-set="reverse">倒序</button>
+                        <button class="of-btn" data-set="swap">交换 1↔3</button>
+                    </div>
+                    <div class="of-demo">
+                        <span class="of-demo-label">flex container</span>
+                        <div class="of-track" id="of-order-track"></div>
+                    </div>
+                    <div class="of-live-code" id="of-order-code"></div>
+                </div>
+                <div class="of-section">
+                    <div class="of-section-title">
+                        <span>flex-grow —— 放大比例</span>
+                        <span class="of-tag">1 : 1 : 1 等分</span>
+                    </div>
+                    <div class="of-ctrls" id="of-grow-ctrls">
+                        <button class="of-btn" data-set="equal">1 : 1 : 1</button>
+                        <button class="of-btn active" data-set="unequal">1 : 2 : 1</button>
+                        <button class="of-btn" data-set="middle">0 : 3 : 0</button>
+                    </div>
+                    <div class="of-demo">
+                        <span class="of-demo-label">flex container</span>
+                        <div class="of-track" id="of-grow-track"></div>
+                    </div>
+                    <div class="of-live-code" id="of-grow-code"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            // ---- order 演示 ----
+            var orderPresets = {
+                default: {1:0, 2:0, 3:0},
+                reverse: {1:3, 2:2, 3:1},
+                swap:    {1:2, 2:0, 3:1}
+            };
+            function renderOrderTrack(set){
+                var track = document.getElementById('of-order-track');
+                var meta = orderPresets[set];
+                track.innerHTML = '';
+                for(var i=1; i<=3; i++){
+                    var b = document.createElement('div');
+                    b.className = 'of-box b' + i;
+                    b.style.order = meta[i];
+                    b.innerHTML = '<div class="of-box-num">' + i + '</div>'
+                                + '<div class="of-box-meta"><span class="of-box-key">order:</span>' + meta[i] + '</div>';
+                    track.appendChild(b);
+                }
+                var lines = ['<span class="cs">.box{</span><span class="cs">}</span>', ''];
+                for(var j=1; j<=3; j++){
+                    lines.push('  <span class="cs">.item-' + j + ' { </span><span class="ck">order</span><span class="cs">:</span> <span class="cp">' + meta[j] + '</span><span class="cs">; }</span>');
+                }
+                document.getElementById('of-order-code').innerHTML = lines.join('\n');
+            }
+            document.getElementById('of-order-ctrls').addEventListener('click', function(e){
+                var btn = e.target.closest('.of-btn');
+                if(!btn) return;
+                document.querySelectorAll('#of-order-ctrls .of-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                renderOrderTrack(btn.getAttribute('data-set'));
+            });
+            renderOrderTrack('default');
+
+            // ---- flex-grow 演示 ----
+            var growPresets = {
+                equal:   {1:1, 2:1, 3:1},
+                unequal: {1:1, 2:2, 3:1},
+                middle:  {1:0, 2:3, 3:0}
+            };
+            function renderGrowTrack(set){
+                var track = document.getElementById('of-grow-track');
+                var meta = growPresets[set];
+                track.innerHTML = '';
+                for(var i=1; i<=3; i++){
+                    var b = document.createElement('div');
+                    b.className = 'of-box b' + i;
+                    b.style.flexGrow = meta[i];
+                    b.style.flexBasis = '60px';
+                    b.innerHTML = '<div class="of-box-num">' + i + '</div>'
+                                + '<div class="of-box-meta"><span class="of-box-key">grow:</span>' + meta[i] + '</div>';
+                    track.appendChild(b);
+                }
+                var ratio = meta[1] + ' : ' + meta[2] + ' : ' + meta[3];
+                document.getElementById('of-grow-code').innerHTML =
+                    '<span class="ck">ratio</span><span class="cs">:</span> <span class="cp">' + ratio + '</span>'
+                    + '\n'
+                    + 'box' + '1: <span class="ck">grow</span><span class="cs">:</span><span class="cp">' + meta[1] + '</span>'
+                    + ' · box2: <span class="ck">grow</span><span class="cs">:</span><span class="cp">' + meta[2] + '</span>'
+                    + ' · box3: <span class="ck">grow</span><span class="cs">:</span><span class="cp">' + meta[3] + '</span>';
+            }
+            document.getElementById('of-grow-ctrls').addEventListener('click', function(e){
+                var btn = e.target.closest('.of-btn');
+                if(!btn) return;
+                document.querySelectorAll('#of-grow-ctrls .of-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                renderGrowTrack(btn.getAttribute('data-set'));
+            });
+            renderGrowTrack('unequal');
+        })();
+        </script>
+    </div>
+
+    <!-- 4-16. flex-shrink + flex-basis -->
+    <div class="slide" data-index="16">
+        <div class="slide-header">
+            <div class="slide-num wide">16</div>
+            <div>
+                <div class="slide-title">flex-shrink + flex-basis</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-item">项目属性</span>3.8 缩小比例与主轴初始空间</div>
+            </div>
+        </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1fr 1.15fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">flex-shrink</div>
+                    <div class="flex-prop-desc">缩小比例。默认 <strong>1</strong>——空间不足时缩小，<strong>负值无效</strong>。<br>
+                        所有项目都为 1 → 等比例缩小；<br>
+                        某项目为 0 → 该项不缩小。
+                    </div>
+                    <div class="flex-prop-values">
+                        <span>0 · 1 · 2 · 3 …</span>
                     </div>
                 </div>
-                <div class="col-card">
-                    <h3>课堂操作</h3>
-                    <div class="check-item">
-                        <span class="checkbox"></span>打开 Trae 或 Cursor，选择智能体模式
+                <div class="flex-prop-card" style="margin-top:14px;">
+                    <div class="flex-prop-name">flex-basis</div>
+                    <div class="flex-prop-desc">分配多余空间<strong>之前</strong>，项目占据的主轴空间。<br>
+                        默认 <strong>auto</strong>——项目的本来大小。<br>
+                        可设为与 width/height 相同的值（如 350px），则项目占据固定空间。
                     </div>
-                    <div class="check-item" style="margin-top:10px;">
-                        <span class="checkbox"></span>用提示词生成一个 Flex 布局页面
-                    </div>
-                    <div class="check-item" style="margin-top:10px;">
-                        <span class="checkbox"></span>对比 AI 生成结果与手写，理解每行代码作用
-                    </div>
-                    <div class="check-item" style="margin-top:10px;">
-                        <span class="checkbox"></span>修改需求（如改方向、加间距），观察 AI 如何调整
-                    </div>
-                    <div class="interact-box" style="margin-top:16px;">
-                        <div class="interact-title">⚠️ 学术诚信</div>
-                        <p>AI 是学习辅助工具，<strong>不能替代独立思考和动手实践</strong></p>
-                        <p>期末报告<strong>禁止直接使用 AI 生成内容</strong></p>
-                        <p>合理利用 AI 提升学习效率，而非依赖 AI 完成作业</p>
+                    <div class="flex-prop-values">
+                        <span>&lt;length&gt;</span>
+                        <span>auto（默认）</span>
                     </div>
                 </div>
+            </div>
+            <div class="col-card sb-interactive-panel">
+                <div class="sb-section">
+                    <div class="sb-section-title">
+                        <span>flex-shrink —— 空间不足时的缩小比例</span>
+                        <span class="sb-tag">3 × 260px = 780px · 严重溢出</span>
+                    </div>
+                    <div class="sb-ctrls" id="sb-shrink-ctrls">
+                        <button class="sb-btn active" data-set="equal">1 : 1 : 1 等缩</button>
+                        <button class="sb-btn" data-set="protect">0 : 1 : 1 首项不缩</button>
+                        <button class="sb-btn" data-set="unequal">1 : 2 : 1 中项少缩</button>
+                    </div>
+                    <div class="sb-demo">
+                        <span class="sb-demo-label">flex container</span>
+                        <div class="sb-track" id="sb-shrink-track"></div>
+                    </div>
+                    <div class="sb-live-code" id="sb-shrink-code"></div>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-section-title">
+                        <span>flex-basis —— 分配多余空间前的初始宽度</span>
+                        <span class="sb-tag">配合 flex-grow:1 观察效果</span>
+                    </div>
+                    <div class="sb-ctrls" id="sb-basis-ctrls">
+                        <button class="sb-btn active" data-set="equal">30 : 30 : 30</button>
+                        <button class="sb-btn" data-set="unequal">10 : 60 : 30</button>
+                        <button class="sb-btn" data-set="middle">10 : 100 : 10</button>
+                    </div>
+                    <div class="sb-demo">
+                        <span class="sb-demo-label">flex container</span>
+                        <div class="sb-track" id="sb-basis-track"></div>
+                    </div>
+                    <div class="sb-live-code" id="sb-basis-code"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            // ---- flex-shrink 演示 ----
+            // 3 个 box basis 各 160px，总 480px 会溢出 track 的可用宽度
+            var shrinkPresets = {
+                equal:   {1:1, 2:1, 3:1},
+                protect: {1:0, 2:1, 3:1},
+                unequal: {1:1, 2:2, 3:1}
+            };
+            function renderShrinkTrack(set){
+                var track = document.getElementById('sb-shrink-track');
+                var meta = shrinkPresets[set];
+                track.innerHTML = '';
+                for(var i=1; i<=3; i++){
+                    var b = document.createElement('div');
+                    b.className = 'sb-box b' + i;
+                    b.style.flexBasis = '320px';
+                    b.style.flexShrink = meta[i];
+                    b.innerHTML = '<div class="sb-box-num">' + i + '</div>'
+                                + '<div class="sb-box-meta"><span>shrink:</span>' + meta[i] + '</div>';
+                    track.appendChild(b);
+                }
+                document.getElementById('sb-shrink-code').innerHTML =
+                    '<span class="ck">box</span>1: <span class="ck">flex-basis</span><span class="cs">:</span><span class="cp">320px</span> <span class="ck">flex-shrink</span><span class="cs">:</span><span class="cp">' + meta[1] + '</span>'
+                    + ' · <span class="ck">box</span>2: shrink <span class="cp">' + meta[2] + '</span>'
+                    + ' · <span class="ck">box</span>3: shrink <span class="cp">' + meta[3] + '</span>';
+            }
+            document.getElementById('sb-shrink-ctrls').addEventListener('click', function(e){
+                var btn = e.target.closest('.sb-btn');
+                if(!btn) return;
+                document.querySelectorAll('#sb-shrink-ctrls .sb-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                renderShrinkTrack(btn.getAttribute('data-set'));
+            });
+            renderShrinkTrack('equal');
+
+            // ---- flex-basis 演示 ----
+            // 3 个 box grow:1，剩余空间等分；basis 不同则起点不同，最终宽度不等
+            var basisPresets = {
+                equal:   {1:30, 2:30, 3:30},
+                unequal: {1:10, 2:60, 3:30},
+                middle:  {1:10, 2:100, 3:10}
+            };
+            function renderBasisTrack(set){
+                var track = document.getElementById('sb-basis-track');
+                var meta = basisPresets[set];
+                track.innerHTML = '';
+                for(var i=1; i<=3; i++){
+                    var b = document.createElement('div');
+                    b.className = 'sb-box b' + i;
+                    b.style.flexBasis = meta[i] + 'px';
+                    b.style.flexGrow = 1;
+                    b.style.flexShrink = 1;
+                    b.innerHTML = '<div class="sb-box-num">' + i + '</div>'
+                                + '<div class="sb-box-meta"><span>basis:</span>' + meta[i] + 'px</div>';
+                    track.appendChild(b);
+                }
+                document.getElementById('sb-basis-code').innerHTML =
+                    '<span class="ck">box</span>1: basis <span class="cp">' + meta[1] + 'px</span>'
+                    + ' · <span class="ck">box</span>2: basis <span class="cp">' + meta[2] + 'px</span>'
+                    + ' · <span class="ck">box</span>3: basis <span class="cp">' + meta[3] + 'px</span>'
+                    + '\n<span class="cs">/* 剩余空间按 flex-grow:1 均分给三项 */</span>';
+            }
+            document.getElementById('sb-basis-ctrls').addEventListener('click', function(e){
+                var btn = e.target.closest('.sb-btn');
+                if(!btn) return;
+                document.querySelectorAll('#sb-basis-ctrls .sb-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                renderBasisTrack(btn.getAttribute('data-set'));
+            });
+            renderBasisTrack('equal');
+        })();
+        </script>
+    </div>
+
+    <!-- 4-17. flex 简写 + align-self -->
+    <div class="slide" data-index="17">
+        <div class="slide-header">
+            <div class="slide-num wide">17</div>
+            <div>
+                <div class="slide-title">flex 简写 + align-self</div>
+                <div class="slide-subtitle"><span class="cat-badge cat-item">项目属性</span>3.9 项目属性简写 · 单项自定义对齐</div>
+            </div>
+        </div>
+        <div class="content-grid" style="display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; align-items:stretch;">
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">flex</div>
+                    <div class="flex-prop-desc"><code>flex-grow</code>、<code>flex-shrink</code>、<code>flex-basis</code> 的<strong>简写</strong>，默认 <code>0 1 auto</code>。<br>
+                        浏览器会自动推算相关值，<strong>建议优先使用</strong>。
+                    </div>
+                    <div class="flex-prop-values">
+                        <span>none</span>
+                        <span>auto</span>
+                        <span>&lt;flex-grow&gt; &lt;flex-shrink&gt; &lt;flex-basis&gt;</span>
+                    </div>
+                </div>
+                <div class="code-block" style="margin-top:14px;font-size:15px; line-height:1.75;">
+<span class="cs">.item-a</span> <span class="cs">{</span>
+  <span class="ck">flex</span><span class="cs">:</span> <span class="cp">auto</span><span class="cs">;</span>   <span class="cp">// = 1 1 auto</span>
+<span class="cs">}</span>
+<span class="cs">.item-b</span> <span class="cs">{</span>
+  <span class="ck">flex</span><span class="cs">:</span> <span class="cp">none</span><span class="cs">;</span>   <span class="cp">// = 0 0 auto</span>
+<span class="cs">}</span>
+                </div>
+            </div>
+            <div>
+                <div class="flex-prop-card">
+                    <div class="flex-prop-name">align-self</div>
+                    <div class="flex-prop-desc">允许<strong>单个项目</strong>有与其他项目不一样的对齐方式，可覆盖父元素的 <code>align-items</code>。<br>
+                        默认 <strong>auto</strong>——继承父元素的 <code>align-items</code>，若无父元素则等同 <code>stretch</code>。
+                    </div>
+                    <div class="flex-prop-values">
+                        <span>auto</span>
+                        <span>flex-start</span>
+                        <span>flex-end</span>
+                        <span>center</span>
+                        <span>baseline</span>
+                        <span>stretch</span>
+                    </div>
+                </div>
+                <h3 style="font-size:18px;margin:14px 0 8px;">align-self 效果示意</h3>
+                <img class="flex-img" src="assets/flex/slide42_sh3.png" alt="align-self" style="max-height:200px;">
             </div>
         </div>
     </div>
 
+    
+    <!-- 4-18. 主流 UI 框架 -->
+    <div class="slide" data-index="18">
+        <div class="slide-header">
+            <div class="slide-num wide">18</div>
+            <div>
+                <div class="slide-title">主流 UI 框架</div>
+                <div class="slide-subtitle" style="font-size:17px;">三大基于 Flex 的小程序 UI 方案 · 点击卡片弹出官方演示小程序码</div>
+            </div>
+        </div>
+        <div class="content-grid" style="flex:0 0 auto; align-content:start;">
+            <div class="framework-grid" style="align-items:stretch;">
+                <div class="fw-card" onclick="showQrModal('vant')">
+                    <div class="fw-scan-hint">扫码体验</div>
+                    <div class="fw-icon-row">
+                        <div class="fw-logo-img"><img src="assets/logos/vant.png" alt="Vant Weapp logo"></div>
+                        <div class="fw-title-wrap">
+                            <div class="fw-name">Vant Weapp</div>
+                            <div class="fw-org">有赞 Youzan</div>
+                        </div>
+                    </div>
+                    <div class="fw-tagline">最流行的小程序 UI 库</div>
+                    <ul class="fw-features">
+                        <li>70+ 组件全部基于 Flex</li>
+                        <li>平均组件体积 &lt; 1KB</li>
+                        <li>电商 / C 端通用场景</li>
+                    </ul>
+                    <div class="fw-stats">
+                        <div class="fw-stat"><span class="fw-stat-val">70+</span><span class="fw-stat-label">组件</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">1KB</span><span class="fw-stat-label">体积</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">MIT</span><span class="fw-stat-label">协议</span></div>
+                    </div>
+                    <div class="fw-tags">
+                        <span class="fw-tag">Flex</span>
+                        <span class="fw-tag">电商首选</span>
+                    </div>
+                </div>
+
+                <div class="fw-card" onclick="showQrModal('tdesign')">
+                    <div class="fw-scan-hint">扫码体验</div>
+                    <div class="fw-icon-row">
+                        <div class="fw-logo-img"><img src="assets/logos/tdesign.png" alt="TDesign logo"></div>
+                        <div class="fw-title-wrap">
+                            <div class="fw-name">TDesign Miniapp</div>
+                            <div class="fw-org">Tencent 腾讯</div>
+                        </div>
+                    </div>
+                    <div class="fw-tagline">腾讯官方出品 · 多端一致</div>
+                    <ul class="fw-features">
+                        <li>小程序 / H5 / Vue / React</li>
+                        <li>CSS 变量驱动主题</li>
+                        <li>深色模式开箱即用</li>
+                    </ul>
+                    <div class="fw-stats">
+                        <div class="fw-stat"><span class="fw-stat-val">100+</span><span class="fw-stat-label">组件</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">5</span><span class="fw-stat-label">技术栈</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">MIT</span><span class="fw-stat-label">协议</span></div>
+                    </div>
+                    <div class="fw-tags">
+                        <span class="fw-tag">Flex</span>
+                        <span class="fw-tag">官方</span>
+                        <span class="fw-tag">多端</span>
+                    </div>
+                </div>
+
+                <div class="fw-card" onclick="showQrModal('nutui')">
+                    <div class="fw-scan-hint">扫码体验</div>
+                    <div class="fw-icon-row">
+                        <div class="fw-logo-img"><img src="assets/logos/nutui.png" alt="NutUI / 京东 logo"></div>
+                        <div class="fw-title-wrap">
+                            <div class="fw-name">NutUI</div>
+                            <div class="fw-org">京东 JD.com</div>
+                        </div>
+                    </div>
+                    <div class="fw-tagline">京东零售 UI 规范</div>
+                    <ul class="fw-features">
+                        <li>10+ 亿用户级业务打磨</li>
+                        <li>商城 / 订单 / 优惠核心</li>
+                        <li>多主题 + Flex 布局</li>
+                    </ul>
+                    <div class="fw-stats">
+                        <div class="fw-stat"><span class="fw-stat-val">80+</span><span class="fw-stat-label">组件</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">多主题</span><span class="fw-stat-label">皮肤</span></div>
+                        <div class="fw-stat"><span class="fw-stat-val">MIT</span><span class="fw-stat-label">协议</span></div>
+                    </div>
+                    <div class="fw-tags">
+                        <span class="fw-tag">Flex</span>
+                        <span class="fw-tag">零售</span>
+                        <span class="fw-tag">中后台</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:20px;font-size:17px;color:var(--text-secondary);">
+            💡 三者选型看场景，共同点：都用 <strong style="color:var(--wx-green);">Flex</strong> 解决页面排列
+        </div>
+    </div>
 </div>
+
 </div><!-- /chapter-panel-4 -->
 
 <!-- ============ 第五章 常用组件介绍 ============ -->
@@ -9290,6 +11170,138 @@ padding: 5px 10px 15px 20px;
             document.querySelectorAll('.modal-overlay.show').forEach(function(el){ el.classList.remove('show'); });
         }
     });
+</script>
+
+<!-- ============ 小程序码弹窗 ============ -->
+<div class="qr-modal-mask" id="qrModalMask" onclick="if(event.target===this)closeQrModal()">
+    <div class="qr-modal">
+        <div class="qr-modal-logo" id="qrModalLogo">V</div>
+        <div class="qr-modal-name" id="qrModalName">Vant Weapp</div>
+        <div class="qr-modal-org" id="qrModalOrg">有赞</div>
+        <div class="qr-body">
+            <div class="qr-code-box">
+                <img id="qrImg" alt="qr" referrerpolicy="no-referrer">
+                <div class="qr-placeholder" id="qrPlaceholder">
+                    <div class="qr-placeholder-icon">📱</div>
+                    <div id="qrPlaceholderText">加载中…</div>
+                </div>
+            </div>
+            <div class="qr-info-side">
+                <a id="qrDemoLink" class="qr-link" target="_blank" rel="noopener noreferrer">
+                    <span class="qr-link-title">官方 Demo 页面</span>
+                    <span id="qrDemoUrl">—</span>
+                </a>
+                <a id="qrDocLink" class="qr-link" target="_blank" rel="noopener noreferrer">
+                    <span class="qr-link-title">官方文档</span>
+                    <span id="qrDocUrl">—</span>
+                </a>
+            </div>
+        </div>
+        <div class="qr-modal-tip" id="qrModalTip">
+            微信扫码左侧二维码可直达官方 Demo 页；小程序码请上 Demo 页面直接扫描。
+        </div>
+        <button class="qr-modal-close" onclick="closeQrModal()">关闭</button>
+    </div>
+</div>
+
+<script>
+(function(){
+    // 框架元信息：demo = 官方示例页；doc = 官方文档页
+    // qrcode: 官网原生小程序码图片直链；缺失时回退到动态生成
+    var QR_FRAMEWORKS = {
+        vant: {
+            name:'Vant Weapp', org:'有赞', letter:'V', color:'#1989fa',
+            qrcode:'assets/有赞.jpg',
+            demo:'https://vant-ui.github.io/vant-weapp/0.x/preview.html',
+            doc: 'https://vant-contrib.gitee.io/vant-weapp/',
+            tip:'左侧为有赞 Vant Weapp 官方演示小程序码，微信扫码即可进入组件演示小程序。'
+        },
+        tdesign: {
+            name:'TDesign Miniapp', org:'Tencent 腾讯', letter:'T', color:'#0052d9',
+            qrcode:'https://aka.doubaocdn.com/s/aefleupGDL',
+            demo:'https://tdesign.tencent.com/miniprogram/getting-started',
+            doc: 'https://tdesign.tencent.com/miniprogram',
+            tip:'左侧为 TDesign 小程序版官方示例小程序码（官网同款），微信扫码即可进入组件演示。'
+        },
+        uview: {
+            name:'uView UI', org:'uView 团队', letter:'U', color:'#4b6cb7',
+            demo:'https://uview-plus.jiangruyi.com/guide/demo.html',
+            doc: 'https://uviewui.com/',
+            tip:'uView 官方暂未发布常驻小程序演示码；扫码打开 Demo 页后按官方指引切换小程序体验。'
+        },
+        mpvue: {
+            name:'Mint UI / mpvue', org:'美团', letter:'A', color:'#42b983',
+            demo:'https://github.com/Meituan-Dianping/mpvue',
+            doc: 'https://github.com/Meituan-Dianping/mpvue',
+            tip:'MPVue 已于 2022 停止维护，官方未提供演示小程序码；扫码仅能打开 GitHub 仓库。'
+        },
+        ior: {
+            name:'iOR', org:'iDevLab', letter:'i', color:'#ff8a00',
+            demo:'https://github.com/iaoshuai/iOR',
+            doc: 'https://github.com/iaoshuai/iOR',
+            tip:'iOR 为小程序脚手架，官方未提供常驻演示小程序码；扫码仅能打开 GitHub 仓库。'
+        },
+        nutui: {
+            name:'NutUI 小程序版', org:'京东', letter:'N', color:'#3c9cff',
+            demo:'https://nutui-uniapp.pages.dev/ui/',
+            doc: 'https://nutui.jd.com/',
+            tip:'NutUI 原生小程序版仍在规划中，暂无官方演示小程序码；扫码打开 uniapp 版文档。'
+        }
+    };
+    window.QR_FRAMEWORKS = QR_FRAMEWORKS;
+
+    function setQrImg(url, onError){
+        var img = document.getElementById('qrImg');
+        var ph  = document.getElementById('qrPlaceholder');
+        img.style.display = 'none';
+        ph.style.display = 'block';
+        img.onerror = onError;
+        img.onload = function(){
+            if (img.naturalWidth > 1) {
+                ph.style.display = 'none';
+                img.style.display = 'block';
+            }
+        };
+        img.src = url;
+    }
+
+    window.showQrModal = function(key){
+        var info = QR_FRAMEWORKS[key];
+        if (!info) return;
+        document.getElementById('qrModalLogo').textContent = info.letter;
+        document.getElementById('qrModalLogo').style.background = info.color;
+        document.getElementById('qrModalName').textContent = info.name;
+        document.getElementById('qrModalOrg').textContent  = info.org;
+        document.getElementById('qrModalTip').textContent  = info.tip || '';
+        var demoLink = document.getElementById('qrDemoLink');
+        var docLink  = document.getElementById('qrDocLink');
+        demoLink.href = info.demo;
+        document.getElementById('qrDemoUrl').textContent = info.demo;
+        docLink.href = info.doc;
+        document.getElementById('qrDocUrl').textContent  = info.doc;
+
+        // 二维码：优先使用官网原生小程序码图片；缺失时回退到动态生成
+        var qrUrl;
+        if (info.qrcode) {
+            qrUrl = info.qrcode;
+        } else {
+            qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=' + encodeURIComponent(info.demo);
+        }
+        setQrImg(qrUrl, function(){
+            document.getElementById('qrPlaceholderText').textContent =
+                '二维码加载失败，\n请点击上方"官方 Demo 页面"链接';
+        });
+
+        document.getElementById('qrModalMask').classList.add('show');
+    };
+    window.closeQrModal = function(){
+        document.getElementById('qrModalMask').classList.remove('show');
+    };
+
+    document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeQrModal();
+    });
+})();
 </script>
 
 </body>

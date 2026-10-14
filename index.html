@@ -80,10 +80,36 @@
         gap: 24px;
         font-size: 14px;
         color: var(--text-light);
+        align-items: center;
     }
 
     .topbar-info span {
         display: flex; align-items: center; gap: 6px;
+    }
+
+    .topbar-ysx-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        background: var(--wx-green);
+        color: #fff;
+        border-radius: 16px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1;
+        transition: background .18s ease, transform .18s ease;
+        white-space: nowrap;
+    }
+    .topbar-ysx-btn:hover {
+        background: var(--wx-green-dark);
+        transform: translateY(-1px);
+    }
+    .topbar-ysx-btn::after {
+        content: "↗";
+        font-size: 12px;
+        opacity: .85;
     }
 
     .chapter-tabs {
@@ -2794,6 +2820,7 @@
     <div class="topbar-title">课程课件 · 在线版</div>
     <div class="topbar-info">
         <span>课程编号：36810310</span>
+        <a class="topbar-ysx-btn" href="https://1906.usst.edu.cn/user/index#/" target="_blank" rel="noopener noreferrer">一网畅学</a>
     </div>
 </div>
 
