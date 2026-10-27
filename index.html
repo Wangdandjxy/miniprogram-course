@@ -236,6 +236,8 @@
     .code-block .ck { color: #8fd3a8; }
     .code-block .cs { color: #ecc48a; }
     .code-block .cp { color: #8fa3c0; }
+    .code-block .cc { color: #8a97a3; font-style: italic; }
+    .code-block .cv { color: #d9b3e0; }
 
     /* 代码块复制按钮 */
     .copy-code-btn {
@@ -1448,7 +1450,45 @@
         height: calc(100vh - 107px);
         position: relative;
         overflow: hidden;
+        transition: margin-left 0.28s ease;
     }
+
+    /* ---- 左侧目录折叠按钮 ---- */
+    .sidebar-toggle {
+        position: fixed;
+        left: 232px;
+        top: 118px;
+        width: 34px; height: 34px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: none;
+        border-radius: 0 10px 10px 0;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+        cursor: pointer;
+        z-index: 95;
+        color: var(--text-sub);
+        transition: left 0.28s ease, background 0.2s ease, color 0.2s ease;
+        user-select: none;
+    }
+    .chapter-panel.active .sidebar-toggle { display: flex; }
+    .sidebar-toggle:hover { background: var(--wx-green-light); color: var(--wx-green); }
+    .sidebar-toggle svg { width: 16px; height: 16px; }
+
+    /* 章节面板被折叠时的布局：sidebar 移出屏，slides 全宽 */
+    .chapter-panel.collapsed .sidebar {
+        transform: translateX(-100%);
+    }
+    .chapter-panel.collapsed .slides-wrap {
+        margin-left: 0;
+    }
+    .chapter-panel.collapsed .sidebar-toggle {
+        left: 0;
+    }
+    /* 侧边栏与主区做平滑过渡 */
+    .sidebar { transition: transform 0.28s ease; }
 
     .slide {
         position: absolute;
@@ -4048,6 +4088,9 @@
 <div class="progress-bar" id="progressBar" style="width: 5%"></div>
 
 <div class="chapter-panel active" id="chapter-panel-1">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</div>
 
 <div class="sidebar" id="sidebar">
     <div class="sidebar-section">
@@ -5244,6 +5287,9 @@
 </div><!-- /chapter-panel-1 -->
 
 <div class="chapter-panel" id="chapter-panel-2">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -5746,6 +5792,7 @@
 </div><!-- /chapter-panel-2 -->
 
 <div class="chapter-panel" id="chapter-panel-3">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -6092,6 +6139,7 @@
 
 <!-- ============ 第四章 页面布局设计 ============ -->
 <div class="chapter-panel" id="chapter-panel-4">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -7446,6 +7494,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <!-- ============ 第五章 常用组件介绍 ============ -->
 <div class="chapter-panel" id="chapter-panel-5">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -7453,23 +7502,23 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
         <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
         <div class="nav-item" data-slide="2"><span class="nav-num">2</span>组件导览</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>组件地图</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">真实场景交互</div>
-        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>🏠 首页/详情页类</div>
-        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>📋 表单/设置类</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>🏠 首页/详情页类</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>📋 表单/设置类</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">视图容器 · 媒体</div>
-        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>组件地图</div>
         <div class="nav-item" data-slide="6"><span class="nav-num">6</span>图片格式对比</div>
         <div class="nav-item" data-slide="7"><span class="nav-num">7</span>image 组件</div>
         <div class="nav-item" data-slide="8"><span class="nav-num">8</span>图库推荐</div>
         <div class="nav-item" data-slide="9"><span class="nav-num">9</span>Swiper 轮播</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>Swiper 完整代码</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">基础表单组件</div>
-        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>案例总览</div>
         <div class="nav-item" data-slide="11"><span class="nav-num">11</span>输入类 input</div>
         <div class="nav-item" data-slide="12"><span class="nav-num">12</span>选择类组件</div>
         <div class="nav-item" data-slide="13"><span class="nav-num">13</span>picker 概览</div>
@@ -7554,7 +7603,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">🖼️</div>
                     <h3 style="margin:6px 0;">image</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">商品图 · 九宫格 · 头像<br>第 3 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">商品图 · 九宫格 · 头像<br>第 4 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">🎠</div>
@@ -7569,27 +7618,27 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">📝</div>
                     <h3 style="margin:6px 0;">textarea</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">评价 · 反馈 · 退款说明<br>第 6 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">评价 · 反馈 · 退款说明<br>第 5 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">☑️</div>
                     <h3 style="margin:6px 0;">checkbox / radio</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">乘车人 · 支付方式<br>第 7 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">乘车人 · 支付方式<br>第 5 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">🎛️</div>
                     <h3 style="margin:6px 0;">picker</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">日期 · 时间 · 省市区<br>第 8 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">日期 · 时间 · 省市区<br>第 5 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">🔘</div>
                     <h3 style="margin:6px 0;">button</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">立即购买 · 提交 · 结算<br>第 9 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">立即购买 · 提交 · 结算<br>第 5 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;">
                     <div class="feature-icon" style="font-size:28px;">🔗</div>
                     <h3 style="margin:6px 0;">navigator</h3>
-                    <p style="font-size:13px;color:var(--text-sub);margin:0;">点击跳转详情页<br>第 10 页 →</p>
+                    <p style="font-size:13px;color:var(--text-sub);margin:0;">点击跳转详情页<br>第 4 页 →</p>
                 </div>
                 <div class="feature-card" style="padding:14px;background:linear-gradient(135deg,#fff7e6,#fff);border:2px solid #faad14;">
                     <div class="feature-icon" style="font-size:28px;">💡</div>
@@ -7600,11 +7649,50 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-
-    <!-- 5-3. 真实场景 · 首页/详情页类 -->
+    <!-- 5-3. 组件地图 -->
     <div class="slide" data-index="3">
         <div class="slide-header">
             <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">小程序组件地图</div>
+                <div class="slide-subtitle">分类速览 · 本章覆盖范围</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>视图容器 · 媒体</h3>
+                    <p><strong>view / image / Swiper</strong><br>text、scroll-view 自学拓展</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>基础表单</h3>
+                    <p><strong>input / checkbox / radio</strong><br>picker / button / navigator</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔁</div>
+                    <h3>选择类</h3>
+                    <p><strong>checkbox-group / radio-group</strong><br>picker 五种 mode</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>跳转与导航</h3>
+                    <p><strong>navigator</strong> 5 种 open-type<br>navigate / redirect / switchTab</p>
+                </div>
+            </div>
+            <div class="interact-box">
+                <div class="interact-title">🎯 本章重点</div>
+                <p>✅ 组件<strong>精准编写</strong> · 组件<strong>自学能力</strong> · 深刻理解<strong>前端代码框架</strong></p>
+                <p>✅ 掌握<strong>样式引用、数据绑定、事件绑定</strong>概念与方法</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5-4. 真实场景 · 首页/详情页类 -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
             <div>
                 <div class="slide-title">🏠 首页 / 详情页类 · 涉及 image · Swiper · navigator</div>
                 <div class="slide-subtitle">点击卡片弹窗查看真实小程序界面 · 观察组件使用效果</div>
@@ -7702,10 +7790,10 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         <div class="scenario-hint">💡 <strong>本页组件重点</strong>：<code>image</code>（商品图/封面/头像）、<code>swiper</code>（Banner 轮播）、<code>navigator</code>（点击卡片进入详情页）</div>
     </div>
 
-    <!-- 5-4. 真实场景 · 表单/设置类 -->
-    <div class="slide" data-index="4">
+    <!-- 5-5. 真实场景 · 表单/设置类 -->
+    <div class="slide" data-index="5">
         <div class="slide-header">
-            <div class="slide-num">4</div>
+            <div class="slide-num">5</div>
             <div>
                 <div class="slide-title">📋 表单 / 设置类 · 涉及 input · textarea · checkbox · radio · picker · button</div>
                 <div class="slide-subtitle">点击卡片弹窗查看真实小程序界面 · 观察组件使用效果</div>
@@ -7805,46 +7893,6 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         <div class="scenario-hint">💡 <strong>本页组件重点</strong>：<code>input</code>（单行文本）、<code>textarea</code>（多行文本）、<code>checkbox/radio</code>（选择）、<code>picker</code>（选择器）、<code>button</code>（提交/确认）</div>
     </div>
 
-    <!-- 5-5. 组件地图 -->
-    <div class="slide" data-index="5">
-        <div class="slide-header">
-            <div class="slide-num">5</div>
-            <div>
-                <div class="slide-title">小程序组件地图</div>
-                <div class="slide-subtitle">分类速览 · 本章覆盖范围</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
-                <div class="feature-card">
-                    <div class="feature-icon">🖼️</div>
-                    <h3>视图容器 · 媒体</h3>
-                    <p><strong>view / image / Swiper</strong><br>text、scroll-view 自学拓展</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⌨️</div>
-                    <h3>基础表单</h3>
-                    <p><strong>input / checkbox / radio</strong><br>picker / button / navigator</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔁</div>
-                    <h3>选择类</h3>
-                    <p><strong>checkbox-group / radio-group</strong><br>picker 五种 mode</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔗</div>
-                    <h3>跳转与导航</h3>
-                    <p><strong>navigator</strong> 5 种 open-type<br>navigate / redirect / switchTab</p>
-                </div>
-            </div>
-            <div class="interact-box">
-                <div class="interact-title">🎯 本章重点</div>
-                <p>✅ 组件<strong>精准编写</strong> · 组件<strong>自学能力</strong> · 深刻理解<strong>前端代码框架</strong></p>
-                <p>✅ 掌握<strong>样式引用、数据绑定、事件绑定</strong>概念与方法</p>
-            </div>
-        </div>
-    </div>
-
     <!-- 5-6. 图片格式对比 -->
     <div class="slide" data-index="6">
         <div class="slide-header">
@@ -7902,39 +7950,36 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="slide-subtitle">5.1 常用属性与裁剪模式</div>
             </div>
         </div>
-        <div class="two-col">
-            <div class="col-card">
-                <h3>基础用法</h3>
-                <div class="code-block">
-<span class="cs">&lt;image</span> <span class="ck">src</span>=<span class="cp">"{{item.img}}"</span>
-        <span class="ck">mode</span>=<span class="cp">"widthFix"</span>
-        <span class="ck">style</span>=<span class="cp">"width:100%;"</span> <span class="cs">/&gt;</span>
-                </div>
-                <div class="code-block" style="margin-top:12px;">
-<span class="cs">// 远程图</span>
-<span class="ck">src</span>=<span class="cp">"https://cdn.xxx.com/a.jpg"</span>
-<span class="cs">// 本地图</span>
-<span class="ck">src</span>=<span class="cp">"/images/a.png"</span>
-                </div>
-            </div>
-            <div class="col-card">
-                <h3>常用属性</h3>
-                <table class="doc-table">
+        <h3 style="margin:0 0 12px;font-size:20px;">📄 基础用法</h3>
+        <div style="margin-bottom:20px;">
+            <div class="code-block" style="white-space:nowrap;overflow-x:auto;font-size:22px;padding:22px 24px;line-height:1.6;"><span class="cs">&lt;image</span> <span class="ck">src</span>=<span class="cp">"/images/a.png"</span> <span class="ck">mode</span>=<span class="cp">"widthFix"</span> <span class="ck">style</span>=<span class="cp">"width:100%;"</span> <span class="cs">/&gt;</span></div>
+        </div>
+        <div class="two-col" style="gap:20px;">
+            <div>
+                <h3 style="margin:0 0 12px;font-size:20px;">📋 常用属性</h3>
+                <table class="doc-table" style="font-size:15px;">
+                    <colgroup><col style="width:36%"><col style="width:20%"><col style="width:44%"></colgroup>
                     <tr><th>属性</th><th>类型</th><th>说明</th></tr>
                     <tr><td class="prop">src</td><td class="type">String</td><td class="desc">图片路径（必填）</td></tr>
-                    <tr><td class="prop">mode</td><td class="type">String</td><td class="desc">裁剪模式，见右侧</td></tr>
-                    <tr><td class="prop">lazy-load</td><td class="type">Boolean</td><td class="desc">懒加载</td></tr>
-                    <tr><td class="prop">webp</td><td class="type">Boolean</td><td class="desc">是否使用 webp 格式</td></tr>
+                    <tr><td class="prop">mode</td><td class="type">String</td><td class="desc">裁剪模式，见下方</td></tr>
+                    <tr><td class="prop">show-menu-by-longpress</td><td class="type">Boolean</td><td class="desc">显示长按识别菜单</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin:0 0 12px;font-size:20px;">✂️ mode 裁剪模式</h3>
+                <table class="doc-table" style="font-size:15px;">
+                    <colgroup><col style="width:36%"><col style="width:64%"></colgroup>
+                    <tr><th>mode 值</th><th>效果</th></tr>
+                    <tr><td class="prop">scaleToFill</td><td class="desc">拉伸（可能变形）</td></tr>
+                    <tr><td class="prop">aspectFit</td><td class="desc">等比缩放、完整显示</td></tr>
+                    <tr><td class="prop">aspectFill</td><td class="desc">等比缩放、填满容器</td></tr>
+                    <tr><td class="prop">widthFix</td><td class="desc">宽固定、高自适应</td></tr>
                 </table>
             </div>
         </div>
-        <table class="doc-table" style="margin-top:16px;">
-            <tr><th>mode 值</th><th>效果</th></tr>
-            <tr><td class="prop">scaleToFill</td><td class="desc">拉伸（可能变形）</td></tr>
-            <tr><td class="prop">aspectFit</td><td class="desc">等比缩放、contain，完整显示</td></tr>
-            <tr><td class="prop">aspectFill</td><td class="desc">等比缩放、cover，填满容器</td></tr>
-            <tr><td class="prop">widthFix</td><td class="desc">宽度固定，高度自适应，常用于列表</td></tr>
-        </table>
+        <div style="margin-top:14px;text-align:right;">
+            <a class="doc-link" href="https://developers.weixin.qq.com/miniprogram/dev/component/image.html" target="_blank">官方文档 · image 组件完整配置</a>
+        </div>
     </div>
 
     <!-- 5-8. 图库推荐 -->
@@ -7973,8 +8018,11 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                         <h3 style="font-size:18px;">iconfont.cn</h3>
                         <p style="font-size:16px;color:var(--text-sub);">阿里开源图标库，海量矢量图标，可导出 SVG / PNG / CSS。</p>
                     </div>
-                    <div class="note-box" style="margin-top:12px;">
-                        📌 使用 <strong>SVG 图标</strong>体积最小，可通过 <code style="background:#e8e8e8;padding:2px 6px;border-radius:4px;">background-image</code> 引用。
+                    <div class="info-box" style="margin-top:12px;">
+                        <h3 style="font-size:18px;">
+                            Pexels <a class="doc-link" href="https://www.pexels.com/zh-cn/" target="_blank" style="font-size:14px;font-weight:normal;">pexels.com</a>
+                        </h3>
+                        <p style="font-size:16px;color:var(--text-sub);">免费高清图片与视频素材网站，无版权限制，适合小程序页面配图。</p>
                     </div>
                 </div>
             </div>
@@ -7990,94 +8038,118 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="slide-subtitle">5.2 只能放 swiper-item</div>
             </div>
         </div>
-        <div class="two-col">
-            <div class="col-card">
-                <h3>完整代码</h3>
-                <div class="code-block" style="font-size:15px;">
-<span class="cs">&lt;view&gt;</span>
-  <span class="cs">&lt;swiper</span>
-    <span class="ck">indicator-dots</span>=<span class="cp">"{{swiperdot}}"</span>
-    <span class="ck">autoplay</span>=<span class="cp">"true"</span><span class="cs">&gt;</span>
-    <span class="cs">&lt;view</span> <span class="ck">wx:for</span>=<span class="cp">"{{background}}"</span>
-          <span class="ck">wx:key</span>=<span class="cp">"*this"</span><span class="cs">&gt;</span>
-      <span class="cs">&lt;swiper-item&gt;</span>
-        <span class="cs">&lt;image</span> <span class="ck">src</span>=<span class="cp">"{{item}}"</span> <span class="cs">/&gt;</span>
-      <span class="cs">&lt;/swiper-item&gt;</span>
-    <span class="cs">&lt;/view&gt;</span>
-  <span class="cs">&lt;/swiper&gt;</span>
-<span class="cs">&lt;/view&gt;</span>
+        <div class="two-col" style="gap:28px;grid-template-columns:1fr 1.2fr;">
+            <div class="col-card" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px 16px 18px;">
+                <h3 style="font-size:18px;margin-bottom:14px;text-align:center;">📱 效果预览（真实轮播）</h3>
+                <!-- 真实轮播效果：3 张 CSS 渐变 slide 绝对定位，JS 控制 opacity 切换 -->
+                <div class="sw-outer" style="width:100%;max-width:440px;">
+                    <div id="swDemo" style="position:relative;width:100%;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.22);background:#000;">
+                        <div id="swSlide0" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:1;transition:opacity 0.5s ease;background:linear-gradient(135deg,#2a5298 0%,#7db9e8 60%,#c7e0f7 100%);">
+                            <div style="position:absolute;left:0;right:0;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:0.35;">🏔</div>
+                            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 100%);color:#fff;">
+                                <div style="font-size:18px;font-weight:700;">🏔 山水推荐</div>
+                                <div style="font-size:12px;opacity:0.9;">第 1 张 · 首页 Banner</div>
+                            </div>
+                        </div>
+                        <div id="swSlide1" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.5s ease;background:linear-gradient(135deg,#f7971e 0%,#ffd200 100%);">
+                            <div style="position:absolute;left:0;right:0;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:0.4;">☀️</div>
+                            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 100%);color:#fff;">
+                                <div style="font-size:18px;font-weight:700;">☀️ 春日特惠</div>
+                                <div style="font-size:12px;opacity:0.9;">第 2 张 · 活动推广</div>
+                            </div>
+                        </div>
+                        <div id="swSlide2" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.5s ease;background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%);">
+                            <div style="position:absolute;left:0;right:0;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:0.4;">🍃</div>
+                            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 100%);color:#fff;">
+                                <div style="font-size:18px;font-weight:700;">🍃 新品上线</div>
+                                <div style="font-size:12px;opacity:0.9;">第 3 张 · 循环播放</div>
+                            </div>
+                        </div>
+                        <!-- 指示点 -->
+                        <div id="swDots" style="position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:2;">
+                            <span id="swDot0" style="width:14px;height:4px;background:#fff;border-radius:2px;"></span>
+                            <span id="swDot1" style="width:6px;height:4px;background:rgba(255,255,255,0.5);border-radius:2px;transition:all 0.3s;"></span>
+                            <span id="swDot2" style="width:6px;height:4px;background:rgba(255,255,255,0.5);border-radius:2px;transition:all 0.3s;"></span>
+                        </div>
+                    </div>
+                    <p style="font-size:13px;color:var(--text-sub);margin:12px 0 0;text-align:center;">autoplay · circular · interval:4000 · duration:600</p>
                 </div>
-                <div class="note-box" style="margin-top:10px;">
-                    ⚠️ swiper 内<strong>只能放 swiper-item</strong>，否则会出现未定义行为。
+                <div class="interact-box" style="margin-top:12px;width:100%;">
+                    <div class="interact-title">💡 小提示</div>
+                    <p>autoplay + circular + interval 是<strong>首页 Banner</strong>标配；<br>搭配 <code>border-radius + overflow:hidden</code> 做出卡片圆角效果。</p>
+                </div>
+                <div style="margin-top:12px;text-align:center;">
+                    <a class="doc-link" href="https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html" target="_blank">官方文档 · Swiper 组件完整配置</a>
                 </div>
             </div>
             <div class="col-card">
-                <h3>Swiper 常用属性</h3>
-                <table class="doc-table">
+                <h3 style="font-size:18px;margin-bottom:12px;">📋 Swiper 常用属性</h3>
+                <table class="doc-table" style="font-size:14px;">
                     <tr><th>属性</th><th>类型</th><th>说明</th></tr>
                     <tr><td class="prop">indicator-dots</td><td class="type">Boolean</td><td class="desc">显示指示点</td></tr>
+                    <tr><td class="prop">indicator-color</td><td class="type">String</td><td class="desc">指示点颜色</td></tr>
                     <tr><td class="prop">autoplay</td><td class="type">Boolean</td><td class="desc">自动播放</td></tr>
                     <tr><td class="prop">interval</td><td class="type">Number</td><td class="desc">切换间隔(ms)</td></tr>
+                    <tr><td class="prop">duration</td><td class="type">Number</td><td class="desc">滑动动画时长</td></tr>
                     <tr><td class="prop">circular</td><td class="type">Boolean</td><td class="desc">循环播放</td></tr>
                     <tr><td class="prop">vertical</td><td class="type">Boolean</td><td class="desc">竖向滑动</td></tr>
                 </table>
-                <div class="interact-box" style="margin-top:14px;">
-                    <div class="interact-title">💡 小提示</div>
-                    <p>autoplay + circular 组合是<strong>首页 Banner</strong>标配。</p>
+                <div class="note-box" style="margin-top:12px;">
+                    ⚠️ swiper 内<strong>只能放 swiper-item</strong>，否则会出现未定义行为。
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 5-10. 基础表单案例总览 -->
+    <!-- 5-10. Swiper 完整代码 -->
     <div class="slide" data-index="10">
         <div class="slide-header">
             <div class="slide-num">10</div>
             <div>
-                <div class="slide-title">基础表单页面案例</div>
-                <div class="slide-subtitle">5.3 组件学习概览</div>
+                <div class="slide-title">Swiper 完整代码</div>
+                <div class="slide-subtitle">wxml + wxss + js 三文件联动</div>
             </div>
         </div>
-        <div class="content-grid">
-            <div class="info-box">
-                <h3>案例场景</h3>
-                <p>以<strong>用户信息表单</strong>为例，串联本章要学的核心组件：<strong>input、checkbox、picker、button、navigator</strong>——理解组件如何在真实页面中协作，是<strong>事件绑定</strong>的最佳练手场景。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Input</h3>
-                    <p>输入框</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📄</div>
-                    <h3>Textarea</h3>
-                    <p>多行输入（自学）</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔘</div>
-                    <h3>Switch</h3>
-                    <p>开关（自学）</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">☑️</div>
-                    <h3>Checkbox</h3>
-                    <p>多选项目</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔘</div>
-                    <h3>Radio</h3>
-                    <p>单选项目</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎛️</div>
-                    <h3>Picker</h3>
-                    <p>基础/时间/日期/省市区</p>
-                </div>
-            </div>
-            <div class="note-box">
-                📚 自学拓展组件（textarea / switch / scroll-view / text）可参考资料 3、5、6、7。
-            </div>
+        <div class="col-card" style="padding:20px 24px;">
+            <h3 style="font-size:17px;margin-bottom:8px;">① 模板文件 (.wxml)</h3>
+            <div class="code-block" style="font-size:14px;line-height:1.6;padding:14px 16px;margin-bottom:14px;"><span class="cc">&lt;!-- 模版文件 --&gt;</span>
+<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"banner-wrap"</span><span class="cs">&gt;</span>
+  <span class="cs">&lt;swiper</span> <span class="ck">class</span>=<span class="cp">"banner"</span>
+          <span class="ck">indicator-dots</span>=<span class="cp">"{{true}}"</span>
+          <span class="ck">indicator-color</span>=<span class="cp">"rgba(255,255,255,0.4)"</span> <span class="ck">indicator-active-color</span>=<span class="cp">"#ffffff"</span>
+          <span class="ck">autoplay</span>=<span class="cp">"{{true}}"</span>
+          <span class="ck">circular</span>=<span class="cp">"{{true}}"</span>
+          <span class="ck">interval</span>=<span class="cp">"4000"</span>
+          <span class="ck">duration</span>=<span class="cp">"600"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;swiper-item</span> <span class="ck">wx:for</span>=<span class="cp">"{{background}}"</span> <span class="ck">wx:key</span>=<span class="cp">"*this"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;image</span> <span class="ck">class</span>=<span class="cp">"banner-img"</span> <span class="ck">src</span>=<span class="cp">"{{item}}"</span> <span class="ck">mode</span>=<span class="cp">"aspectFill"</span> <span class="cs">/&gt;</span>
+    <span class="cs">&lt;/swiper-item&gt;</span>
+  <span class="cs">&lt;/swiper&gt;</span>
+<span class="cs">&lt;/view&gt;</span></div>
+
+            <h3 style="font-size:17px;margin-bottom:8px;">② 样式文件 (.wxss)</h3>
+            <div class="code-block" style="font-size:14px;line-height:1.6;padding:14px 16px;margin-bottom:14px;"><span class="cc">&lt;!-- 样式文件 --&gt;</span>
+<span class="cc">/* 轮播外层：留白 + 卡片感 */</span>
+<span class="ck">.banner-wrap</span> { <span class="ck">padding</span>: <span class="cv">24rpx 24rpx 8rpx</span>; }
+<span class="ck">.banner</span> {
+  <span class="ck">width</span>: <span class="cv">100%</span>;
+  <span class="ck">height</span>: <span class="cv">420rpx</span>;            <span class="cc">/* 约 16:9，风景图比例合适 */</span>
+  <span class="ck">border-radius</span>: <span class="cv">24rpx</span>;
+  <span class="ck">overflow</span>: <span class="cv">hidden</span>;            <span class="cc">/* 让圆角裁切图片 */</span>
+  <span class="ck">box-shadow</span>: <span class="cv">0 12rpx 32rpx rgba(0, 0, 0, 0.12)</span>;
+}
+<span class="ck">.banner-img</span> { <span class="ck">width</span>: <span class="cv">100%</span>; <span class="ck">height</span>: <span class="cv">100%</span>; <span class="ck">display</span>: <span class="cv">block</span>; }</div>
+
+            <h3 style="font-size:17px;margin-bottom:8px;">③ 逻辑文件 (.js)</h3>
+            <div class="code-block" style="font-size:14px;line-height:1.6;padding:14px 16px;"><span class="cc">&lt;!-- 逻辑文件 --&gt;</span>
+<span class="ck">data</span>: {
+    <span class="ck">swiperdot</span>: <span class="cp">true</span>,
+    <span class="ck">background</span>: [
+        <span class="cv">'图片相对路径'</span>,
+        <span class="cv">'图片相对路径'</span>,
+        <span class="cv">'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200'</span>
+    ]
+},</div>
         </div>
     </div>
 
@@ -8523,6 +8595,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <!-- ============ 第六章 · AI 大语言模型与应用 ============ -->
 <div class="chapter-panel" id="chapter-panel-6">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -9086,6 +9159,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <!-- ============ 第七章 · AI 从 LLM 到 Agent ============ -->
 <div class="chapter-panel" id="chapter-panel-7">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -9434,6 +9508,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <!-- ============ 第八章 · 页面交互 ============ -->
 <div class="chapter-panel" id="chapter-panel-8">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -9923,6 +9998,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <!-- ============ 第九章 · 后台管理与云开发 ============ -->
 <div class="chapter-panel" id="chapter-panel-9">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
     <div class="sidebar-section">
@@ -10321,30 +10397,23 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 <div class="modal-overlay" id="sc1Modal" onclick="closeScenarioModal(event,'sc1Modal')">
   <div class="modal-content scenario-modal">
     <span class="modal-close" onclick="closeScenarioModalById('sc1Modal')">&times;</span>
-    <div class="modal-title">🛒 淘宝 · 商品首页</div>
+    <div class="modal-title">🛒 淘宝 · 商品首页 · 真实界面</div>
     <div class="modal-desc">典型首页：轮播 Banner + 分类图标 + 商品瀑布流</div>
     <div class="modal-phone">
       <div class="phone-status"><span>9:41</span><span>📶 📡 🔋</span></div>
-      <div class="phone-navbar"><span class="back">‹</span><span class="title">淘宝 · 首页</span><span>⋯</span></div>
-      <div class="phone-content">
-        <div class="p-search">蓝牙耳机</div>
-        <div style="background:linear-gradient(135deg,#ff4e00,#ff8a3d);border-radius:8px;height:70px;margin:6px 0;position:relative;overflow:hidden;">
-          <div style="position:absolute;left:12px;top:12px;color:#fff;font-size:13px;font-weight:700;">618 大促<br><span style="font-size:9px;font-weight:400;">全场满减 · 限时抢购</span></div>
-          <div class="p-dots" style="position:absolute;bottom:6px;left:0;right:0;display:flex;justify-content:center;gap:3px;"><span style="width:14px;height:3px;border-radius:2px;background:#fff;"></span><span style="width:3px;height:3px;border-radius:2px;background:rgba(255,255,255,.5);"></span><span style="width:3px;height:3px;border-radius:2px;background:rgba(255,255,255,.5);"></span></div>
-        </div>
-        <div class="p-grid-2">
-          <div class="p-card"><div class="p-img"></div><div class="p-info"><div class="p-title">索尼 XM5</div><div class="p-price">2399</div></div></div>
-          <div class="p-card"><div class="p-img g2"></div><div class="p-info"><div class="p-title">AirPods Pro</div><div class="p-price">1899</div></div></div>
-          <div class="p-card"><div class="p-img g3"></div><div class="p-info"><div class="p-title">JBL 降噪</div><div class="p-price">1299</div></div></div>
-          <div class="p-card"><div class="p-img g4"></div><div class="p-info"><div class="p-title">华为 FreeBuds</div><div class="p-price">999</div></div></div>
-        </div>
+      <div class="phone-navbar"><span class="back">‹</span><span class="title">服饰推荐</span><span>⋯</span></div>
+      <div class="phone-content" style="position:relative;background:#fff;">
+        <img src="assets/minihome_demo.png" alt="小程序商品首页截图" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;top:74px;right:-8px;background:#2563eb;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🎠 Swiper · Banner</div>
+        <div style="position:absolute;top:180px;left:-10px;background:#3b82f6;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🖼 image · 商品图</div>
+        <div style="position:absolute;bottom:14px;right:-8px;background:#f97316;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🔗 navigator</div>
       </div>
     </div>
     <div class="modal-callout">
       <div class="callout-title">🎯 页面组件构成</div>
-      🖼 <code>image</code> · 商品图/分类图标（mode="aspectFill" 保持比例）<br>
-      🎠 <code>swiper</code> · 顶部 Banner 轮播（autoplay + indicator-dots）<br>
-      🔗 <code>navigator</code> · 点击商品进入详情页（url="/pages/detail/detail?id=1"）
+      🖼 <code>image</code> · 商品图/封面（mode="aspectFill" 保持比例）<br>
+      🎠 <code>swiper</code> · 顶部 Banner 轮播（autoplay + indicator-dots + circular）<br>
+      🔗 <code>navigator</code> · 点击卡片进入详情页（url="/pages/detail/detail?id=1"）
     </div>
   </div>
 </div>
@@ -10576,48 +10645,28 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 <div class="modal-overlay" id="sc7Modal" onclick="closeScenarioModal(event,'sc7Modal')">
   <div class="modal-content scenario-modal">
     <span class="modal-close" onclick="closeScenarioModalById('sc7Modal')">&times;</span>
-    <div class="modal-title">🚄 12306 · 购票表单</div>
-    <div class="modal-desc">日期选择 + 出发/到达站 + 乘车人</div>
+    <div class="modal-title">🚄 12306 · 购票表单 · 真实界面</div>
+    <div class="modal-desc">表单典型页：头像 + 输入框 + 多行文本 + 选择器 + 开关 + 提交按钮</div>
     <div class="modal-phone">
       <div class="phone-status"><span>9:41</span><span>📶 📡 🔋</span></div>
-      <div class="phone-navbar"><span class="back">‹</span><span class="title">购票</span></div>
-      <div class="phone-content">
-        <div class="p-form-row" style="padding:10px;background:#fff;margin:6px 0;border-radius:6px;">
-          <span style="color:#999;">出发</span><span style="margin-left:auto;color:#07c160;font-weight:600;">北京南</span>
-          <span style="color:#999;margin:0 4px;">→</span><span style="color:#07c160;font-weight:600;">上海虹桥</span>
-        </div>
-        <div class="p-form-row" style="padding:10px;background:#fff;margin:6px 0;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="color:#999;">出发日期</span>
-          <span style="color:#333;font-weight:600;">2026-09-14 >
-            <span style="font-size:8px;color:#07c160;">📅</span>
-          </span>
-        </div>
-        <div style="background:#fff;padding:10px;margin:6px 0;border-radius:6px;">
-          <div style="font-size:10px;color:#999;margin-bottom:6px;">乘车人</div>
-          <div style="display:flex;align-items:center;padding:4px 0;">
-            <div class="p-checkbox checked"></div>
-            <span style="margin-left:6px;font-size:11px;">王丹</span>
-            <span style="margin-left:auto;font-size:9px;color:#999;">1101**********1234</span>
-          </div>
-          <div style="display:flex;align-items:center;padding:4px 0;">
-            <div class="p-checkbox checked"></div>
-            <span style="margin-left:6px;font-size:11px;">小明</span>
-            <span style="margin-left:auto;font-size:9px;color:#999;">1101**********5678</span>
-          </div>
-          <div style="display:flex;align-items:center;padding:4px 0;">
-            <div class="p-checkbox"></div>
-            <span style="margin-left:6px;font-size:11px;">李四</span>
-          </div>
-        </div>
-        <div style="margin-top:6px;padding:8px;background:#1e90ff;border-radius:6px;color:#fff;text-align:center;font-weight:700;font-size:11px;">查询车票</div>
+      <div class="phone-navbar"><span class="back">‹</span><span class="title">个人信息与设置</span><span>⋯</span></div>
+      <div class="phone-content" style="position:relative;background:#fff;">
+        <img src="assets/miniform_demo.png" alt="小程序表单截图" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;top:70px;right:-10px;background:#10b981;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🖼 image · avatar</div>
+        <div style="position:absolute;top:118px;left:-10px;background:#3b82f6;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">⌨ input</div>
+        <div style="position:absolute;top:170px;left:-10px;background:#6366f1;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">📝 textarea</div>
+        <div style="position:absolute;top:250px;right:-10px;background:#8b5cf6;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🎛 picker</div>
+        <div style="position:absolute;top:290px;right:-10px;background:#f97316;color:#fff;font-size:11px;padding:4px 8px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🔘 switch</div>
+        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#ef4444;color:#fff;font-size:11px;padding:4px 10px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;z-index:2;">🔘 button · primary</div>
       </div>
     </div>
     <div class="modal-callout">
       <div class="callout-title">🎯 页面组件构成</div>
-      🎛 <code>picker mode="date"</code> · 出发日期选择<br>
-      ⌨ <code>input</code> · 出发/到达站（type="text"）<br>
-      ☑ <code>checkbox-group</code> · 勾选乘车人（多选）<br>
-      🔘 <code>button</code> · 查询按钮（type="primary"）
+      ⌨ <code>input</code> · 单行输入（value + placeholder + bindinput）<br>
+      📝 <code>textarea</code> · 多行文本（auto-height + placeholder-class）<br>
+      🎛 <code>picker</code> · 选择器（mode="selector" / "region"）<br>
+      🔘 <code>switch</code> · 开关（checked + bindchange）<br>
+      🔘 <code>button</code> · 主按钮（type="primary" + form-type="submit"）
     </div>
   </div>
 </div>
@@ -10897,6 +10946,12 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 <script>
     const progressBar = document.getElementById('progressBar');
     let activeChapter = 1;
+
+    // 折叠 / 展开左侧目录
+    function toggleSidebar(btn) {
+        const panel = btn.closest('.chapter-panel');
+        if (panel) panel.classList.toggle('collapsed');
+    }
 
     // 每个章节面板独立维护当前页码
     document.querySelectorAll('.chapter-panel').forEach(panel => {
@@ -11297,6 +11352,35 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
     window.closeQrModal = function(){
         document.getElementById('qrModalMask').classList.remove('show');
     };
+
+    // 第 5-9 页 Swiper 效果预览自动播放（autoplay + circular，间隔 4s）
+    (function(){
+        var s0 = document.getElementById('swSlide0');
+        var s1 = document.getElementById('swSlide1');
+        var s2 = document.getElementById('swSlide2');
+        var d0 = document.getElementById('swDot0');
+        var d1 = document.getElementById('swDot1');
+        var d2 = document.getElementById('swDot2');
+        if (!s0 || !s1 || !s2) return;
+        var slides = [s0, s1, s2];
+        var dots   = [d0, d1, d2];
+        var idx = 0;
+        var total = 3;
+        setInterval(function(){
+            slides[idx].style.opacity = '0';
+            idx = (idx + 1) % total;
+            slides[idx].style.opacity = '1';
+            for (var i = 0; i < total; i++) {
+                if (i === idx) {
+                    dots[i].style.width = '14px';
+                    dots[i].style.background = '#fff';
+                } else {
+                    dots[i].style.width = '6px';
+                    dots[i].style.background = 'rgba(255,255,255,0.5)';
+                }
+            }
+        }, 4000);
+    })();
 
     document.addEventListener('keydown', function(e){
         if (e.key === 'Escape') closeQrModal();
