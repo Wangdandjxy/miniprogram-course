@@ -7523,8 +7523,8 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         <div class="nav-item" data-slide="12"><span class="nav-num">12</span>input 示例代码</div>
         <div class="nav-item" data-slide="13"><span class="nav-num">13</span>textarea 多行输入</div>
         <div class="nav-item" data-slide="14"><span class="nav-num">14</span>选择类组件</div>
-        <div class="nav-item" data-slide="15"><span class="nav-num">15</span>多选单选示例代码</div>
-        <div class="nav-item" data-slide="16"><span class="nav-num">16</span>picker 概览</div>
+        <div class="nav-item" data-slide="15"><span class="nav-num">15</span>picker 概览</div>
+        <div class="nav-item" data-slide="16"><span class="nav-num">16</span>多选单选示例代码</div>
         <div class="nav-item" data-slide="17"><span class="nav-num">17</span>picker 五种模式</div>
     </div>
     <div class="sidebar-section">
@@ -8422,105 +8422,10 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 5-15. 多选单选示例代码 -->
+    <!-- 5-15. picker 概览 -->
     <div class="slide" data-index="15">
         <div class="slide-header">
             <div class="slide-num">15</div>
-            <div>
-                <div class="slide-title">多选单选组件示例代码</div>
-                <div class="slide-subtitle">5.5 checkbox / radio 完整示例</div>
-            </div>
-        </div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:16px;min-height:0;overflow-y:auto;">
-            <div class="col-card">
-                <h3>① 模板文件 (.wxml)</h3>
-                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
-<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"page"</span><span class="cs">&gt;</span>
-
-<span class="cc">&lt;!-- Checkbox --&gt;</span>
-<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"title"</span><span class="cs">&gt;</span>爱好（checkbox）<span class="cs">&lt;/view&gt;</span>
-<span class="cs">&lt;checkbox-group</span> <span class="ck">class</span>=<span class="cp">"group"</span><span class="cs">&gt;</span>
-  <span class="cs">&lt;label</span> <span class="ck">class</span>=<span class="cp">"item"</span> <span class="ck">wx:for</span>=<span class="cp">"{{hobbies}}"</span> <span class="ck">wx:key</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>
-    <span class="cs">&lt;checkbox</span> <span class="ck">value</span>=<span class="cp">"{{item.value}}"</span><span class="cs">/&gt;</span>
-    <span class="cs">&lt;text&gt;</span>{{item.label}}<span class="cs">&lt;/text&gt;</span>
-  <span class="cs">&lt;/label&gt;</span>
-<span class="cs">&lt;/checkbox-group&gt;</span>
-
-<span class="cc">&lt;!-- Radio --&gt;</span>
-<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"title"</span><span class="cs">&gt;</span>性别（radio）<span class="cs">&lt;/view&gt;</span>
-<span class="cs">&lt;radio-group</span> <span class="ck">class</span>=<span class="cp">"group"</span><span class="cs">&gt;</span>
-  <span class="cs">&lt;label</span> <span class="ck">class</span>=<span class="cp">"item"</span> <span class="ck">wx:for</span>=<span class="cp">"{{genders}}"</span> <span class="ck">wx:key</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>
-    <span class="cs">&lt;radio</span> <span class="ck">value</span>=<span class="cp">"{{item.value}}"</span> <span class="cs">/&gt;</span>
-    <span class="cs">&lt;text&gt;</span>{{item.label}}<span class="cs">&lt;/text&gt;</span>
-  <span class="cs">&lt;/label&gt;</span>
-<span class="cs">&lt;/radio-group&gt;</span>
-
-<span class="cs">&lt;/view&gt;</span>
-                </div>
-            </div>
-            <div class="col-card">
-                <h3>② 脚本文件 (.js)</h3>
-                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
-<span class="cc">// data 数据</span>
-<span class="ck">data</span>: {
-  <span class="ck">hobbies</span>: [
-    { <span class="ck">value</span>: <span class="cp">'read'</span>,  <span class="ck">label</span>: <span class="cp">'阅读'</span> },
-    { <span class="ck">value</span>: <span class="cp">'music'</span>, <span class="ck">label</span>: <span class="cp">'音乐'</span> },
-    { <span class="ck">value</span>: <span class="cp">'sport'</span>, <span class="ck">label</span>: <span class="cp">'运动'</span> }
-  ],
-  <span class="ck">genders</span>: [
-    { <span class="ck">value</span>: <span class="cp">'male'</span>,   <span class="ck">label</span>: <span class="cp">'男'</span> },
-    { <span class="ck">value</span>: <span class="cp">'female'</span>, <span class="ck">label</span>: <span class="cp">'女'</span> }
-  ]
-},
-                </div>
-                <div class="info-box" style="margin-top:14px;padding:16px 20px;">
-                    <p style="font-size:16px;color:var(--text-sub);line-height:1.7;">
-                        💡 <strong>checkbox-group</strong> 多选、<strong>radio-group</strong> 单选（选项互斥）；<strong>wx:for</strong> 配合 <strong>wx:key</strong> 遍历渲染数据列表。
-                    </p>
-                </div>
-            </div>
-            <div class="col-card">
-                <h3>③ 样式文件 (.wxss)</h3>
-                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
-<span class="cs">.page</span> {
-  <span class="ck">padding</span>: <span class="cv">30rpx</span>;
-}
-
-<span class="cs">.title</span> {
-  <span class="ck">margin</span>: <span class="cv">30rpx</span> <span class="cv">0</span> <span class="cv">20rpx</span>;
-  <span class="ck">font-size</span>: <span class="cv">30rpx</span>;
-  <span class="ck">font-weight</span>: <span class="cv">600</span>;
-}
-
-<span class="cs">.group</span> {
-  <span class="ck">display</span>: <span class="cv">flex</span>;
-  <span class="ck">flex-wrap</span>: <span class="cv">wrap</span>;
-}
-
-<span class="cs">.item</span> {
-  <span class="ck">display</span>: <span class="cv">flex</span>;
-  <span class="ck">align-items</span>: <span class="cv">center</span>;
-  <span class="ck">margin</span>: <span class="cv">0</span> <span class="cv">20rpx</span> <span class="cv">20rpx</span> <span class="cv">0</span>;
-  <span class="ck">padding</span>: <span class="cv">12rpx</span> <span class="cv">24rpx</span>;
-  <span class="ck">background</span>: <span class="cv">#fff</span>;
-  <span class="ck">border-radius</span>: <span class="cv">12rpx</span>;
-}
-
-<span class="cs">.item text</span> {
-  <span class="ck">margin-left</span>: <span class="cv">8rpx</span>;
-  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
-  <span class="ck">color</span>: <span class="cv">#333</span>;
-}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5-16. picker 概览 -->
-    <div class="slide" data-index="16">
-        <div class="slide-header">
-            <div class="slide-num">16</div>
             <div>
                 <div class="slide-title">picker 选择器概览</div>
                 <div class="slide-subtitle">5.6 从底部弹起的滚动选择器</div>
@@ -8564,6 +8469,251 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
             </div>
             <div class="note-box">
                 📌 所有 picker 都会<strong>从屏幕底部弹起</strong>，通过 <strong>bindchange</strong> 获取用户选择结果。
+            </div>
+        </div>
+    </div>
+
+    <!-- 5-16. 多选单选示例代码 -->
+    <div class="slide" data-index="16">
+        <div class="slide-header">
+            <div class="slide-num">16</div>
+            <div>
+                <div class="slide-title">多选单选组件示例代码</div>
+                <div class="slide-subtitle">5.6 checkbox / radio / picker 完整示例</div>
+            </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px;min-height:0;overflow-y:auto;">
+            <div class="col-card">
+                <h3>① 模板文件 (.wxml)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"page"</span><span class="cs">&gt;</span>
+
+  <span class="cc">&lt;!-- Checkbox --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"title"</span><span class="cs">&gt;</span>爱好（checkbox）<span class="cs">&lt;/view&gt;</span>
+  <span class="cs">&lt;checkbox-group</span> <span class="ck">class</span>=<span class="cp">"group"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;label</span> <span class="ck">class</span>=<span class="cp">"item"</span> <span class="ck">wx:for</span>=<span class="cp">"{{hobbies}}"</span> <span class="ck">wx:key</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;checkbox</span> <span class="ck">value</span>=<span class="cp">"{{item.value}}"</span> <span class="ck">color</span>=<span class="cp">"#2f7cf6"</span> <span class="cs">/&gt;</span>
+      <span class="cs">&lt;text&gt;</span>{{item.label}}<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;/label&gt;</span>
+  <span class="cs">&lt;/checkbox-group&gt;</span>
+
+  <span class="cc">&lt;!-- Radio --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"title"</span><span class="cs">&gt;</span>性别（radio）<span class="cs">&lt;/view&gt;</span>
+  <span class="cs">&lt;radio-group</span> <span class="ck">class</span>=<span class="cp">"group"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;label</span> <span class="ck">class</span>=<span class="cp">"item"</span> <span class="ck">wx:for</span>=<span class="cp">"{{genders}}"</span> <span class="ck">wx:key</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;radio</span> <span class="ck">value</span>=<span class="cp">"{{item.value}}"</span> <span class="ck">color</span>=<span class="cp">"#2f7cf6"</span> <span class="cs">/&gt;</span>
+      <span class="cs">&lt;text&gt;</span>{{item.label}}<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;/label&gt;</span>
+  <span class="cs">&lt;/radio-group&gt;</span>
+
+  <span class="cc">&lt;!-- Picker --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"title"</span><span class="cs">&gt;</span>选择器（picker）<span class="cs">&lt;/view&gt;</span>
+
+  <span class="cc">&lt;!-- selector --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"row"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>selector<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;picker</span> <span class="ck">class</span>=<span class="cp">"picker"</span> <span class="ck">mode</span>=<span class="cp">"selector"</span> <span class="ck">range</span>=<span class="cp">"{{cityList}}"</span> <span class="ck">value</span>=<span class="cp">"{{cityIndex}}"</span> <span class="ck">bindchange</span>=<span class="cp">"onCityChange"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>{{cityList[cityIndex]}}<span class="cs">&lt;/view&gt;</span>
+    <span class="cs">&lt;/picker&gt;</span>
+  <span class="cs">&lt;/view&gt;</span>
+
+  <span class="cc">&lt;!-- multiSelector --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"row"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>multi<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;picker</span> <span class="ck">class</span>=<span class="cp">"picker"</span> <span class="ck">mode</span>=<span class="cp">"multiSelector"</span> <span class="ck">range</span>=<span class="cp">"{{multiList}}"</span> <span class="ck">value</span>=<span class="cp">"{{multiIndex}}"</span> <span class="ck">bindchange</span>=<span class="cp">"onMultiChange"</span> <span class="ck">bindcolumnchange</span>=<span class="cp">"onColumnChange"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>{{multiList[0][multiIndex[0]]}} / {{multiList[1][multiIndex[1]]}}<span class="cs">&lt;/view&gt;</span>
+    <span class="cs">&lt;/picker&gt;</span>
+  <span class="cs">&lt;/view&gt;</span>
+
+  <span class="cc">&lt;!-- time --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"row"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>time<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;picker</span> <span class="ck">class</span>=<span class="cp">"picker"</span> <span class="ck">mode</span>=<span class="cp">"time"</span> <span class="ck">value</span>=<span class="cp">"{{time}}"</span> <span class="ck">bindchange</span>=<span class="cp">"onTimeChange"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>{{time}}<span class="cs">&lt;/view&gt;</span>
+    <span class="cs">&lt;/picker&gt;</span>
+  <span class="cs">&lt;/view&gt;</span>
+
+  <span class="cc">&lt;!-- date --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"row"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>date<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;picker</span> <span class="ck">class</span>=<span class="cp">"picker"</span> <span class="ck">mode</span>=<span class="cp">"date"</span> <span class="ck">value</span>=<span class="cp">"{{date}}"</span> <span class="ck">start</span>=<span class="cp">"2020-01-01"</span> <span class="ck">end</span>=<span class="cp">"2030-12-31"</span> <span class="ck">bindchange</span>=<span class="cp">"onDateChange"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>{{date}}<span class="cs">&lt;/view&gt;</span>
+    <span class="cs">&lt;/picker&gt;</span>
+  <span class="cs">&lt;/view&gt;</span>
+
+  <span class="cc">&lt;!-- region --&gt;</span>
+  <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"row"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>region<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;picker</span> <span class="ck">class</span>=<span class="cp">"picker"</span> <span class="ck">mode</span>=<span class="cp">"region"</span> <span class="ck">value</span>=<span class="cp">"{{region}}"</span> <span class="ck">bindchange</span>=<span class="cp">"onRegionChange"</span><span class="cs">&gt;</span>
+      <span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>{{region[0]}} {{region[1]}} {{region[2]}}<span class="cs">&lt;/view&gt;</span>
+    <span class="cs">&lt;/picker&gt;</span>
+  <span class="cs">&lt;/view&gt;</span>
+
+<span class="cs">&lt;/view&gt;</span>
+                </div>
+            </div>
+            <div class="col-card">
+                <h3>② 脚本文件 (.js)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="cc">/**
+ * 页面的初始数据
+ */</span>
+<span class="ck">data</span>: {
+  <span class="cc">// checkbox</span>
+  <span class="ck">hobbies</span>: [
+    { <span class="ck">value</span>: <span class="cp">'read'</span>,  <span class="ck">label</span>: <span class="cp">'阅读'</span> },
+    { <span class="ck">value</span>: <span class="cp">'music'</span>, <span class="ck">label</span>: <span class="cp">'音乐'</span> },
+    { <span class="ck">value</span>: <span class="cp">'sport'</span>, <span class="ck">label</span>: <span class="cp">'运动'</span> }
+  ],
+
+  <span class="cc">// radio</span>
+  <span class="ck">genders</span>: [
+    { <span class="ck">value</span>: <span class="cp">'male'</span>,   <span class="ck">label</span>: <span class="cp">'男'</span> },
+    { <span class="ck">value</span>: <span class="cp">'female'</span>, <span class="ck">label</span>: <span class="cp">'女'</span> }
+  ],
+
+  <span class="cc">// selector</span>
+  <span class="ck">cityList</span>: [<span class="cp">'北京'</span>, <span class="cp">'上海'</span>, <span class="cp">'广州'</span>, <span class="cp">'深圳'</span>, <span class="cp">'杭州'</span>],
+  <span class="ck">cityIndex</span>: <span class="cv">0</span>,
+
+  <span class="cc">// multiSelector</span>
+  <span class="ck">multiList</span>: [
+    [<span class="cp">'本科'</span>, <span class="cp">'硕士'</span>, <span class="cp">'博士'</span>],
+    [<span class="cp">'大一'</span>, <span class="cp">'大二'</span>, <span class="cp">'大三'</span>, <span class="cp">'大四'</span>]
+  ],
+  <span class="ck">multiIndex</span>: [<span class="cv">0</span>, <span class="cv">0</span>],
+
+  <span class="cc">// time</span>
+  <span class="ck">time</span>: <span class="cp">'12:00'</span>,
+
+  <span class="cc">// date</span>
+  <span class="ck">date</span>: <span class="cp">'2026-01-01'</span>,
+
+  <span class="cc">// region</span>
+  <span class="ck">region</span>: [<span class="cp">'上海市'</span>, <span class="cp">'上海市'</span>, <span class="cp">'浦东新区'</span>]
+},
+
+<span class="cc">// selector</span>
+<span class="ck">onCityChange</span>(<span class="cv">e</span>) {
+  <span class="ck">this</span>.<span class="cv">setData</span>({ <span class="ck">cityIndex</span>: <span class="cv">e</span>.<span class="cv">detail</span>.<span class="cv">value</span> });
+},
+
+<span class="cc">// multiSelector 列变化</span>
+<span class="ck">onColumnChange</span>(<span class="cv">e</span>) {
+  <span class="ck">const</span> { <span class="cv">column</span>, <span class="cv">value</span> } = <span class="cv">e</span>.<span class="cv">detail</span>;
+  <span class="ck">const</span> <span class="cv">multiIndex</span> = <span class="cv">this</span>.<span class="cv">data</span>.<span class="cv">multiIndex</span>.<span class="cv">slice</span>();
+  <span class="cv">multiIndex</span>[<span class="cv">column</span>] = <span class="cv">value</span>;
+  <span class="cv">this</span>.<span class="cv">setData</span>({ <span class="cv">multiIndex</span> });
+},
+
+<span class="cc">// multiSelector 确认</span>
+<span class="ck">onMultiChange</span>(<span class="cv">e</span>) {
+  <span class="cv">this</span>.<span class="cv">setData</span>({ <span class="cv">multiIndex</span>: <span class="cv">e</span>.<span class="cv">detail</span>.<span class="cv">value</span> });
+},
+
+<span class="cc">// time</span>
+<span class="ck">onTimeChange</span>(<span class="cv">e</span>) {
+  <span class="cv">this</span>.<span class="cv">setData</span>({ <span class="cv">time</span>: <span class="cv">e</span>.<span class="cv">detail</span>.<span class="cv">value</span> });
+},
+
+<span class="cc">// date</span>
+<span class="ck">onDateChange</span>(<span class="cv">e</span>) {
+  <span class="cv">this</span>.<span class="cv">setData</span>({ <span class="cv">date</span>: <span class="cv">e</span>.<span class="cv">detail</span>.<span class="cv">value</span> });
+},
+
+<span class="cc">// region</span>
+<span class="ck">onRegionChange</span>(<span class="cv">e</span>) {
+  <span class="cv">this</span>.<span class="cv">setData</span>({ <span class="cv">region</span>: <span class="cv">e</span>.<span class="cv">detail</span>.<span class="cv">value</span> });
+},
+                </div>
+            </div>
+            <div class="col-card">
+                <h3>③ 样式文件 (.wxss)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="cs">page</span> {
+  <span class="ck">background</span>: <span class="cv">#f2f4f7</span>;
+}
+
+<span class="cs">.page</span> {
+  <span class="ck">padding</span>: <span class="cv">32rpx</span>;
+}
+
+<span class="cs">.title</span> {
+  <span class="ck">margin</span>: <span class="cv">36rpx</span> <span class="cv">0</span> <span class="cv">20rpx</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">font-weight</span>: <span class="cv">600</span>;
+  <span class="ck">color</span>: <span class="cv">#3a4657</span>;
+  <span class="ck">letter-spacing</span>: <span class="cv">1rpx</span>;
+}
+
+<span class="cs">.title:first-child</span> { <span class="ck">margin-top</span>: <span class="cv">0</span>; }
+
+<span class="cc">/* checkbox / radio 胶囊 */</span>
+<span class="cs">.group</span> {
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">flex-wrap</span>: <span class="cv">wrap</span>;
+  <span class="ck">gap</span>: <span class="cv">16rpx</span>;  <span class="cc">/* 小程序支持 gap 吗？基础库 2.x 部分支持，保险用 margin */</span>
+}
+
+<span class="cs">.item</span> {
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">align-items</span>: <span class="cv">center</span>;
+  <span class="ck">margin</span>: <span class="cv">0</span> <span class="cv">16rpx</span> <span class="cv">16rpx</span> <span class="cv">0</span>;
+  <span class="ck">padding</span>: <span class="cv">14rpx</span> <span class="cv">26rpx</span>;
+  <span class="ck">background</span>: <span class="cv">#ffffff</span>;
+  <span class="ck">border-radius</span>: <span class="cv">40rpx</span>;  <span class="cc">/* 胶囊 */</span>
+  <span class="ck">box-shadow</span>: <span class="cv">0</span> <span class="cv">1rpx</span> <span class="cv">4rpx</span> <span class="cv">rgba(31,45,61,0.06)</span>;
+}
+
+<span class="cs">.item text</span> {
+  <span class="ck">margin-left</span>: <span class="cv">8rpx</span>;
+  <span class="ck">font-size</span>: <span class="cv">26rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#3a4657</span>;
+}
+
+<span class="cc">/* picker 设置列表风格 */</span>
+<span class="cs">.list</span> {
+  <span class="ck">background</span>: <span class="cv">#ffffff</span>;
+  <span class="ck">border-radius</span>: <span class="cv">16rpx</span>;
+  <span class="ck">overflow</span>: <span class="cv">hidden</span>;
+  <span class="ck">box-shadow</span>: <span class="cv">0</span> <span class="cv">1rpx</span> <span class="cv">4rpx</span> <span class="cv">rgba(31,45,61,0.06)</span>;
+}
+
+<span class="cs">.row</span> {
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">align-items</span>: <span class="cv">center</span>;
+  <span class="ck">padding</span>: <span class="cv">28rpx</span>;
+  <span class="ck">border-bottom</span>: <span class="cv">1rpx</span> <span class="cv">solid</span> <span class="cv">#f0f2f5</span>;
+}
+
+<span class="cs">.row:last-child</span> { <span class="ck">border-bottom</span>: <span class="cv">none</span>; }
+
+<span class="cs">.label</span> {
+  <span class="ck">width</span>: <span class="cv">160rpx</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#6b7a90</span>;
+}
+
+<span class="cs">.picker</span> { <span class="ck">flex</span>: <span class="cv">1</span>; }
+
+<span class="cs">.value</span> {
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">align-items</span>: <span class="cv">center</span>;
+  <span class="ck">justify-content</span>: <span class="cv">flex-end</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#1f2d3d</span>;
+}
+
+<span class="cs">.value::after</span> {
+  <span class="ck">content</span>: <span class="cv">''</span>;
+  <span class="ck">width</span>: <span class="cv">12rpx</span>;
+  <span class="ck">height</span>: <span class="cv">12rpx</span>;
+  <span class="ck">margin-left</span>: <span class="cv">12rpx</span>;
+  <span class="ck">border-top</span>: <span class="cv">2rpx</span> <span class="cv">solid</span> <span class="cv">#b0b8c5</span>;
+  <span class="ck">border-right</span>: <span class="cv">2rpx</span> <span class="cv">solid</span> <span class="cv">#b0b8c5</span>;
+  <span class="ck">transform</span>: <span class="cv">rotate(45deg)</span>;
+}
+                </div>
             </div>
         </div>
     </div>
