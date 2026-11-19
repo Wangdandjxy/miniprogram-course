@@ -4079,10 +4079,10 @@
     <div class="chapter-tab" data-chapter="3" onclick="switchChapter(3)">第三章 · 微信小程序配置</div>
     <div class="chapter-tab" data-chapter="4" onclick="switchChapter(4)">第四章 · 页面布局设计</div>
     <div class="chapter-tab" data-chapter="5" onclick="switchChapter(5)">第五章 · 常用组件介绍</div>
-    <div class="chapter-tab disabled" data-chapter="6"><span>第六章 · AI大语言模型与应用</span><span class="tab-status">🔒 待定</span></div>
-    <div class="chapter-tab disabled" data-chapter="7"><span>第七章 · AI从LLM到Agent</span><span class="tab-status">🔒 待定</span></div>
-    <div class="chapter-tab disabled" data-chapter="8"><span>第八章 · 页面交互</span><span class="tab-status">🔒 待定</span></div>
-    <div class="chapter-tab disabled" data-chapter="9"><span>第九章 · 后台管理与云开发</span><span class="tab-status">🔒 待定</span></div>
+    <div class="chapter-tab" data-chapter="6" onclick="switchChapter(6)">第六章 · 页面交互</div>
+    <div class="chapter-tab" data-chapter="7" onclick="switchChapter(7)">第七章 · AI大语言模型与应用</div>
+    <div class="chapter-tab" data-chapter="8" onclick="switchChapter(8)">第八章 · AI从LLM到Agent</div>
+    <div class="chapter-tab" data-chapter="9" onclick="switchChapter(9)">第九章 · 后台管理与云开发</div>
 </div>
 
 <div class="progress-bar" id="progressBar" style="width: 5%"></div>
@@ -4985,7 +4985,7 @@
             </div>
             <div class="note-box">
                 <strong>💡 提示：</strong>点击右侧云函数、云数据库、云存储可跳转微信官方文档查看详细说明。<br>
-                <strong>第七章将详细介绍云开发。</strong>
+                <strong>第九章将详细介绍云开发。</strong>
             </div>
         </div>
     </div>
@@ -7529,13 +7529,14 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">按钮与跳转</div>
-        <div class="nav-item" data-slide="18"><span class="nav-num">18</span>button 按钮</div>
-        <div class="nav-item" data-slide="19"><span class="nav-num">19</span>navigator 跳转</div>
+        <div class="nav-item" data-slide="18"><span class="nav-num">18</span>跳转与按钮样例代码</div>
+        <div class="nav-item" data-slide="19"><span class="nav-num">19</span>button 按钮</div>
+        <div class="nav-item" data-slide="20"><span class="nav-num">20</span>navigator 跳转</div>
     </div>
     <div class="sidebar-section">
         <div class="sidebar-title">AI 辅助</div>
-        <div class="nav-item ai" data-slide="20"><span class="nav-num">AI</span>组件属性速查</div>
-        <div class="nav-item ai" data-slide="21"><span class="nav-num">AI</span>代码生成实践</div>
+        <div class="nav-item ai" data-slide="21"><span class="nav-num">AI</span>组件属性速查</div>
+        <div class="nav-item ai" data-slide="22"><span class="nav-num">AI</span>代码生成实践</div>
     </div>
 </div>
 
@@ -8790,10 +8791,168 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 5-18. button 按钮 -->
+    <!-- 5-18. 跳转与按钮样例代码 -->
     <div class="slide" data-index="18">
         <div class="slide-header">
             <div class="slide-num">18</div>
+            <div>
+                <div class="slide-title">跳转与按钮样例代码</div>
+                <div class="slide-subtitle">5.7 navigator 跳转 + button 反馈 完整示例</div>
+            </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px;min-height:0;overflow-y:auto;">
+            <div class="col-card">
+                <h3>① 模板文件 (.wxml)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="cs">&lt;view</span> <span class="ck">class</span>=<span class="cp">"page"</span><span class="cs">&gt;</span>
+
+  <span class="cc">&lt;!-- ===== Navigator 示例 ===== --&gt;</span>
+  <span class="cs">&lt;navigator</span> <span class="ck">class</span>=<span class="cp">"row"</span> <span class="ck">url</span>=<span class="cp">"{{url}}"</span> <span class="ck">hover-class</span>=<span class="cp">"row-hover"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>navigate<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>默认跳转<span class="cs">&lt;/text&gt;</span>
+  <span class="cs">&lt;/navigator&gt;</span>
+
+  <span class="cs">&lt;navigator</span> <span class="ck">class</span>=<span class="cp">"row"</span> <span class="ck">url</span>=<span class="cp">"{{url}}"</span> <span class="ck">open-type</span>=<span class="cp">"redirect"</span> <span class="ck">hover-class</span>=<span class="cp">"row-hover"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>redirect<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>替换当前页<span class="cs">&lt;/text&gt;</span>
+  <span class="cs">&lt;/navigator&gt;</span>
+
+  <span class="cs">&lt;navigator</span> <span class="ck">class</span>=<span class="cp">"row"</span> <span class="ck">url</span>=<span class="cp">"{{url}}"</span> <span class="ck">open-type</span>=<span class="cp">"reLaunch"</span> <span class="ck">hover-class</span>=<span class="cp">"row-hover"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>reLaunch<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>关闭所有页面后打开<span class="cs">&lt;/text&gt;</span>
+  <span class="cs">&lt;/navigator&gt;</span>
+
+  <span class="cs">&lt;navigator</span> <span class="ck">class</span>=<span class="cp">"row"</span> <span class="ck">open-type</span>=<span class="cp">"navigateBack"</span> <span class="ck">delta</span>=<span class="cp">"{{delta}}"</span> <span class="ck">hover-class</span>=<span class="cp">"row-hover"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>navigateBack<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>返回上一页<span class="cs">&lt;/text&gt;</span>
+  <span class="cs">&lt;/navigator&gt;</span>
+
+  <span class="cs">&lt;navigator</span> <span class="ck">class</span>=<span class="cp">"row"</span> <span class="ck">url</span>=<span class="cp">"{{tabUrl}}"</span> <span class="ck">open-type</span>=<span class="cp">"switchTab"</span> <span class="ck">hover-class</span>=<span class="cp">"row-hover"</span><span class="cs">&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"label"</span><span class="cs">&gt;</span>switchTab<span class="cs">&lt;/text&gt;</span>
+    <span class="cs">&lt;text</span> <span class="ck">class</span>=<span class="cp">"value"</span><span class="cs">&gt;</span>切换 Tab 页<span class="cs">&lt;/text&gt;</span>
+  <span class="cs">&lt;/navigator&gt;</span>
+
+  <span class="cc">&lt;!-- ===== API 示例 ===== --&gt;</span>
+  <span class="cs">&lt;button</span> <span class="ck">class</span>=<span class="cp">"btn"</span> <span class="ck">bindtap</span>=<span class="cp">"showToast"</span><span class="cs">&gt;</span>showToast<span class="cs">&lt;/button&gt;</span>
+  <span class="cs">&lt;button</span> <span class="ck">class</span>=<span class="cp">"btn"</span> <span class="ck">bindtap</span>=<span class="cp">"showModal"</span><span class="cs">&gt;</span>showModal<span class="cs">&lt;/button&gt;</span>
+
+<span class="cs">&lt;/view&gt;</span>
+                </div>
+            </div>
+            <div class="col-card">
+                <h3>② 样式文件 (.wxss)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="cs">page</span> {
+  <span class="ck">background</span>: <span class="cv">#f2f4f7</span>;
+}
+
+<span class="cs">.page</span> {
+  <span class="ck">padding</span>: <span class="cv">32rpx</span>;
+}
+
+<span class="cs">.row</span> {
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">align-items</span>: <span class="cv">center</span>;
+  <span class="ck">margin-bottom</span>: <span class="cv">16rpx</span>;
+  <span class="ck">padding</span>: <span class="cv">28rpx</span>;
+  <span class="ck">background</span>: <span class="cv">#ffffff</span>;
+  <span class="ck">border-radius</span>: <span class="cv">16rpx</span>;
+  <span class="ck">box-shadow</span>: <span class="cv">0</span> <span class="cv">2rpx</span> <span class="cv">6rpx</span> <span class="cv">rgba(31,45,61,0.06)</span>;
+}
+
+<span class="cs">.row-hover</span> {
+  <span class="ck">background</span>: <span class="cv">#f7f9fc</span>;
+}
+
+<span class="cs">.label</span> {
+  <span class="ck">width</span>: <span class="cv">220rpx</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#8a95a5</span>;
+}
+
+<span class="cs">.value</span> {
+  <span class="ck">flex</span>: <span class="cv">1</span>;
+  <span class="ck">display</span>: <span class="cv">flex</span>;
+  <span class="ck">align-items</span>: <span class="cv">center</span>;
+  <span class="ck">justify-content</span>: <span class="cv">flex-end</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#1f2d3d</span>;
+}
+
+<span class="cs">.value::after</span> {
+  <span class="ck">content</span>: <span class="cv">''</span>;
+  <span class="ck">width</span>: <span class="cv">12rpx</span>;
+  <span class="ck">height</span>: <span class="cv">12rpx</span>;
+  <span class="ck">margin-left</span>: <span class="cv">14rpx</span>;
+  <span class="ck">border-top</span>: <span class="cv">2rpx</span> <span class="cv">solid</span> <span class="cv">#c2c9d4</span>;
+  <span class="ck">border-right</span>: <span class="cv">2rpx</span> <span class="cv">solid</span> <span class="cv">#c2c9d4</span>;
+  <span class="ck">transform</span>: <span class="cv">rotate(45deg)</span>;
+}
+
+<span class="cc">/* 按钮样式 */</span>
+<span class="cs">.btn</span> {
+  <span class="ck">margin-top</span>: <span class="cv">20rpx</span>;
+  <span class="ck">font-size</span>: <span class="cv">28rpx</span>;
+  <span class="ck">color</span>: <span class="cv">#ffffff</span>;
+  <span class="ck">background</span>: <span class="cv">#3a7afe</span>;
+  <span class="ck">border-radius</span>: <span class="cv">12rpx</span>;
+}
+
+<span class="cs">.btn::after</span> {
+  <span class="ck">border</span>: <span class="cv">none</span>;
+}
+                </div>
+            </div>
+            <div class="col-card">
+                <h3>③ 脚本文件 (.js)</h3>
+                <div class="code-block" style="font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;">
+<span class="ck">data</span>: {
+  <span class="cc">// 普通跳转目标页，替换成你自己的页面路径</span>
+  <span class="ck">url</span>: <span class="cp">'/pages/logs/logs'</span>,
+  <span class="cc">// Tab 页路径，必须是 app.json 里 tabBar 配置的页面</span>
+  <span class="ck">tabUrl</span>: <span class="cp">'/pages/index/index'</span>,
+  <span class="cc">// navigateBack 返回层数</span>
+  <span class="ck">delta</span>: <span class="cv">1</span>
+},
+
+<span class="cc">// showToast</span>
+<span class="ck">showToast</span>() {
+  <span class="ck">wx</span>.<span class="cv">showToast</span>({
+    <span class="ck">title</span>: <span class="cp">'操作成功'</span>,
+    <span class="ck">icon</span>: <span class="cp">'success'</span>,
+    <span class="ck">duration</span>: <span class="cv">1500</span>
+  });
+},
+
+<span class="cc">// showModal</span>
+<span class="ck">showModal</span>() {
+  <span class="ck">wx</span>.<span class="cv">showModal</span>({
+    <span class="ck">title</span>: <span class="cp">'提示'</span>,
+    <span class="ck">content</span>: <span class="cp">'确定要删除这条记录吗？'</span>,
+    <span class="ck">success</span>(<span class="cv">res</span>) {
+      <span class="ck">if</span> (<span class="cv">res</span>.<span class="cv">confirm</span>) {
+        <span class="ck">wx</span>.<span class="cv">showToast</span>({
+          <span class="ck">title</span>: <span class="cp">'已删除'</span>,
+          <span class="ck">icon</span>: <span class="cp">'none'</span>
+        });
+      } <span class="ck">else if</span> (<span class="cv">res</span>.<span class="cv">cancel</span>) {
+        <span class="ck">wx</span>.<span class="cv">showToast</span>({
+          <span class="ck">title</span>: <span class="cp">'已取消'</span>,
+          <span class="ck">icon</span>: <span class="cp">'none'</span>
+        });
+      }
+    }
+  });
+}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5-19. button 按钮 -->
+    <div class="slide" data-index="19">
+        <div class="slide-header">
+            <div class="slide-num">19</div>
             <div>
                 <div class="slide-title">button 按钮</div>
                 <div class="slide-subtitle">5.7 属性类同 view · 使用参照 view</div>
@@ -8828,10 +8987,10 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 5-19. navigator 跳转 -->
-    <div class="slide" data-index="19">
+    <!-- 5-20. navigator 跳转 -->
+    <div class="slide" data-index="20">
         <div class="slide-header">
-            <div class="slide-num">19</div>
+            <div class="slide-num">20</div>
             <div>
                 <div class="slide-title">navigator 页面跳转</div>
                 <div class="slide-subtitle">5.7 open-type 五种模式</div>
@@ -8881,8 +9040,8 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 5-20. AI 组件属性速查 -->
-    <div class="slide ai-slide" data-index="20">
+    <!-- 5-21. AI 组件属性速查 -->
+    <div class="slide ai-slide" data-index="21">
         <div class="slide-header">
             <div class="slide-num">AI</div>
             <div>
@@ -8936,8 +9095,8 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 5-21. AI 组件代码生成实践 -->
-    <div class="slide ai-slide" data-index="21">
+    <!-- 5-22. AI 组件代码生成实践 -->
+    <div class="slide ai-slide" data-index="22">
         <div class="slide-header">
             <div class="slide-num">AI</div>
             <div>
@@ -8995,8 +9154,498 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 </div>
 </div><!-- /chapter-panel-5 -->
 
-<!-- ============ 第六章 · AI 大语言模型与应用 ============ -->
+<!-- ============ 第六章 · 页面交互 ============ -->
 <div class="chapter-panel" id="chapter-panel-6">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">交互概念</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>什么是交互</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>逻辑交互</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">事件绑定</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>输入事件</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>改变事件</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>点击事件</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>事件冒泡</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">常用 API</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>什么是 API</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>常用 API 分类</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>showToast</div>
+        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>showModal</div>
+        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>路由</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 6-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">06</div>
+        <div class="chapter-name">页面交互</div>
+        <div class="chapter-desc">交互概念 · 事件绑定 · 常用 API</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹 · 王山山</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">电话：55271110 · 课程编号：36810310</p>
+        </div>
+    </div>
+
+    <!-- 6-1. 本章概述 -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">本章概述</div>
+                <div class="slide-subtitle">从"能看"到"能交互"</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>教学定位</h3>
+                    <p>本章让静态页面<strong>动起来</strong>：通过<strong>事件绑定</strong>响应用户操作，通过<strong>常用 API</strong>调用微信底层能力（提示、弹窗、路由、存储、支付等），完成数据绑定与事件触发的闭环。</p>
+                </div>
+                <div class="note-box" style="margin-top:16px;">
+                    🎯 <strong>三大主线</strong>：交互概念 → 事件绑定（bind 系列）→ 常用 API（wx. 系列）
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
+                <div class="check-item">
+                    <span class="checkbox"></span>理解交互、逻辑交互概念
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>会写 bindtap / bindinput / bindchange
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>理解事件冒泡与 catchtap 的区别
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>掌握 showToast / showModal / 路由 API
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-2. 交互概念 -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">什么是交互？</div>
+                <div class="slide-subtitle">第一节 · 概念导入</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>交互 = 用户操作 → 程序响应</h3>
+                <p>页面不只是"看"，还要能"用"。用户点击、输入、滑动……程序都要给出反馈。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">👆</div>
+                    <h3>用户输入</h3>
+                    <p>点击、滑动、键盘输入、选择等</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">⚡</div>
+                    <h3>程序响应</h3>
+                    <p>状态更新、界面变化、数据请求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🔄</div>
+                    <h3>闭环反馈</h3>
+                    <p>输入 → 处理 → 展示，形成回路</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-3. 逻辑交互 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">逻辑交互</div>
+                <div class="slide-subtitle">数据绑定 + 事件绑定 = 双闭环</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:20px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">📥</div>
+                    <h3>数据绑定（视图 ← 数据）</h3>
+                    <p>用 <code>{{data}}</code> 把 JS 中的变量渲染到 WXML 里；数据一变，视图自动更新。</p>
+                    <div class="code-block" style="font-size:18px;padding:14px 18px;margin-top:12px;white-space:pre;"><span class="cs">&lt;view&gt;</span><span class="ck">{{count}}</span><span class="cs">&lt;/view&gt;</span></div>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">📤</div>
+                    <h3>事件绑定（事件 → 逻辑）</h3>
+                    <p>用 <code>bindxxx</code> 把组件事件绑定到 JS 函数；用户操作时，函数被调用。</p>
+                    <div class="code-block" style="font-size:18px;padding:14px 18px;margin-top:12px;white-space:pre;"><span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"onAdd"</span><span class="cs">&gt;</span>＋<span class="cs">&lt;/button&gt;</span></div>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;">
+                <h3 style="color:var(--wx-green-dark);">双向闭环</h3>
+                <p>事件修改 data → 视图更新（数据绑定）；视图展示 data → 用户看到变化（数据绑定）。两者配合构成完整的交互闭环。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-4. 输入事件 -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">输入事件</div>
+                <div class="slide-subtitle">bindinput · bindlinechange</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>输入事件</h3>
+                <p>在用户<strong>输入过程中</strong>（每键入一个字符）持续触发，适合实时校验、字数统计、联想搜索。</p>
+            </div>
+            <div class="code-block" style="font-size:18px;white-space:pre;">
+<span class="cs">&lt;input</span>
+  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
+  <span class="ck">placeholder</span>=<span class="cs">"请输入姓名"</span>
+  <span class="ck">value</span>=<span class="cs">="{{name}}"</span>
+<span class="cs">/&gt;</span>
+<span class="cs">&lt;textarea</span>
+  <span class="ck">bindlinechange</span>=<span class="cs">"onLineChange"</span>
+  <span class="ck">placeholder</span>=<span class="cs">"留言（回车换行）"</span>
+<span class="cs">/&gt;</span>
+
+<span class="cp">// JS</span>
+<span class="ck">onInput</span>(e) {
+  <span class="ck">this</span>.setData({ name: e.detail.value })
+}
+<span class="ck">onLineChange</span>(e) {
+  <span class="cp">// 每换行一次触发一次</span>
+  <span class="ck">console</span>.log(e.detail.value)
+}</div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>注意</strong>：bindinput 触发频率高，避免在其中做重计算或网络请求。
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-5. 改变事件 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">改变事件</div>
+                <div class="slide-subtitle">bindchange · bindblur</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>改变事件</h3>
+                <p>在选择类组件值<strong>确定改变后</strong>触发；比输入事件更"稳"，常用于提交前的最终校验。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">bindchange</h3>
+                    <p>值改变完成时触发</p>
+                    <div class="code-block" style="font-size:18px;padding:12px 16px;margin-top:8px;white-space:pre;"><span class="cs">&lt;switch</span> <span class="ck">bindchange</span>=<span class="cs">"onSwitch"</span><span class="cs">/&gt;</span>
+<span class="cs">&lt;picker</span> <span class="ck">bindchange</span>=<span class="cs">"onPick"</span><span class="cs">/&gt;</span></div>
+                </div>
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">bindblur</h3>
+                    <p>输入框失去焦点时触发</p>
+                    <div class="code-block" style="font-size:18px;padding:12px 16px;margin-top:8px;white-space:pre;"><span class="cs">&lt;input</span>
+  <span class="ck">bindblur</span>=<span class="cs">"onBlur"</span>
+  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
+<span class="cs">/&gt;</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-6. 点击事件 -->
+    <div class="slide" data-index="6">
+        <div class="slide-header">
+            <div class="slide-num">6</div>
+            <div>
+                <div class="slide-title">点击事件</div>
+                <div class="slide-subtitle">bindtap —— 最基础也最常用</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>用法</h3>
+                <p>在组件属性上添加 <code>bindtap</code>，赋一个函数名。当点击该组件时，触发对应的函数执行。</p>
+            </div>
+            <div class="code-block" style="font-size:18px;white-space:pre;">
+<span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"addCart"</span><span class="cs">&gt;</span>加入购物车<span class="cs">&lt;/button&gt;</span>
+<span class="cs">&lt;text</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapText"</span><span class="cs">&gt;</span>点击我<span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;view</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapView"</span><span class="cs">&gt;</span>点我<span class="cs">&lt;/view&gt;</span>
+
+<span class="cp">// JS</span>
+<span class="ck">addCart</span>(e) {
+  <span class="cp">// e.currentTarget.dataset 拿到 data-xxx</span>
+  <span class="ck">console</span>.log(<span class="cs">'点击了按钮'</span>)
+}</div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>支持的组件</strong>：button / text / view / image / navigator 等大多数组件。
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-7. 事件冒泡 -->
+    <div class="slide" data-index="7">
+        <div class="slide-header">
+            <div class="slide-num">7</div>
+            <div>
+                <div class="slide-title">事件冒泡与 catchtap</div>
+                <div class="slide-subtitle">嵌套标签的事件传递</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>什么是事件冒泡？</h3>
+                <p>多层标签嵌套时使用 bindtap 绑定事件，<strong>里层事件发生后，外层会相应触发</strong>（点击事件向外层传递）。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">🌊 bindtap → 冒泡</h3>
+                    <p style="margin-bottom:8px;">点击内层，内层+外层函数都执行</p>
+                    <div class="code-block" style="font-size:18px;padding:12px 16px;white-space:pre;">
+<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
+  <span class="cs">&lt;text</span> <span class="ck">bindtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
+    内层
+  <span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;/view&gt;</span>
+<span class="cp">// 结果：inner → outer</span></div>
+                </div>
+                <div class="feature-card">
+                    <h3 style="font-size:16px;">🛑 catchtap → 阻止冒泡</h3>
+                    <p style="margin-bottom:8px;">点击内层，仅内层函数执行</p>
+                    <div class="code-block" style="font-size:18px;padding:12px 16px;white-space:pre;">
+<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
+  <span class="cs">&lt;text</span> <span class="ck">catchtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
+    内层
+  <span class="cs">&lt;/text&gt;</span>
+<span class="cs">&lt;/view&gt;</span>
+<span class="cp">// 结果：仅 inner</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-8. 什么是 API -->
+    <div class="slide" data-index="8">
+        <div class="slide-header">
+            <div class="slide-num">8</div>
+            <div>
+                <div class="slide-title">什么是 API</div>
+                <div class="slide-subtitle">第二节 · 常用 API</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>API = Application Programming Interface</h3>
+                <p>应用程序编程接口。把函数封装起来给开发者调用，<strong>好多的功能不需要你去实现，只要会调用即可</strong>。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📦</div>
+                    <h3 style="font-size:16px;">封装</h3>
+                    <p>把底层能力打包，开发者只关心"怎么调"，不关心"怎么实现"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🔌</div>
+                    <h3 style="font-size:16px;">调用</h3>
+                    <p>通过 <code>wx.xxx()</code> 直接调用微信提供的能力</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📚</div>
+                    <h3 style="font-size:16px;">普适</h3>
+                    <p>API 不专属于小程序，任何编程语言/形态都有对应概念</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 微信团队把常用或底层方法封装为 <strong>wx.xxx</strong> 提供给开发者调用。
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-9. 常用 API 分类 -->
+    <div class="slide" data-index="9">
+        <div class="slide-header">
+            <div class="slide-num">9</div>
+            <div>
+                <div class="slide-title">常用 API 分类</div>
+                <div class="slide-subtitle">wx 命名空间下的接口全景</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;">
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🌐</div>
+                    <h3 style="font-size:15px;">发起网络请求</h3>
+                    <p style="font-size:13px;"><code>wx.request</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🖼️</div>
+                    <h3 style="font-size:15px;">保存相册</h3>
+                    <p style="font-size:13px;"><code>wx.saveImageToPhotosAlbum</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💾</div>
+                    <h3 style="font-size:15px;">数据缓存</h3>
+                    <p style="font-size:13px;"><code>wx.setStorageSync</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">📱</div>
+                    <h3 style="font-size:15px;">获取系统信息</h3>
+                    <p style="font-size:13px;"><code>wx.getSystemInfo</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💬</div>
+                    <h3 style="font-size:15px;">交互反馈</h3>
+                    <p style="font-size:13px;">showToast / showModal</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🧭</div>
+                    <h3 style="font-size:15px;">导航路由</h3>
+                    <p style="font-size:13px;">navigateTo / redirectTo …</p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">💰</div>
+                    <h3 style="font-size:15px;">微信支付</h3>
+                    <p style="font-size:13px;"><code>wx.requestPayment</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">🎤</div>
+                    <h3 style="font-size:15px;">录音播放</h3>
+                    <p style="font-size:13px;"><code>wx.getRecorderManager</code></p>
+                </div>
+                <div class="feature-card" style="padding:18px;">
+                    <div class="feature-icon" style="font-size:26px;">📍</div>
+                    <h3 style="font-size:15px;">定位</h3>
+                    <p style="font-size:13px;"><code>wx.getLocation</code></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-10. showToast -->
+    <div class="slide" data-index="10">
+        <div class="slide-header">
+            <div class="slide-num">10</div>
+            <div>
+                <div class="slide-title">界面交互 · wx.showToast</div>
+                <div class="slide-subtitle">显示消息提示框</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>使用场景</h3>
+                <p>短暂的信息提示（成功/失败/警告），1.5s 后自动消失，不打断用户操作。</p>
+            </div>
+            <div class="code-block" style="font-size:18px;white-space:pre;">
+<span class="ck">wx</span>.showToast({
+  <span class="ck">title</span>: <span class="cs">'提交成功'</span>,
+  <span class="ck">icon</span>: <span class="cs">'success'</span>,   <span class="cp">// success | error | loading | none</span>
+  <span class="ck">duration</span>: <span class="cs">1500</span>        <span class="cp">// 显示时长，默认 1500ms</span>
+})</div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;">
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">✅ success</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">成功（绿色）</p>
+                </div>
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">❌ error</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">失败（红色）</p>
+                </div>
+                <div class="feature-card" style="padding:14px;text-align:center;">
+                    <h3 style="font-size:15px;">⏳ loading</h3>
+                    <p style="font-size:13px;color:var(--text-sub);">加载中（不自动消失，需主动关闭）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-11. showModal -->
+    <div class="slide" data-index="11">
+        <div class="slide-header">
+            <div class="slide-num">11</div>
+            <div>
+                <div class="slide-title">界面交互 · wx.showModal</div>
+                <div class="slide-subtitle">显示模态对话框</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>使用场景</h3>
+                <p>需要用户<strong>明确确认/取消</strong>的操作（如删除、退出、支付确认），不会自动消失。</p>
+            </div>
+            <div class="code-block" style="font-size:18px;white-space:pre;">
+<span class="ck">wx</span>.showModal({
+  <span class="ck">title</span>: <span class="cs">'确认删除？'</span>,
+  <span class="ck">content</span>: <span class="cs">'删除后无法恢复'</span>,
+  <span class="ck">confirmText</span>: <span class="cs">'删除'</span>,
+  <span class="ck">cancelText</span>: <span class="cs">'取消'</span>,
+  <span class="ck">success</span>(res) {
+    <span class="ck">if</span> (res.confirm) {
+      <span class="cp">// 用户点击"确定"</span>
+      <span class="ck">this</span>.deleteItem()
+    } <span class="ck">else</span> {
+      <span class="cp">// 用户点击"取消"</span>
+    }
+  }
+})</div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>规范</strong>：涉及删除/支付/发布等<strong>不可逆操作</strong>，必须使用 showModal 而非 showToast。
+            </div>
+        </div>
+    </div>
+
+    <!-- 6-12. 路由 -->
+    <div class="slide" data-index="12">
+        <div class="slide-header">
+            <div class="slide-num">12</div>
+            <div>
+                <div class="slide-title">路由 · 页面跳转</div>
+                <div class="slide-subtitle">五种方式 · 参数传递</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="code-block" style="font-size:18px;white-space:pre;">
+<span class="ck">wx</span>.navigateTo({ url: <span class="cs">'test?id=1'</span> })         <span class="cp">// 保留当前页，可返回</span>
+<span class="ck">wx</span>.redirectTo({ url: <span class="cs">'test?id=1'</span> })        <span class="cp">// 关闭当前页，跳转新页</span>
+<span class="ck">wx</span>.switchTab({ url: <span class="cs">'/index'</span> })             <span class="cp">// 仅切 tab 页，不可传参</span>
+<span class="ck">wx</span>.reLaunch({ url: <span class="cs">'test?id=1'</span> })          <span class="cp">// 关闭所有页，重新打开</span>
+<span class="ck">wx</span>.navigateBack({ delta: 2 })              <span class="cp">// 返回 delta 页</span>
+</div>
+            <div class="info-box" style="margin-top:14px;">
+                <h3 style="color:var(--wx-green-dark);">📌 参数传递</h3>
+                <p>通过 URL 的 <code>?</code> 传递参数，多个参数用 <code>&</code> 分隔；在目标页 <code>onLoad(options)</code> 中读取。</p>
+            </div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>switchTab</strong> 只用于 tab 页面间切换，不可传参；<strong>navigateBack</strong> 的 delta 若大于现有页面数，则返回到首页。
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-6 -->
+
+<!-- ============ 第七章 · AI 大语言模型与应用 ============ -->
+<div class="chapter-panel" id="chapter-panel-7">
 <div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
@@ -9034,9 +9683,9 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <div class="slides-wrap">
 
-    <!-- 6-0. 封面 -->
+    <!-- 7-0. 封面 -->
     <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">06</div>
+        <div class="chapter-big">07</div>
         <div class="chapter-name">AI 大语言模型与应用</div>
         <div class="chapter-desc">LLM 兴起 · 生成机制 · 主流模型 · Prompt 工程</div>
         <div class="cover-teacher" style="margin-top: 40px;">
@@ -9045,12 +9694,12 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-1. 课程目录 -->
+    <!-- 7-1. 课程目录 -->
     <div class="slide" data-index="1">
         <div class="slide-header">
             <div class="slide-num">1</div>
             <div>
-                <div class="slide-title">第六章目录</div>
+                <div class="slide-title">第七章目录</div>
                 <div class="slide-subtitle">大语言模型与应用实践</div>
             </div>
         </div>
@@ -9079,13 +9728,13 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="feature-card" style="grid-column:1/-1;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
                     <div class="feature-icon" style="font-size:32px;">📚</div>
                     <h3 style="color:var(--wx-green-dark);">后续章节</h3>
-                    <p>第五章 Prompt 实战 · 第七章 从 LLM 到 Agent（智能体）</p>
+                    <p>第五章 Prompt 实战 · 第八章 从 LLM 到 Agent（智能体）</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 6-2. 本节核心问题 -->
+    <!-- 7-2. 本节核心问题 -->
     <div class="slide" data-index="2">
         <div class="slide-header">
             <div class="slide-num">2</div>
@@ -9115,7 +9764,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-3. 大语言模型从哪里来 -->
+    <!-- 7-3. 大语言模型从哪里来 -->
     <div class="slide" data-index="3">
         <div class="slide-header">
             <div class="slide-num">3</div>
@@ -9144,7 +9793,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-4. 为何近几年爆发 -->
+    <!-- 7-4. 为何近几年爆发 -->
     <div class="slide" data-index="4">
         <div class="slide-header">
             <div class="slide-num">4</div>
@@ -9179,7 +9828,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-5. 人工智能三次浪潮 -->
+    <!-- 7-5. 人工智能三次浪潮 -->
     <div class="slide" data-index="5">
         <div class="slide-header">
             <div class="slide-num">5</div>
@@ -9215,7 +9864,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-6. Transformer 突破 -->
+    <!-- 7-6. Transformer 突破 -->
     <div class="slide" data-index="6">
         <div class="slide-header">
             <div class="slide-num">6</div>
@@ -9247,7 +9896,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-7. 大模型语言生成全过程 -->
+    <!-- 7-7. 大模型语言生成全过程 -->
     <div class="slide" data-index="7">
         <div class="slide-header">
             <div class="slide-num">7</div>
@@ -9286,7 +9935,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-8. 预训练与微调 -->
+    <!-- 7-8. 预训练与微调 -->
     <div class="slide" data-index="8">
         <div class="slide-header">
             <div class="slide-num">8</div>
@@ -9320,7 +9969,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-9. 幻觉与局限 -->
+    <!-- 7-9. 幻觉与局限 -->
     <div class="slide" data-index="9">
         <div class="slide-header">
             <div class="slide-num">9</div>
@@ -9355,7 +10004,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-10. 模型分类 -->
+    <!-- 7-10. 模型分类 -->
     <div class="slide" data-index="10">
         <div class="slide-header">
             <div class="slide-num">10</div>
@@ -9395,7 +10044,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-11. 主流模型资源与链接 -->
+    <!-- 7-11. 主流模型资源与链接 -->
     <div class="slide" data-index="11">
         <div class="slide-header">
             <div class="slide-num">11</div>
@@ -9433,7 +10082,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-12. Prompt 概念澄清 -->
+    <!-- 7-12. Prompt 概念澄清 -->
     <div class="slide" data-index="12">
         <div class="slide-header">
             <div class="slide-num">12</div>
@@ -9461,7 +10110,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-13. Prompt 设计原则 -->
+    <!-- 7-13. Prompt 设计原则 -->
     <div class="slide" data-index="13">
         <div class="slide-header">
             <div class="slide-num">13</div>
@@ -9497,7 +10146,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 6-14. Prompt 进阶技巧 -->
+    <!-- 7-14. Prompt 进阶技巧 -->
     <div class="slide" data-index="14">
         <div class="slide-header">
             <div class="slide-num">14</div>
@@ -9557,10 +10206,10 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 </div><!-- /slides-wrap -->
 
-</div><!-- /chapter-panel-6 -->
+</div><!-- /chapter-panel-7 -->
 
-<!-- ============ 第七章 · AI 从 LLM 到 Agent ============ -->
-<div class="chapter-panel" id="chapter-panel-7">
+<!-- ============ 第八章 · AI 从 LLM 到 Agent ============ -->
+<div class="chapter-panel" id="chapter-panel-8">
 <div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
@@ -9589,9 +10238,9 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <div class="slides-wrap">
 
-    <!-- 7-0. 封面 -->
+    <!-- 8-0. 封面 -->
     <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">07</div>
+        <div class="chapter-big">08</div>
         <div class="chapter-name">从 LLM 到 Agent</div>
         <div class="chapter-desc">智能体 · Skill · 平台 · 安全</div>
         <div class="cover-teacher" style="margin-top: 40px;">
@@ -9600,7 +10249,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-1. 什么是 Agent -->
+    <!-- 8-1. 什么是 Agent -->
     <div class="slide" data-index="1">
         <div class="slide-header">
             <div class="slide-num">1</div>
@@ -9634,7 +10283,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-2. LLM vs Agent -->
+    <!-- 8-2. LLM vs Agent -->
     <div class="slide" data-index="2">
         <div class="slide-header">
             <div class="slide-num">2</div>
@@ -9669,7 +10318,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-3. Agent 典型工作流程 -->
+    <!-- 8-3. Agent 典型工作流程 -->
     <div class="slide" data-index="3">
         <div class="slide-header">
             <div class="slide-num">3</div>
@@ -9716,7 +10365,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-4. 什么是 Skill -->
+    <!-- 8-4. 什么是 Skill -->
     <div class="slide" data-index="4">
         <div class="slide-header">
             <div class="slide-num">4</div>
@@ -9747,7 +10396,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-5. 国内外 Agent 平台 -->
+    <!-- 8-5. 国内外 Agent 平台 -->
     <div class="slide" data-index="5">
         <div class="slide-header">
             <div class="slide-num">5</div>
@@ -9791,7 +10440,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-6. 如何创建 Skill -->
+    <!-- 8-6. 如何创建 Skill -->
     <div class="slide" data-index="6">
         <div class="slide-header">
             <div class="slide-num">6</div>
@@ -9824,7 +10473,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-7. 使用安全注意事项 -->
+    <!-- 8-7. 使用安全注意事项 -->
     <div class="slide" data-index="7">
         <div class="slide-header">
             <div class="slide-num">7</div>
@@ -9856,7 +10505,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-8. 全课程总结 -->
+    <!-- 8-8. 全课程总结 -->
     <div class="slide" data-index="8">
         <div class="slide-header">
             <div class="slide-num">8</div>
@@ -9900,496 +10549,6 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
             </div>
             <div class="info-box" style="margin-top:16px;text-align:center;">
                 <h3 style="font-size:20px;color:var(--wx-green-dark);">能力越强，责任越大；技术向善，理性使用</h3>
-            </div>
-        </div>
-    </div>
-
-</div><!-- /slides-wrap -->
-
-</div><!-- /chapter-panel-7 -->
-
-<!-- ============ 第八章 · 页面交互 ============ -->
-<div class="chapter-panel" id="chapter-panel-8">
-<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
-
-<div class="sidebar">
-    <div class="sidebar-section">
-        <div class="sidebar-title">课程导引</div>
-        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
-        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">交互概念</div>
-        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>什么是交互</div>
-        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>逻辑交互</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">事件绑定</div>
-        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>输入事件</div>
-        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>改变事件</div>
-        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>点击事件</div>
-        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>事件冒泡</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">常用 API</div>
-        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>什么是 API</div>
-        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>常用 API 分类</div>
-        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>showToast</div>
-        <div class="nav-item" data-slide="11"><span class="nav-num">11</span>showModal</div>
-        <div class="nav-item" data-slide="12"><span class="nav-num">12</span>路由</div>
-    </div>
-</div>
-
-<div class="slides-wrap">
-
-    <!-- 8-0. 封面 -->
-    <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">08</div>
-        <div class="chapter-name">页面交互</div>
-        <div class="chapter-desc">交互概念 · 事件绑定 · 常用 API</div>
-        <div class="cover-teacher" style="margin-top: 40px;">
-            <p class="teacher-name" style="color:#fff;">任课教师：王丹 · 王山山</p>
-            <p class="course-id" style="color:rgba(255,255,255,0.7);">电话：55271110 · 课程编号：36810310</p>
-        </div>
-    </div>
-
-    <!-- 8-1. 本章概述 -->
-    <div class="slide" data-index="1">
-        <div class="slide-header">
-            <div class="slide-num">1</div>
-            <div>
-                <div class="slide-title">本章概述</div>
-                <div class="slide-subtitle">从"能看"到"能交互"</div>
-            </div>
-        </div>
-        <div class="hero-layout">
-            <div>
-                <div class="info-box">
-                    <h3>教学定位</h3>
-                    <p>本章让静态页面<strong>动起来</strong>：通过<strong>事件绑定</strong>响应用户操作，通过<strong>常用 API</strong>调用微信底层能力（提示、弹窗、路由、存储、支付等），完成数据绑定与事件触发的闭环。</p>
-                </div>
-                <div class="note-box" style="margin-top:16px;">
-                    🎯 <strong>三大主线</strong>：交互概念 → 事件绑定（bind 系列）→ 常用 API（wx. 系列）
-                </div>
-            </div>
-            <div>
-                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
-                <div class="check-item">
-                    <span class="checkbox"></span>理解交互、逻辑交互概念
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>会写 bindtap / bindinput / bindchange
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>理解事件冒泡与 catchtap 的区别
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>掌握 showToast / showModal / 路由 API
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-2. 交互概念 -->
-    <div class="slide" data-index="2">
-        <div class="slide-header">
-            <div class="slide-num">2</div>
-            <div>
-                <div class="slide-title">什么是交互？</div>
-                <div class="slide-subtitle">第一节 · 概念导入</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>交互 = 用户操作 → 程序响应</h3>
-                <p>页面不只是"看"，还要能"用"。用户点击、输入、滑动……程序都要给出反馈。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">👆</div>
-                    <h3>用户输入</h3>
-                    <p>点击、滑动、键盘输入、选择等</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">⚡</div>
-                    <h3>程序响应</h3>
-                    <p>状态更新、界面变化、数据请求</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">🔄</div>
-                    <h3>闭环反馈</h3>
-                    <p>输入 → 处理 → 展示，形成回路</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-3. 逻辑交互 -->
-    <div class="slide" data-index="3">
-        <div class="slide-header">
-            <div class="slide-num">3</div>
-            <div>
-                <div class="slide-title">逻辑交互</div>
-                <div class="slide-subtitle">数据绑定 + 事件绑定 = 双闭环</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:20px;">
-                <div class="feature-card" style="padding:22px;">
-                    <div class="feature-icon" style="font-size:32px;">📥</div>
-                    <h3>数据绑定（视图 ← 数据）</h3>
-                    <p>用 <code>{{data}}</code> 把 JS 中的变量渲染到 WXML 里；数据一变，视图自动更新。</p>
-                    <div class="code-block" style="font-size:14px;padding:14px 18px;margin-top:12px;"><span class="cs">&lt;view&gt;</span><span class="ck">{{count}}</span><span class="cs">&lt;/view&gt;</span></div>
-                </div>
-                <div class="feature-card" style="padding:22px;">
-                    <div class="feature-icon" style="font-size:32px;">📤</div>
-                    <h3>事件绑定（事件 → 逻辑）</h3>
-                    <p>用 <code>bindxxx</code> 把组件事件绑定到 JS 函数；用户操作时，函数被调用。</p>
-                    <div class="code-block" style="font-size:14px;padding:14px 18px;margin-top:12px;"><span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"onAdd"</span><span class="cs">&gt;</span>＋<span class="cs">&lt;/button&gt;</span></div>
-                </div>
-            </div>
-            <div class="info-box" style="margin-top:16px;">
-                <h3 style="color:var(--wx-green-dark);">双向闭环</h3>
-                <p>事件修改 data → 视图更新（数据绑定）；视图展示 data → 用户看到变化（数据绑定）。两者配合构成完整的交互闭环。</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-4. 输入事件 -->
-    <div class="slide" data-index="4">
-        <div class="slide-header">
-            <div class="slide-num">4</div>
-            <div>
-                <div class="slide-title">输入事件</div>
-                <div class="slide-subtitle">bindinput · bindlinechange</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>输入事件</h3>
-                <p>在用户<strong>输入过程中</strong>（每键入一个字符）持续触发，适合实时校验、字数统计、联想搜索。</p>
-            </div>
-            <div class="code-block">
-<span class="cs">&lt;input</span>
-  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
-  <span class="ck">placeholder</span>=<span class="cs">"请输入姓名"</span>
-  <span class="ck">value</span>=<span class="cs">="{{name}}"</span>
-<span class="cs">/&gt;</span>
-<span class="cs">&lt;textarea</span>
-  <span class="ck">bindlinechange</span>=<span class="cs">"onLineChange"</span>
-  <span class="ck">placeholder</span>=<span class="cs">"留言（回车换行）"</span>
-<span class="cs">/&gt;</span>
-
-<span class="cp">// JS</span>
-<span class="ck">onInput</span>(e) {
-  <span class="ck">this</span>.setData({ name: e.detail.value })
-}
-<span class="ck">onLineChange</span>(e) {
-  <span class="cp">// 每换行一次触发一次</span>
-  <span class="ck">console</span>.log(e.detail.value)
-}</div>
-            <div class="note-box" style="margin-top:12px;">
-                ⚠️ <strong>注意</strong>：bindinput 触发频率高，避免在其中做重计算或网络请求。
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-5. 改变事件 -->
-    <div class="slide" data-index="5">
-        <div class="slide-header">
-            <div class="slide-num">5</div>
-            <div>
-                <div class="slide-title">改变事件</div>
-                <div class="slide-subtitle">bindchange · bindblur</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>改变事件</h3>
-                <p>在选择类组件值<strong>确定改变后</strong>触发；比输入事件更"稳"，常用于提交前的最终校验。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
-                <div class="feature-card">
-                    <h3 style="font-size:16px;">bindchange</h3>
-                    <p>值改变完成时触发</p>
-                    <div class="code-block" style="font-size:13px;padding:12px 16px;margin-top:8px;"><span class="cs">&lt;switch</span> <span class="ck">bindchange</span>=<span class="cs">"onSwitch"</span><span class="cs">/&gt;</span>
-<span class="cs">&lt;picker</span> <span class="ck">bindchange</span>=<span class="cs">"onPick"</span><span class="cs">/&gt;</span></div>
-                </div>
-                <div class="feature-card">
-                    <h3 style="font-size:16px;">bindblur</h3>
-                    <p>输入框失去焦点时触发</p>
-                    <div class="code-block" style="font-size:13px;padding:12px 16px;margin-top:8px;"><span class="cs">&lt;input</span>
-  <span class="ck">bindblur</span>=<span class="cs">"onBlur"</span>
-  <span class="ck">bindinput</span>=<span class="cs">"onInput"</span>
-<span class="cs">/&gt;</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-6. 点击事件 -->
-    <div class="slide" data-index="6">
-        <div class="slide-num">6</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">点击事件</div>
-                <div class="slide-subtitle">bindtap —— 最基础也最常用</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>用法</h3>
-                <p>在组件属性上添加 <code>bindtap</code>，赋一个函数名。当点击该组件时，触发对应的函数执行。</p>
-            </div>
-            <div class="code-block">
-<span class="cs">&lt;button</span> <span class="ck">bindtap</span>=<span class="cs">"addCart"</span><span class="cs">&gt;</span>加入购物车<span class="cs">&lt;/button&gt;</span>
-<span class="cs">&lt;text</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapText"</span><span class="cs">&gt;</span>点击我<span class="cs">&lt;/text&gt;</span>
-<span class="cs">&lt;view</span>  <span class="ck">bindtap</span>=<span class="cs">"onTapView"</span><span class="cs">&gt;</span>点我<span class="cs">&lt;/view&gt;</span>
-
-<span class="cp">// JS</span>
-<span class="ck">addCart</span>(e) {
-  <span class="cp">// e.currentTarget.dataset 拿到 data-xxx</span>
-  <span class="ck">console</span>.log(<span class="cs">'点击了按钮'</span>)
-}</div>
-            <div class="note-box" style="margin-top:12px;">
-                💡 <strong>支持的组件</strong>：button / text / view / image / navigator 等大多数组件。
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-7. 事件冒泡 -->
-    <div class="slide" data-index="7">
-        <div class="slide-num">7</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">事件冒泡与 catchtap</div>
-                <div class="slide-subtitle">嵌套标签的事件传递</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>什么是事件冒泡？</h3>
-                <p>多层标签嵌套时使用 bindtap 绑定事件，<strong>里层事件发生后，外层会相应触发</strong>（点击事件向外层传递）。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
-                <div class="feature-card">
-                    <h3 style="font-size:16px;">🌊 bindtap → 冒泡</h3>
-                    <p style="margin-bottom:8px;">点击内层，内层+外层函数都执行</p>
-                    <div class="code-block" style="font-size:13px;padding:12px 16px;">
-<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
-  <span class="cs">&lt;text</span> <span class="ck">bindtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
-    内层
-  <span class="cs">&lt;/text&gt;</span>
-<span class="cs">&lt;/view&gt;</span>
-<span class="cp">// 结果：inner → outer</span></div>
-                </div>
-                <div class="feature-card">
-                    <h3 style="font-size:16px;">🛑 catchtap → 阻止冒泡</h3>
-                    <p style="margin-bottom:8px;">点击内层，仅内层函数执行</p>
-                    <div class="code-block" style="font-size:13px;padding:12px 16px;">
-<span class="cs">&lt;view</span> <span class="ck">bindtap</span>=<span class="cs">"outer"</span><span class="cs">&gt;</span>
-  <span class="cs">&lt;text</span> <span class="ck">catchtap</span>=<span class="cs">"inner"</span><span class="cs">&gt;</span>
-    内层
-  <span class="cs">&lt;/text&gt;</span>
-<span class="cs">&lt;/view&gt;</span>
-<span class="cp">// 结果：仅 inner</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-8. 什么是 API -->
-    <div class="slide" data-index="8">
-        <div class="slide-num">8</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">什么是 API</div>
-                <div class="slide-subtitle">第二节 · 常用 API</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>API = Application Programming Interface</h3>
-                <p>应用程序编程接口。把函数封装起来给开发者调用，<strong>好多的功能不需要你去实现，只要会调用即可</strong>。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">📦</div>
-                    <h3 style="font-size:16px;">封装</h3>
-                    <p>把底层能力打包，开发者只关心"怎么调"，不关心"怎么实现"</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">🔌</div>
-                    <h3 style="font-size:16px;">调用</h3>
-                    <p>通过 <code>wx.xxx()</code> 直接调用微信提供的能力</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">📚</div>
-                    <h3 style="font-size:16px;">普适</h3>
-                    <p>API 不专属于小程序，任何编程语言/形态都有对应概念</p>
-                </div>
-            </div>
-            <div class="note-box" style="margin-top:14px;">
-                💡 微信团队把常用或底层方法封装为 <strong>wx.xxx</strong> 提供给开发者调用。
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-9. 常用 API 分类 -->
-    <div class="slide" data-index="9">
-        <div class="slide-num">9</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">常用 API 分类</div>
-                <div class="slide-subtitle">wx 命名空间下的接口全景</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;">
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">🌐</div>
-                    <h3 style="font-size:15px;">发起网络请求</h3>
-                    <p style="font-size:13px;"><code>wx.request</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">🖼️</div>
-                    <h3 style="font-size:15px;">保存相册</h3>
-                    <p style="font-size:13px;"><code>wx.saveImageToPhotosAlbum</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">💾</div>
-                    <h3 style="font-size:15px;">数据缓存</h3>
-                    <p style="font-size:13px;"><code>wx.setStorageSync</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">📱</div>
-                    <h3 style="font-size:15px;">获取系统信息</h3>
-                    <p style="font-size:13px;"><code>wx.getSystemInfo</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">💬</div>
-                    <h3 style="font-size:15px;">交互反馈</h3>
-                    <p style="font-size:13px;">showToast / showModal</p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">🧭</div>
-                    <h3 style="font-size:15px;">导航路由</h3>
-                    <p style="font-size:13px;">navigateTo / redirectTo …</p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">💰</div>
-                    <h3 style="font-size:15px;">微信支付</h3>
-                    <p style="font-size:13px;"><code>wx.requestPayment</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">🎤</div>
-                    <h3 style="font-size:15px;">录音播放</h3>
-                    <p style="font-size:13px;"><code>wx.getRecorderManager</code></p>
-                </div>
-                <div class="feature-card" style="padding:18px;">
-                    <div class="feature-icon" style="font-size:26px;">📍</div>
-                    <h3 style="font-size:15px;">定位</h3>
-                    <p style="font-size:13px;"><code>wx.getLocation</code></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-10. showToast -->
-    <div class="slide" data-index="10">
-        <div class="slide-num">10</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">界面交互 · wx.showToast</div>
-                <div class="slide-subtitle">显示消息提示框</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>使用场景</h3>
-                <p>短暂的信息提示（成功/失败/警告），1.5s 后自动消失，不打断用户操作。</p>
-            </div>
-            <div class="code-block">
-<span class="ck">wx</span>.showToast({
-  <span class="ck">title</span>: <span class="cs">'提交成功'</span>,
-  <span class="ck">icon</span>: <span class="cs">'success'</span>,   <span class="cp">// success | error | loading | none</span>
-  <span class="ck">duration</span>: <span class="cs">1500</span>        <span class="cp">// 显示时长，默认 1500ms</span>
-})</div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;">
-                <div class="feature-card" style="padding:14px;text-align:center;">
-                    <h3 style="font-size:15px;">✅ success</h3>
-                    <p style="font-size:13px;color:var(--text-sub);">成功（绿色）</p>
-                </div>
-                <div class="feature-card" style="padding:14px;text-align:center;">
-                    <h3 style="font-size:15px;">❌ error</h3>
-                    <p style="font-size:13px;color:var(--text-sub);">失败（红色）</p>
-                </div>
-                <div class="feature-card" style="padding:14px;text-align:center;">
-                    <h3 style="font-size:15px;">⏳ loading</h3>
-                    <p style="font-size:13px;color:var(--text-sub);">加载中（不自动消失，需主动关闭）</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-11. showModal -->
-    <div class="slide" data-index="11">
-        <div class="slide-num">11</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">界面交互 · wx.showModal</div>
-                <div class="slide-subtitle">显示模态对话框</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>使用场景</h3>
-                <p>需要用户<strong>明确确认/取消</strong>的操作（如删除、退出、支付确认），不会自动消失。</p>
-            </div>
-            <div class="code-block">
-<span class="ck">wx</span>.showModal({
-  <span class="ck">title</span>: <span class="cs">'确认删除？'</span>,
-  <span class="ck">content</span>: <span class="cs">'删除后无法恢复'</span>,
-  <span class="ck">confirmText</span>: <span class="cs">'删除'</span>,
-  <span class="ck">cancelText</span>: <span class="cs">'取消'</span>,
-  <span class="ck">success</span>(res) {
-    <span class="ck">if</span> (res.confirm) {
-      <span class="cp">// 用户点击"确定"</span>
-      <span class="ck">this</span>.deleteItem()
-    } <span class="ck">else</span> {
-      <span class="cp">// 用户点击"取消"</span>
-    }
-  }
-})</div>
-            <div class="note-box" style="margin-top:12px;">
-                ⚠️ <strong>规范</strong>：涉及删除/支付/发布等<strong>不可逆操作</strong>，必须使用 showModal 而非 showToast。
-            </div>
-        </div>
-    </div>
-
-    <!-- 8-12. 路由 -->
-    <div class="slide" data-index="12">
-        <div class="slide-num">12</div>
-        <div class="slide-header">
-            <div>
-                <div class="slide-title">路由 · 页面跳转</div>
-                <div class="slide-subtitle">五种方式 · 参数传递</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="code-block">
-<span class="ck">wx</span>.navigateTo({ url: <span class="cs">'test?id=1'</span> })         <span class="cp">// 保留当前页，可返回</span>
-<span class="ck">wx</span>.redirectTo({ url: <span class="cs">'test?id=1'</span> })        <span class="cp">// 关闭当前页，跳转新页</span>
-<span class="ck">wx</span>.switchTab({ url: <span class="cs">'/index'</span> })             <span class="cp">// 仅切 tab 页，不可传参</span>
-<span class="ck">wx</span>.reLaunch({ url: <span class="cs">'test?id=1'</span> })          <span class="cp">// 关闭所有页，重新打开</span>
-<span class="ck">wx</span>.navigateBack({ delta: 2 })              <span class="cp">// 返回 delta 页</span>
-</div>
-            <div class="info-box" style="margin-top:14px;">
-                <h3 style="color:var(--wx-green-dark);">📌 参数传递</h3>
-                <p>通过 URL 的 <code>?</code> 传递参数，多个参数用 <code>&</code> 分隔；在目标页 <code>onLoad(options)</code> 中读取。</p>
-            </div>
-            <div class="note-box" style="margin-top:12px;">
-                💡 <strong>switchTab</strong> 只用于 tab 页面间切换，不可传参；<strong>navigateBack</strong> 的 delta 若大于现有页面数，则返回到首页。
             </div>
         </div>
     </div>
