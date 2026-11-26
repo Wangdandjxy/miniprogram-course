@@ -4080,9 +4080,9 @@
     <div class="chapter-tab" data-chapter="4" onclick="switchChapter(4)">第四章 · 页面布局设计</div>
     <div class="chapter-tab" data-chapter="5" onclick="switchChapter(5)">第五章 · 常用组件介绍</div>
     <div class="chapter-tab" data-chapter="6" onclick="switchChapter(6)">第六章 · 页面交互</div>
-    <div class="chapter-tab" data-chapter="7" onclick="switchChapter(7)">第七章 · AI大语言模型与应用</div>
-    <div class="chapter-tab" data-chapter="8" onclick="switchChapter(8)">第八章 · AI从LLM到Agent</div>
-    <div class="chapter-tab" data-chapter="9" onclick="switchChapter(9)">第九章 · 后台管理与云开发</div>
+    <div class="chapter-tab" data-chapter="7" onclick="switchChapter(7)">第七章 · 后台管理与云开发</div>
+    <div class="chapter-tab" data-chapter="8" onclick="switchChapter(8)">第八章 · AI大语言模型与应用</div>
+    <div class="chapter-tab" data-chapter="9" onclick="switchChapter(9)">第九章 · AI从LLM到Agent</div>
 </div>
 
 <div class="progress-bar" id="progressBar" style="width: 5%"></div>
@@ -4985,7 +4985,7 @@
             </div>
             <div class="note-box">
                 <strong>💡 提示：</strong>点击右侧云函数、云数据库、云存储可跳转微信官方文档查看详细说明。<br>
-                <strong>第九章将详细介绍云开发。</strong>
+                <strong>第七章将详细介绍云开发。</strong>
             </div>
         </div>
     </div>
@@ -9644,8 +9644,404 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 </div><!-- /chapter-panel-6 -->
 
-<!-- ============ 第七章 · AI 大语言模型与应用 ============ -->
+<!-- ============ 第七章 · 后台管理与云开发 ============ -->
 <div class="chapter-panel" id="chapter-panel-7">
+<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-title">课程导引</div>
+        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
+        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">生命周期</div>
+        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>五个生命周期钩子</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">后台管理</div>
+        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>AppID 与登录</div>
+        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>项目配置</div>
+        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>成员管理</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">前后台交互</div>
+        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>前台闭环</div>
+        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>前后端增删改查</div>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-title">云开发</div>
+        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>云开发概念</div>
+        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>云开发优势</div>
+        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>本章总结</div>
+    </div>
+</div>
+
+<div class="slides-wrap">
+
+    <!-- 7-0. 封面 -->
+    <div class="slide chapter-slide active" data-index="0">
+        <div class="chapter-big">07</div>
+        <div class="chapter-name">后台管理与云开发</div>
+        <div class="chapter-desc">生命周期 · 成员管理 · 前后台交互 · 云开发</div>
+        <div class="cover-teacher" style="margin-top: 40px;">
+            <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
+            <p class="course-id" style="color:rgba(255,255,255,0.7);">课程编号：36810310</p>
+        </div>
+    </div>
+
+    <!-- 7-1. 本章概述 -->
+    <div class="slide" data-index="1">
+        <div class="slide-header">
+            <div class="slide-num">1</div>
+            <div>
+                <div class="slide-title">本章概述</div>
+                <div class="slide-subtitle">从"本地代码"到"上线运营"</div>
+            </div>
+        </div>
+        <div class="hero-layout">
+            <div>
+                <div class="info-box">
+                    <h3>教学定位</h3>
+                    <p>本章让小程序<strong>能上线、能维护</strong>：掌握生命周期、公众平台与成员管理、前后台数据交互，最后简介<strong>云开发</strong>这一免服务器方案。</p>
+                </div>
+                <div class="note-box" style="margin-top:16px;">
+                    🧭 <strong>四大模块</strong>：生命周期 · 后台管理 · 前后台交互 · 云开发简介
+                </div>
+            </div>
+            <div>
+                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
+                <div class="check-item">
+                    <span class="checkbox"></span>能正确说明五个生命周期函数的作用
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>能找到 AppID，完成项目配置与成员管理
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>理解前后台数据增删改查思路
+                </div>
+                <div class="check-item" style="margin-top:10px;">
+                    <span class="checkbox"></span>了解云开发的概念与优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-2. 生命周期 -->
+    <div class="slide" data-index="2">
+        <div class="slide-header">
+            <div class="slide-num">2</div>
+            <div>
+                <div class="slide-title">小程序生命周期</div>
+                <div class="slide-subtitle">页面 JS 中的 5 个钩子</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>JS 文件中的五个页面生命周期函数</h3>
+                <p>页面在加载、显示、隐藏、卸载等关键节点，会依次触发对应函数。</p>
+            </div>
+            <div class="code-block">
+<span class="ck">Page</span>({
+  <span class="ck">onLoad</span>(options) { <span class="cp">// 首次加载，可读取 URL 参数</span> },
+  <span class="ck">onShow</span>()      { <span class="cp">// 显示 / 从后台切前台 / 重新进入</span> },
+  <span class="ck">onReady</span>()     { <span class="cp">// 首次渲染完成</span> },
+  <span class="ck">onHide</span>()      { <span class="cp">// 切后台 / 进入其他页面</span> },
+  <span class="ck">onUnload</span>()    { <span class="cp">// 页面卸载</span> }
+})</div>
+            <div class="note-box" style="margin-top:12px;">
+                💡 <strong>典型用法</strong>：<code>onLoad</code> 里取参数与初始化；<code>onShow</code> 里刷新数据；<code>onUnload</code> 里做资源清理。
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-3. 后台管理 · AppID 与登录 -->
+    <div class="slide" data-index="3">
+        <div class="slide-header">
+            <div class="slide-num">3</div>
+            <div>
+                <div class="slide-title">后台管理 · 第一步</div>
+                <div class="slide-subtitle">查找 AppID</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>公众平台管理地址</h3>
+                <p><code>https://mp.weixin.qq.com/</code> —— 账号 + 扫码登录</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">①</div>
+                    <h3>注册小程序账号</h3>
+                    <p>若未注册，先在公众平台按引导完成注册与主体认证</p>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">②</div>
+                    <h3>登录后台</h3>
+                    <p>输入账号密码 + 微信扫码验证身份</p>
+                </div>
+                <div class="feature-card" style="padding:22px;">
+                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">③</div>
+                    <h3>查找 AppID</h3>
+                    <p>在<strong>开发管理 → 开发设置</strong> 中查看 AppID（小程序的唯一标识）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-4. 项目配置 AppID -->
+    <div class="slide" data-index="4">
+        <div class="slide-header">
+            <div class="slide-num">4</div>
+            <div>
+                <div class="slide-title">后台管理 · 第二步</div>
+                <div class="slide-subtitle">项目配置 AppID</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>在微信开发者工具中配置</h3>
+                <p>打开项目时把 AppID 填入<strong>项目配置 → AppID</strong>；也可在项目的 <code>project.config.json</code> 中修改。</p>
+            </div>
+            <div class="code-block">
+<span class="cs">{</span>
+  <span class="ck">"appid"</span>: <span class="cs">"wxXXXXXXXXXXXXXXXX"</span>,
+  <span class="ck">"projectname"</span>: <span class="cs">"my-miniprogram"</span>,
+  <span class="ck">"miniprogramRoot"</span>: <span class="cs">"./"</span>
+<span class="cs">}</span></div>
+            <div class="note-box" style="margin-top:12px;">
+                ⚠️ <strong>注意</strong>：填写错误会导致无法调试真机、无法体验版/发布。
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-5. 成员管理 -->
+    <div class="slide" data-index="5">
+        <div class="slide-header">
+            <div class="slide-num">5</div>
+            <div>
+                <div class="slide-title">后台管理 · 第三步</div>
+                <div class="slide-subtitle">配置项目成员</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:14px;">
+                <h3>成员管理中配置项目成员</h3>
+                <p>在公众平台 <strong>成员管理</strong> 里为开发者添加权限，共同协作。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">👤</div>
+                    <h3>项目成员</h3>
+                    <p>添加协作者微信号，分配角色</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🛠️</div>
+                    <h3>开发者</h3>
+                    <p>可上传代码，不能发布</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">📤</div>
+                    <h3>运营者</h3>
+                    <p>可管理素材、内容与回复</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 <strong>项目管理员</strong>拥有全部权限；一般仅项目负责人保留。
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-6. 前台闭环 -->
+    <div class="slide" data-index="6">
+        <div class="slide-header">
+            <div class="slide-num">6</div>
+            <div>
+                <div class="slide-title">前后台交互 · 前台</div>
+                <div class="slide-subtitle">数据绑定 + 事件绑定</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
+                <div class="feature-card" style="padding:22px;">
+                    <div class="feature-icon" style="font-size:32px;">🖼️</div>
+                    <h3>前台（页面）</h3>
+                    <p>修改的数据<strong>重新编译后没有保存</strong>（内存态）</p>
+                    <div style="margin-top:12px;padding:10px 14px;background:#f5f7f9;border-radius:8px;font-size:13px;">
+                        <strong>{{数据绑定}}</strong> + <strong>{{事件绑定}}</strong>
+                    </div>
+                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">只处理用户在本机的输入与展示</p>
+                </div>
+                <div class="feature-card" style="padding:22px;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
+                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
+                    <h3 style="color:var(--wx-green-dark);">前台 + 后台</h3>
+                    <p>数据持久化到服务端</p>
+                    <div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border-radius:8px;font-size:13px;border:1px solid #86efac;">
+                        <strong>{{数据绑定}}</strong> + <strong>bind 事件绑定</strong><br>
+                        + <strong>参数传递</strong><br>
+                        + <strong>增删改查数据</strong>
+                    </div>
+                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">通过接口或服务端存储，实现数据持久化与共享</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-7. 前后台增删改查 -->
+    <div class="slide" data-index="7">
+        <div class="slide-header">
+            <div class="slide-num">7</div>
+            <div>
+                <div class="slide-title">前后台交互 · 增删改查</div>
+                <div class="slide-subtitle">CRUD 与 wx.request</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;">
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🆕</div>
+                    <h3 style="font-size:15px;">Create</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">POST 提交</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🔍</div>
+                    <h3 style="font-size:15px;">Read</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">GET 查询</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">✏️</div>
+                    <h3 style="font-size:15px;">Update</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">PUT 修改</p>
+                </div>
+                <div class="feature-card" style="padding:16px;text-align:center;">
+                    <div style="font-size:24px;">🗑️</div>
+                    <h3 style="font-size:15px;">Delete</h3>
+                    <p style="font-size:12px;color:var(--text-sub);">DELETE 删除</p>
+                </div>
+            </div>
+            <div class="code-block">
+<span class="ck">wx</span>.request({
+  <span class="ck">url</span>: <span class="cs">'https://api.example.com/tasks'</span>,
+  <span class="ck">method</span>: <span class="cs">'POST'</span>,
+  <span class="ck">data</span>: { name: <span class="cs">'新建任务'</span> },
+  <span class="ck">success</span>(res) {
+    <span class="ck">this</span>.setData({ tasks: res.data })
+  }
+})</div>
+        </div>
+    </div>
+
+    <!-- 7-8. 云开发概念 -->
+    <div class="slide" data-index="8">
+        <div class="slide-header">
+            <div class="slide-num">8</div>
+            <div>
+                <div class="slide-title">云开发 · 概念</div>
+                <div class="slide-subtitle">免服务器的开发模式</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="info-box" style="margin-bottom:16px;">
+                <h3>什么是云开发</h3>
+                <p>微信官方提供的<strong>云端一体化</strong>能力，开发者<strong>无需自建服务器</strong>即可完成数据存储、后端逻辑与文件管理。</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
+                    <h3>云数据库</h3>
+                    <p>NoSQL 数据库，直接在小程序内读写，无需 API</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">⚙️</div>
+                    <h3>云函数</h3>
+                    <p>云端运行 Node.js 函数，替代自建后端接口</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:32px;">📁</div>
+                    <h3>云存储</h3>
+                    <p>托管图片/文件，返回可访问的 CDN 链接</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-9. 云开发优势 -->
+    <div class="slide" data-index="9">
+        <div class="slide-header">
+            <div class="slide-num">9</div>
+            <div>
+                <div class="slide-title">云开发 · 优势</div>
+                <div class="slide-subtitle">为什么值得了解</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🚀</div>
+                    <h3>开发效率高</h3>
+                    <p>无需编写后端接口与运维，直接调用云数据库</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">💰</div>
+                    <h3>成本更低</h3>
+                    <p>官方弹性扩容，按量计费；免费额度足够个人学习</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🔒</div>
+                    <h3>数据安全</h3>
+                    <p>天然集成微信生态，权限可控，避免密钥泄漏</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:28px;">🧩</div>
+                    <h3>开箱即用</h3>
+                    <p>提供登录、鉴权、支付、客服消息等常用能力</p>
+                </div>
+            </div>
+            <div class="note-box" style="margin-top:14px;">
+                💡 本项目<strong>仅做知识介绍</strong>，课后有兴趣的同学可自行在云开发控制台体验。
+            </div>
+        </div>
+    </div>
+
+    <!-- 7-10. 本章总结 -->
+    <div class="slide" data-index="10">
+        <div class="slide-header">
+            <div class="slide-num">10</div>
+            <div>
+                <div class="slide-title">本章总结</div>
+                <div class="slide-subtitle">从"能写"到"能上线"</div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div class="feature-card">
+                    <h3>📌 生命周期</h3>
+                    <p>onLoad / onShow / onReady / onHide / onUnload 五个钩子</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔑 AppID 与成员</h3>
+                    <p>公众平台 → 项目配置 → 成员管理，三步完成协作配置</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔗 前后台交互</h3>
+                    <p>数据绑定 + 事件绑定 + 参数传递 + CRUD</p>
+                </div>
+                <div class="feature-card">
+                    <h3>☁️ 云开发</h3>
+                    <p>云数据库 / 云函数 / 云存储 —— 免服务器的一体化方案</p>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:16px;text-align:center;">
+                <h3 style="font-size:20px;color:var(--wx-green-dark);">课程到此告一段落 · 期末大作业等你挑战！</h3>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /slides-wrap -->
+
+</div><!-- /chapter-panel-7 -->
+<!-- ============ 第八章 · AI 大语言模型与应用 ============ -->
+<div class="chapter-panel" id="chapter-panel-8">
 <div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
@@ -9683,9 +10079,9 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <div class="slides-wrap">
 
-    <!-- 7-0. 封面 -->
+    <!-- 8-0. 封面 -->
     <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">07</div>
+        <div class="chapter-big">08</div>
         <div class="chapter-name">AI 大语言模型与应用</div>
         <div class="chapter-desc">LLM 兴起 · 生成机制 · 主流模型 · Prompt 工程</div>
         <div class="cover-teacher" style="margin-top: 40px;">
@@ -9694,12 +10090,12 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-1. 课程目录 -->
+    <!-- 8-1. 课程目录 -->
     <div class="slide" data-index="1">
         <div class="slide-header">
             <div class="slide-num">1</div>
             <div>
-                <div class="slide-title">第七章目录</div>
+                <div class="slide-title">第八章目录</div>
                 <div class="slide-subtitle">大语言模型与应用实践</div>
             </div>
         </div>
@@ -9728,13 +10124,13 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
                 <div class="feature-card" style="grid-column:1/-1;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
                     <div class="feature-icon" style="font-size:32px;">📚</div>
                     <h3 style="color:var(--wx-green-dark);">后续章节</h3>
-                    <p>第五章 Prompt 实战 · 第八章 从 LLM 到 Agent（智能体）</p>
+                    <p>第五章 Prompt 实战 · 第九章 从 LLM 到 Agent（智能体）</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 7-2. 本节核心问题 -->
+    <!-- 8-2. 本节核心问题 -->
     <div class="slide" data-index="2">
         <div class="slide-header">
             <div class="slide-num">2</div>
@@ -9764,7 +10160,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-3. 大语言模型从哪里来 -->
+    <!-- 8-3. 大语言模型从哪里来 -->
     <div class="slide" data-index="3">
         <div class="slide-header">
             <div class="slide-num">3</div>
@@ -9793,7 +10189,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-4. 为何近几年爆发 -->
+    <!-- 8-4. 为何近几年爆发 -->
     <div class="slide" data-index="4">
         <div class="slide-header">
             <div class="slide-num">4</div>
@@ -9828,7 +10224,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-5. 人工智能三次浪潮 -->
+    <!-- 8-5. 人工智能三次浪潮 -->
     <div class="slide" data-index="5">
         <div class="slide-header">
             <div class="slide-num">5</div>
@@ -9864,7 +10260,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-6. Transformer 突破 -->
+    <!-- 8-6. Transformer 突破 -->
     <div class="slide" data-index="6">
         <div class="slide-header">
             <div class="slide-num">6</div>
@@ -9896,7 +10292,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-7. 大模型语言生成全过程 -->
+    <!-- 8-7. 大模型语言生成全过程 -->
     <div class="slide" data-index="7">
         <div class="slide-header">
             <div class="slide-num">7</div>
@@ -9935,7 +10331,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-8. 预训练与微调 -->
+    <!-- 8-8. 预训练与微调 -->
     <div class="slide" data-index="8">
         <div class="slide-header">
             <div class="slide-num">8</div>
@@ -9969,7 +10365,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-9. 幻觉与局限 -->
+    <!-- 8-9. 幻觉与局限 -->
     <div class="slide" data-index="9">
         <div class="slide-header">
             <div class="slide-num">9</div>
@@ -10004,7 +10400,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-10. 模型分类 -->
+    <!-- 8-10. 模型分类 -->
     <div class="slide" data-index="10">
         <div class="slide-header">
             <div class="slide-num">10</div>
@@ -10044,7 +10440,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-11. 主流模型资源与链接 -->
+    <!-- 8-11. 主流模型资源与链接 -->
     <div class="slide" data-index="11">
         <div class="slide-header">
             <div class="slide-num">11</div>
@@ -10082,7 +10478,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-12. Prompt 概念澄清 -->
+    <!-- 8-12. Prompt 概念澄清 -->
     <div class="slide" data-index="12">
         <div class="slide-header">
             <div class="slide-num">12</div>
@@ -10110,7 +10506,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-13. Prompt 设计原则 -->
+    <!-- 8-13. Prompt 设计原则 -->
     <div class="slide" data-index="13">
         <div class="slide-header">
             <div class="slide-num">13</div>
@@ -10146,7 +10542,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 7-14. Prompt 进阶技巧 -->
+    <!-- 8-14. Prompt 进阶技巧 -->
     <div class="slide" data-index="14">
         <div class="slide-header">
             <div class="slide-num">14</div>
@@ -10206,10 +10602,10 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 </div><!-- /slides-wrap -->
 
-</div><!-- /chapter-panel-7 -->
+</div><!-- /chapter-panel-8 -->
 
-<!-- ============ 第八章 · AI 从 LLM 到 Agent ============ -->
-<div class="chapter-panel" id="chapter-panel-8">
+<!-- ============ 第九章 · AI 从 LLM 到 Agent ============ -->
+<div class="chapter-panel" id="chapter-panel-9">
 <div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
 
 <div class="sidebar">
@@ -10238,9 +10634,9 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 <div class="slides-wrap">
 
-    <!-- 8-0. 封面 -->
+    <!-- 9-0. 封面 -->
     <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">08</div>
+        <div class="chapter-big">09</div>
         <div class="chapter-name">从 LLM 到 Agent</div>
         <div class="chapter-desc">智能体 · Skill · 平台 · 安全</div>
         <div class="cover-teacher" style="margin-top: 40px;">
@@ -10249,7 +10645,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-1. 什么是 Agent -->
+    <!-- 9-1. 什么是 Agent -->
     <div class="slide" data-index="1">
         <div class="slide-header">
             <div class="slide-num">1</div>
@@ -10283,7 +10679,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-2. LLM vs Agent -->
+    <!-- 9-2. LLM vs Agent -->
     <div class="slide" data-index="2">
         <div class="slide-header">
             <div class="slide-num">2</div>
@@ -10318,7 +10714,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-3. Agent 典型工作流程 -->
+    <!-- 9-3. Agent 典型工作流程 -->
     <div class="slide" data-index="3">
         <div class="slide-header">
             <div class="slide-num">3</div>
@@ -10365,7 +10761,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-4. 什么是 Skill -->
+    <!-- 9-4. 什么是 Skill -->
     <div class="slide" data-index="4">
         <div class="slide-header">
             <div class="slide-num">4</div>
@@ -10396,7 +10792,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-5. 国内外 Agent 平台 -->
+    <!-- 9-5. 国内外 Agent 平台 -->
     <div class="slide" data-index="5">
         <div class="slide-header">
             <div class="slide-num">5</div>
@@ -10440,7 +10836,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-6. 如何创建 Skill -->
+    <!-- 9-6. 如何创建 Skill -->
     <div class="slide" data-index="6">
         <div class="slide-header">
             <div class="slide-num">6</div>
@@ -10473,7 +10869,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-7. 使用安全注意事项 -->
+    <!-- 9-7. 使用安全注意事项 -->
     <div class="slide" data-index="7">
         <div class="slide-header">
             <div class="slide-num">7</div>
@@ -10505,7 +10901,7 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
         </div>
     </div>
 
-    <!-- 8-8. 全课程总结 -->
+    <!-- 9-8. 全课程总结 -->
     <div class="slide" data-index="8">
         <div class="slide-header">
             <div class="slide-num">8</div>
@@ -10555,404 +10951,8 @@ margin<span class="cs">:</span> <span class="cp">5px 15px 5px 15px</span><span c
 
 </div><!-- /slides-wrap -->
 
-</div><!-- /chapter-panel-8 -->
-
-<!-- ============ 第九章 · 后台管理与云开发 ============ -->
-<div class="chapter-panel" id="chapter-panel-9">
-<div class="sidebar-toggle" title="折叠 / 展开左侧目录" onclick="toggleSidebar(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
-
-<div class="sidebar">
-    <div class="sidebar-section">
-        <div class="sidebar-title">课程导引</div>
-        <div class="nav-item active" data-slide="0"><span class="nav-num">0</span>章节封面</div>
-        <div class="nav-item" data-slide="1"><span class="nav-num">1</span>本章概述</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">生命周期</div>
-        <div class="nav-item" data-slide="2"><span class="nav-num">2</span>五个生命周期钩子</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">后台管理</div>
-        <div class="nav-item" data-slide="3"><span class="nav-num">3</span>AppID 与登录</div>
-        <div class="nav-item" data-slide="4"><span class="nav-num">4</span>项目配置</div>
-        <div class="nav-item" data-slide="5"><span class="nav-num">5</span>成员管理</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">前后台交互</div>
-        <div class="nav-item" data-slide="6"><span class="nav-num">6</span>前台闭环</div>
-        <div class="nav-item" data-slide="7"><span class="nav-num">7</span>前后端增删改查</div>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-title">云开发</div>
-        <div class="nav-item" data-slide="8"><span class="nav-num">8</span>云开发概念</div>
-        <div class="nav-item" data-slide="9"><span class="nav-num">9</span>云开发优势</div>
-        <div class="nav-item" data-slide="10"><span class="nav-num">10</span>本章总结</div>
-    </div>
-</div>
-
-<div class="slides-wrap">
-
-    <!-- 9-0. 封面 -->
-    <div class="slide chapter-slide active" data-index="0">
-        <div class="chapter-big">09</div>
-        <div class="chapter-name">后台管理与云开发</div>
-        <div class="chapter-desc">生命周期 · 成员管理 · 前后台交互 · 云开发</div>
-        <div class="cover-teacher" style="margin-top: 40px;">
-            <p class="teacher-name" style="color:#fff;">任课教师：王丹</p>
-            <p class="course-id" style="color:rgba(255,255,255,0.7);">课程编号：36810310</p>
-        </div>
-    </div>
-
-    <!-- 9-1. 本章概述 -->
-    <div class="slide" data-index="1">
-        <div class="slide-header">
-            <div class="slide-num">1</div>
-            <div>
-                <div class="slide-title">本章概述</div>
-                <div class="slide-subtitle">从"本地代码"到"上线运营"</div>
-            </div>
-        </div>
-        <div class="hero-layout">
-            <div>
-                <div class="info-box">
-                    <h3>教学定位</h3>
-                    <p>本章让小程序<strong>能上线、能维护</strong>：掌握生命周期、公众平台与成员管理、前后台数据交互，最后简介<strong>云开发</strong>这一免服务器方案。</p>
-                </div>
-                <div class="note-box" style="margin-top:16px;">
-                    🧭 <strong>四大模块</strong>：生命周期 · 后台管理 · 前后台交互 · 云开发简介
-                </div>
-            </div>
-            <div>
-                <h3 style="color:var(--wx-green-dark);font-size:22px;margin-bottom:14px;">教学目标</h3>
-                <div class="check-item">
-                    <span class="checkbox"></span>能正确说明五个生命周期函数的作用
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>能找到 AppID，完成项目配置与成员管理
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>理解前后台数据增删改查思路
-                </div>
-                <div class="check-item" style="margin-top:10px;">
-                    <span class="checkbox"></span>了解云开发的概念与优势
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-2. 生命周期 -->
-    <div class="slide" data-index="2">
-        <div class="slide-header">
-            <div class="slide-num">2</div>
-            <div>
-                <div class="slide-title">小程序生命周期</div>
-                <div class="slide-subtitle">页面 JS 中的 5 个钩子</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>JS 文件中的五个页面生命周期函数</h3>
-                <p>页面在加载、显示、隐藏、卸载等关键节点，会依次触发对应函数。</p>
-            </div>
-            <div class="code-block">
-<span class="ck">Page</span>({
-  <span class="ck">onLoad</span>(options) { <span class="cp">// 首次加载，可读取 URL 参数</span> },
-  <span class="ck">onShow</span>()      { <span class="cp">// 显示 / 从后台切前台 / 重新进入</span> },
-  <span class="ck">onReady</span>()     { <span class="cp">// 首次渲染完成</span> },
-  <span class="ck">onHide</span>()      { <span class="cp">// 切后台 / 进入其他页面</span> },
-  <span class="ck">onUnload</span>()    { <span class="cp">// 页面卸载</span> }
-})</div>
-            <div class="note-box" style="margin-top:12px;">
-                💡 <strong>典型用法</strong>：<code>onLoad</code> 里取参数与初始化；<code>onShow</code> 里刷新数据；<code>onUnload</code> 里做资源清理。
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-3. 后台管理 · AppID 与登录 -->
-    <div class="slide" data-index="3">
-        <div class="slide-header">
-            <div class="slide-num">3</div>
-            <div>
-                <div class="slide-title">后台管理 · 第一步</div>
-                <div class="slide-subtitle">查找 AppID</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>公众平台管理地址</h3>
-                <p><code>https://mp.weixin.qq.com/</code> —— 账号 + 扫码登录</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div class="feature-card" style="padding:22px;">
-                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">①</div>
-                    <h3>注册小程序账号</h3>
-                    <p>若未注册，先在公众平台按引导完成注册与主体认证</p>
-                </div>
-                <div class="feature-card" style="padding:22px;">
-                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">②</div>
-                    <h3>登录后台</h3>
-                    <p>输入账号密码 + 微信扫码验证身份</p>
-                </div>
-                <div class="feature-card" style="padding:22px;">
-                    <div style="font-size:34px;font-weight:700;color:var(--wx-green-dark);">③</div>
-                    <h3>查找 AppID</h3>
-                    <p>在<strong>开发管理 → 开发设置</strong> 中查看 AppID（小程序的唯一标识）</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-4. 项目配置 AppID -->
-    <div class="slide" data-index="4">
-        <div class="slide-header">
-            <div class="slide-num">4</div>
-            <div>
-                <div class="slide-title">后台管理 · 第二步</div>
-                <div class="slide-subtitle">项目配置 AppID</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>在微信开发者工具中配置</h3>
-                <p>打开项目时把 AppID 填入<strong>项目配置 → AppID</strong>；也可在项目的 <code>project.config.json</code> 中修改。</p>
-            </div>
-            <div class="code-block">
-<span class="cs">{</span>
-  <span class="ck">"appid"</span>: <span class="cs">"wxXXXXXXXXXXXXXXXX"</span>,
-  <span class="ck">"projectname"</span>: <span class="cs">"my-miniprogram"</span>,
-  <span class="ck">"miniprogramRoot"</span>: <span class="cs">"./"</span>
-<span class="cs">}</span></div>
-            <div class="note-box" style="margin-top:12px;">
-                ⚠️ <strong>注意</strong>：填写错误会导致无法调试真机、无法体验版/发布。
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-5. 成员管理 -->
-    <div class="slide" data-index="5">
-        <div class="slide-header">
-            <div class="slide-num">5</div>
-            <div>
-                <div class="slide-title">后台管理 · 第三步</div>
-                <div class="slide-subtitle">配置项目成员</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:14px;">
-                <h3>成员管理中配置项目成员</h3>
-                <p>在公众平台 <strong>成员管理</strong> 里为开发者添加权限，共同协作。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">👤</div>
-                    <h3>项目成员</h3>
-                    <p>添加协作者微信号，分配角色</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">🛠️</div>
-                    <h3>开发者</h3>
-                    <p>可上传代码，不能发布</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">📤</div>
-                    <h3>运营者</h3>
-                    <p>可管理素材、内容与回复</p>
-                </div>
-            </div>
-            <div class="note-box" style="margin-top:14px;">
-                💡 <strong>项目管理员</strong>拥有全部权限；一般仅项目负责人保留。
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-6. 前台闭环 -->
-    <div class="slide" data-index="6">
-        <div class="slide-header">
-            <div class="slide-num">6</div>
-            <div>
-                <div class="slide-title">前后台交互 · 前台</div>
-                <div class="slide-subtitle">数据绑定 + 事件绑定</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:18px;">
-                <div class="feature-card" style="padding:22px;">
-                    <div class="feature-icon" style="font-size:32px;">🖼️</div>
-                    <h3>前台（页面）</h3>
-                    <p>修改的数据<strong>重新编译后没有保存</strong>（内存态）</p>
-                    <div style="margin-top:12px;padding:10px 14px;background:#f5f7f9;border-radius:8px;font-size:13px;">
-                        <strong>{{数据绑定}}</strong> + <strong>{{事件绑定}}</strong>
-                    </div>
-                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">只处理用户在本机的输入与展示</p>
-                </div>
-                <div class="feature-card" style="padding:22px;background:linear-gradient(135deg,#f0fdf4,#fff);border-color:#86efac;">
-                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
-                    <h3 style="color:var(--wx-green-dark);">前台 + 后台</h3>
-                    <p>数据持久化到服务端</p>
-                    <div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border-radius:8px;font-size:13px;border:1px solid #86efac;">
-                        <strong>{{数据绑定}}</strong> + <strong>bind 事件绑定</strong><br>
-                        + <strong>参数传递</strong><br>
-                        + <strong>增删改查数据</strong>
-                    </div>
-                    <p style="margin-top:10px;font-size:13px;color:var(--text-sub);">通过接口或服务端存储，实现数据持久化与共享</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-7. 前后台增删改查 -->
-    <div class="slide" data-index="7">
-        <div class="slide-header">
-            <div class="slide-num">7</div>
-            <div>
-                <div class="slide-title">前后台交互 · 增删改查</div>
-                <div class="slide-subtitle">CRUD 与 wx.request</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;">
-                <div class="feature-card" style="padding:16px;text-align:center;">
-                    <div style="font-size:24px;">🆕</div>
-                    <h3 style="font-size:15px;">Create</h3>
-                    <p style="font-size:12px;color:var(--text-sub);">POST 提交</p>
-                </div>
-                <div class="feature-card" style="padding:16px;text-align:center;">
-                    <div style="font-size:24px;">🔍</div>
-                    <h3 style="font-size:15px;">Read</h3>
-                    <p style="font-size:12px;color:var(--text-sub);">GET 查询</p>
-                </div>
-                <div class="feature-card" style="padding:16px;text-align:center;">
-                    <div style="font-size:24px;">✏️</div>
-                    <h3 style="font-size:15px;">Update</h3>
-                    <p style="font-size:12px;color:var(--text-sub);">PUT 修改</p>
-                </div>
-                <div class="feature-card" style="padding:16px;text-align:center;">
-                    <div style="font-size:24px;">🗑️</div>
-                    <h3 style="font-size:15px;">Delete</h3>
-                    <p style="font-size:12px;color:var(--text-sub);">DELETE 删除</p>
-                </div>
-            </div>
-            <div class="code-block">
-<span class="ck">wx</span>.request({
-  <span class="ck">url</span>: <span class="cs">'https://api.example.com/tasks'</span>,
-  <span class="ck">method</span>: <span class="cs">'POST'</span>,
-  <span class="ck">data</span>: { name: <span class="cs">'新建任务'</span> },
-  <span class="ck">success</span>(res) {
-    <span class="ck">this</span>.setData({ tasks: res.data })
-  }
-})</div>
-        </div>
-    </div>
-
-    <!-- 9-8. 云开发概念 -->
-    <div class="slide" data-index="8">
-        <div class="slide-header">
-            <div class="slide-num">8</div>
-            <div>
-                <div class="slide-title">云开发 · 概念</div>
-                <div class="slide-subtitle">免服务器的开发模式</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="info-box" style="margin-bottom:16px;">
-                <h3>什么是云开发</h3>
-                <p>微信官方提供的<strong>云端一体化</strong>能力，开发者<strong>无需自建服务器</strong>即可完成数据存储、后端逻辑与文件管理。</p>
-            </div>
-            <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;">
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">🗄️</div>
-                    <h3>云数据库</h3>
-                    <p>NoSQL 数据库，直接在小程序内读写，无需 API</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">⚙️</div>
-                    <h3>云函数</h3>
-                    <p>云端运行 Node.js 函数，替代自建后端接口</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:32px;">📁</div>
-                    <h3>云存储</h3>
-                    <p>托管图片/文件，返回可访问的 CDN 链接</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-9. 云开发优势 -->
-    <div class="slide" data-index="9">
-        <div class="slide-header">
-            <div class="slide-num">9</div>
-            <div>
-                <div class="slide-title">云开发 · 优势</div>
-                <div class="slide-subtitle">为什么值得了解</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">🚀</div>
-                    <h3>开发效率高</h3>
-                    <p>无需编写后端接口与运维，直接调用云数据库</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">💰</div>
-                    <h3>成本更低</h3>
-                    <p>官方弹性扩容，按量计费；免费额度足够个人学习</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">🔒</div>
-                    <h3>数据安全</h3>
-                    <p>天然集成微信生态，权限可控，避免密钥泄漏</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="font-size:28px;">🧩</div>
-                    <h3>开箱即用</h3>
-                    <p>提供登录、鉴权、支付、客服消息等常用能力</p>
-                </div>
-            </div>
-            <div class="note-box" style="margin-top:14px;">
-                💡 本项目<strong>仅做知识介绍</strong>，课后有兴趣的同学可自行在云开发控制台体验。
-            </div>
-        </div>
-    </div>
-
-    <!-- 9-10. 本章总结 -->
-    <div class="slide" data-index="10">
-        <div class="slide-header">
-            <div class="slide-num">10</div>
-            <div>
-                <div class="slide-title">本章总结</div>
-                <div class="slide-subtitle">从"能写"到"能上线"</div>
-            </div>
-        </div>
-        <div class="content-grid">
-            <div class="feature-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;">
-                <div class="feature-card">
-                    <h3>📌 生命周期</h3>
-                    <p>onLoad / onShow / onReady / onHide / onUnload 五个钩子</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔑 AppID 与成员</h3>
-                    <p>公众平台 → 项目配置 → 成员管理，三步完成协作配置</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔗 前后台交互</h3>
-                    <p>数据绑定 + 事件绑定 + 参数传递 + CRUD</p>
-                </div>
-                <div class="feature-card">
-                    <h3>☁️ 云开发</h3>
-                    <p>云数据库 / 云函数 / 云存储 —— 免服务器的一体化方案</p>
-                </div>
-            </div>
-            <div class="info-box" style="margin-top:16px;text-align:center;">
-                <h3 style="font-size:20px;color:var(--wx-green-dark);">课程到此告一段落 · 期末大作业等你挑战！</h3>
-            </div>
-        </div>
-    </div>
-
-</div><!-- /slides-wrap -->
-
 </div><!-- /chapter-panel-9 -->
+
 
 <!-- 场景弹窗组：首页/详情页类 -->
 <div class="modal-overlay" id="sc1Modal" onclick="closeScenarioModal(event,'sc1Modal')">
